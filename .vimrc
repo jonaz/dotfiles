@@ -24,3 +24,5 @@ function! HookFunc()
   let f = substitute(expand("%:t"), ".module", "", "g")
   return "function " . f . "_"
 endfunction
+
+let g:syntastic_phpcs_conf=" --standard=Drupal --extensions=php,module,inc,install,test,profile,theme"
