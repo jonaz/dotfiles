@@ -1,4 +1,8 @@
 git clone git@github.com:letharion/letharion-dot-files.git .vimdir
 
+./install
+
+or 
+
 ln -s .vimdir/.vim .vim
 ln -s .vimdir/.vimrc .vimrc

@@ -14,5 +14,10 @@ git submodule update
 
 if [ ! -L ~/.vimrc ]; then
     echo "Creating symbolic link .vimrc/ to ~/.vimrc"
-    ln -s .vimrc/ ~/.vimrc
+    ln -s .vimrc ~/.vimrc
+fi
+
+if [ ! -L ~/.vim ]; then
+    echo "Creating symbolic link .vimrc/ to ~/.vimrc"
+    ln -s .vim/ ~/.vim
 fi
