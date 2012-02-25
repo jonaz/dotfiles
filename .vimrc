@@ -61,3 +61,6 @@ inoremap <tab> <c-r>=InsertTabWrapper()<cr>
 
 imap § <Esc>
 map § <Esc>
+
+set background=dark
+set mouse=a
