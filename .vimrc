@@ -43,3 +43,6 @@ if has('statusline')
   let g:syntastic_enable_signs=1
   set statusline+=%=%-14.(%l,%c%V%)\ %p%%  " Right aligned file nav info
 endif
+
+set dictionary-=~/.vim/php/functionlist.txt dictionary+=~/.vim/php/functionlist.txt
+set complete-=k complete+=k
