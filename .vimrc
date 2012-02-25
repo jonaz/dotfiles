@@ -46,3 +46,18 @@ endif
 
 set dictionary-=~/.vim/php/functionlist.txt dictionary+=~/.vim/php/functionlist.txt
 set complete-=k complete+=k
+
+function InsertTabWrapper()
+    let col = col('.') - 1
+    if !col || getline('.')[col - 1] !~ '\k'
+        return "\<tab>"
+    else
+        return "\<c-p>"
+    endif
+endfunction
+
+" Remap the tab key to select action with InsertTabWrapper
+inoremap <tab> <c-r>=InsertTabWrapper()<cr>
+
+imap § <Esc>
+map § <Esc>
