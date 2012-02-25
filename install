@@ -1,7 +1,13 @@
 #!/bin/bash
 
+
 if [ -f ~/.vimrc ]; then
     echo "~/.vimrc already exists, please remove or move"
+    exit 1
+fi
+
+if [ -d ~/.vim ]; then
+    echo "~/.vim already exists, please remove or move"
     exit 1
 fi
 
@@ -13,11 +19,11 @@ echo "Git submodule update"
 git submodule update
 
 if [ ! -L ~/.vimrc ]; then
-    echo "Creating symbolic link .vimrc/ to ~/.vimrc"
-    ln -s .vimrc ~/.vimrc
+    echo "Creating symbolic link ~/.vimrc to $PWD/.vimrc"
+    ln -s $PWD/.vimrc ~/.vimrc
 fi
 
 if [ ! -L ~/.vim ]; then
-    echo "Creating symbolic link .vimrc/ to ~/.vimrc"
-    ln -s .vim/ ~/.vim
+    echo "Creating symbolic link ~/.vim to $PWD/.vim"
+    ln -s $PWD/.vim/ ~/.vim
 fi
