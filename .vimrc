@@ -64,3 +64,4 @@ map § <Esc>
 
 set background=dark
 set mouse=a
+set foldmethod=marker
