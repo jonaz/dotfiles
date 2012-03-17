@@ -24,6 +24,7 @@ set number
 set autoindent
 set ttymouse=xterm2
 filetype on
+filetype plugin on
 " for C-like programming, have automatic indentation:
 autocmd FileType c,cpp,slang,php,js set cindent
 
@@ -36,6 +37,7 @@ autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
 autocmd FileType php set omnifunc=phpcomplete#CompletePHP
 let php_sql_query=1
 let php_htmlInStrings=1
+let mapleader = ","
 set makeprg=php\ -l\ %
 set errorformat=%m\ in\ %f\ on\ line\ %l
 autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
