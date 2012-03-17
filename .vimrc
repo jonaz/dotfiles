@@ -19,6 +19,8 @@ au BufEnter,BufRead     *.tpl   setf php
 au BufNewFile,BufRead   *.tpl setf php
 au BufNewFile,BufRead   *.inc setf php
 au BufRead,BufNewFile *.go set filetype=go
+au BufEnter *.css set nocindent
+au BufLeave *.css set cindent
 set mouse=a
 set number
 set autoindent
