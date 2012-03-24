@@ -1,0 +1,3 @@
+[submodule "dot-vim"]
+	path = dot-vim
+	url = git://github.com/Sector7/dot-vim.git
