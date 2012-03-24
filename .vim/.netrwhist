@@ -1,6 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =4
-let g:netrw_dirhist_1='/var/www/public/crew.nordsken.se/htdocs/lib/js'
-let g:netrw_dirhist_2='/Users/jonaz/.vimdir/dot-vim'
-let g:netrw_dirhist_3='/Users/jonaz/.vimdir/dot-vim/.vim/bundle/fugitive'
-let g:netrw_dirhist_4='/Users/jonaz/.vimdir/dot-vim/.vim'
