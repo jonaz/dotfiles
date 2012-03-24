@@ -1,0 +1,28 @@
+#!/bin/bash
+echo "Git pull"
+git pull
+echo "Git submodule init"
+git submodule init
+echo "Git submodule update"
+git submodule update
+
+if [ -f ~/.vimrc ]; then
+    echo "~/.vimrc already exists, please remove or move"
+    exit 1
+fi
+
+if [ -d ~/.vim ]; then
+    echo "~/.vim already exists, please remove or move"
+    exit 1
+fi
+
+
+if [ ! -L ~/.vimrc ]; then
+    echo "Creating symbolic link ~/.vimrc to $PWD/.vimrc"
+    ln -s $PWD/.vimrc ~/.vimrc
+fi
+
+if [ ! -L ~/.vim ]; then
+    echo "Creating symbolic link ~/.vim to $PWD/.vim"
+    ln -s $PWD/.vim/ ~/.vim
+fi

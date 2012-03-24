@@ -1,0 +1,9 @@
+git clone git://github.com/Sector7/dot-vim.git .vimdir
+
+cd .vimdir
+./install
+
+or 
+
+ln -s .vimdir/.vim .vim
+ln -s .vimdir/.vimrc .vimrc
