@@ -1,4 +1,11 @@
 set shiftwidth=4
 set softtabstop=4
 set tabstop=4
-inoremap  { {<CR>}<C-O>O
+inoremap  { <C-R>=MasVinge()<CR>
+func MasVinge()
+    let col = col('.') - 1
+    if !col || getline('.')[col - 1] !~ '\S'
+        return "{\<CR>}\<C-O>\O"
+    endif
+    return '{'
+endfunc
