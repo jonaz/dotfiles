@@ -4,7 +4,7 @@ set tabstop=4
 inoremap  { <C-R>=MasVinge()<CR>
 func MasVinge()
     let col = col('.') - 1
-    if !col || getline('.')[col - 1] !~ '\S'
+    if getline('.')[col - 1] == ')'
         return "{\<CR>}\<C-O>\O"
     endif
     return '{'
