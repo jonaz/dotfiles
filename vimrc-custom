@@ -9,3 +9,22 @@ func MasVinge()
     endif
     return '{'
 endfunc
+
+
+" for fortnox
+"au FileType php noremap <F3> :set list!<CR>
+au FileType php set nolist
+au FileType php set noexpandtab
+
+
+
+
+"let g:vdebug_options['server'] = '0.0.0.0'
+"let g:vdebug_options['path_maps'] = {'/storage/vol3/utv.fortnox.local/jf/trunk': '/home/jonaz/svn/trunk/'}
+call pathogen#helptags()
+let g:vdebug_options = { 
+\       "path_maps": {'/storage/vol3/utv.fortnox.local/jf/trunk': '/home/jonaz/svn/trunk'},
+\       "server": '0.0.0.0',
+\       "ide_key" : 'jf',
+\       "break_on_open" : 0,
+\}
