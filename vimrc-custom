@@ -16,6 +16,8 @@ endfunc
 au FileType php set nolist
 au FileType php set noexpandtab
 
+au FileType javascript set nolist
+au FileType javascript set noexpandtab
 
 
 
@@ -23,8 +25,12 @@ au FileType php set noexpandtab
 "let g:vdebug_options['path_maps'] = {'/storage/vol3/utv.fortnox.local/jf/trunk': '/home/jonaz/svn/trunk/'}
 call pathogen#helptags()
 let g:vdebug_options = { 
-\       "path_maps": {'/storage/vol3/utv.fortnox.local/jf/trunk': '/home/jonaz/svn/trunk'},
+\       "path_maps": {'/storage/vol3/trunk-jf': '/home/jonaz/svn/trunk'},
 \       "server": '0.0.0.0',
 \       "ide_key" : 'jf',
 \       "break_on_open" : 0,
 \}
+
+
+let g:ctrlp_max_files = 100000
+
