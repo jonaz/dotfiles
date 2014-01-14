@@ -35,4 +35,5 @@ let g:vdebug_options = {
 
 
 let g:ctrlp_max_files = 100000
+let g:ctrlp_clear_cache_on_exit = 0
 
