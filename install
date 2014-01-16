@@ -8,5 +8,9 @@ git submodule update
 #git submodule update
 git submodule foreach git pull origin master
 
+#append custom bashrc
+echo "Setting up bashrc"
+grep -q ". $PWD/bashrc" ~/.bashrc || echo ". $PWD/bashrc" >> ~/.bashrc
+
 cd dot-vim
 ./install
