@@ -11,7 +11,7 @@ func MasVinge()
 endfunc
 
 " map ctrl+s to save and run sync_server
-noremap <C-S> :w<CR>:silent !sync_server<CR>:redraw!<CR>
+noremap <C-S> :wa<CR>:silent !sync_server<CR>:redraw!<CR>
 
 " for fortnox
 "au FileType php noremap <F3> :set list!<CR>
