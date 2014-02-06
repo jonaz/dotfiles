@@ -11,6 +11,8 @@ git submodule foreach git pull origin master
 #append custom bashrc
 echo "Setting up bashrc"
 grep -q ". $PWD/bashrc" ~/.bashrc || echo ". $PWD/bashrc" >> ~/.bashrc
+echo "Setting up jshintrc"
+ln -s $PWD/jshintrc ~/.jshintrc
 
 cd dot-vim
 ./install

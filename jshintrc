@@ -1,0 +1,27 @@
+{
+    "bitwise": true,
+    "browser": true,
+    "curly": true,
+    "eqeqeq": true,
+    "evil": true,
+    "forin": true,
+    "immed": true,
+    "latedef": true,
+    "newcap": true,
+    "regexdash": true,
+    "smarttabs": true,
+    "strict": true,
+    "sub": true,
+    "trailing": true,
+    "undef": true,
+    "wsh": true,
+    "devel":true,
+    "nonew": true,
+    "unused": true,
+    //"camelcase":true,
+    "noempty": true,
+    //"quotmark": "single",
+    "maxcomplexity": 7,
+    "freeze":true
+    //"maxstatements": 2
+}
