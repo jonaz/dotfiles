@@ -16,3 +16,7 @@ alias svndiff="svn diff | vim -R -"
 
 export EDITOR="vim"
 export HISTTIMEFORMAT='%F %T - '
+
+stty ixany
+stty ixoff -ixon
+
