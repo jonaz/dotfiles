@@ -13,6 +13,8 @@ echo "Setting up bashrc"
 grep -q ". $PWD/bashrc" ~/.bashrc || echo ". $PWD/bashrc" >> ~/.bashrc
 echo "Setting up jshintrc"
 ln -s $PWD/jshintrc ~/.jshintrc
+echo "Setting up phpmd xml ruleset"
+ln -s $PWD/phpmd-ruleset.xml ~/.phpmd-ruleset.xml
 
 cd dot-vim
 ./install

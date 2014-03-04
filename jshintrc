@@ -21,7 +21,7 @@
     //"camelcase":true,
     "noempty": true,
     //"quotmark": "single",
-    "maxcomplexity": 7,
+    "maxcomplexity": 8,
     "freeze":true
     //"maxstatements": 2
 }

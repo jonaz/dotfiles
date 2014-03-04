@@ -42,4 +42,6 @@ let g:pdv_template_dir = $HOME ."/vim_phpdoc_templates"
 
 let g:syntastic_javascript_jshint_conf = "~/.jshintrc"
 
+let g:syntastic_php_phpmd_post_args = "~/.phpmd-ruleset.xml"
+
 nnoremap <C-k> :call pdv#DocumentCurrentLine()<CR>
