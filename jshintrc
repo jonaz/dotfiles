@@ -22,6 +22,7 @@
     "noempty": true,
     //"quotmark": "single",
     "maxcomplexity": 8,
-    "freeze":true
+    "freeze":true,
     //"maxstatements": 2
+    "es3": true //remove when persson have added jshint grunt task in jenkins
 }
