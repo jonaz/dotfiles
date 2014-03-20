@@ -11,10 +11,15 @@ git submodule foreach git pull origin master
 #append custom bashrc
 echo "Setting up bashrc"
 grep -q ". $PWD/bashrc" ~/.bashrc || echo ". $PWD/bashrc" >> ~/.bashrc
+
 echo "Setting up jshintrc"
 ln -s $PWD/jshintrc ~/.jshintrc
+
 echo "Setting up phpmd xml ruleset"
 ln -s $PWD/phpmd-ruleset.xml ~/.phpmd-ruleset.xml
+
+echo "Setting up dir_colors"
+ln -s $PWD/dir_colors ~/.dir_colors
 
 cd dot-vim
 ./install

@@ -1,3 +1,7 @@
+colorscheme solarized
+let g:airline_theme="solarized"
+"let g:solarized_termcolors=256
+
 set shiftwidth=4
 set softtabstop=4
 set tabstop=4
@@ -23,10 +27,13 @@ au FileType javascript set noexpandtab
 
 
 
+let g:vdebug_features = {
+\    'max_depth': 2048,
+\    'max_children': 128
+\}
 "let g:vdebug_options['server'] = '0.0.0.0'
 "let g:vdebug_options['path_maps'] = {'/storage/vol3/utv.fortnox.local/jf/trunk': '/home/jonaz/svn/trunk/'}
-call pathogen#helptags()
-let g:vdebug_options = { 
+let g:vdebug_options = {
 \       "path_maps": {'/storage/vol3/trunk-jf': '/home/jonaz/svn/trunk'},
 \       "server": '0.0.0.0',
 \       "ide_key" : 'jf',
@@ -45,3 +52,5 @@ let g:syntastic_javascript_jshint_conf = "~/.jshintrc"
 let g:syntastic_php_phpmd_post_args = "~/.phpmd-ruleset.xml"
 
 nnoremap <C-k> :call pdv#DocumentCurrentLine()<CR>
+
+call pathogen#helptags()
