@@ -13,13 +13,19 @@ echo "Setting up bashrc"
 grep -q ". $PWD/bashrc" ~/.bashrc || echo ". $PWD/bashrc" >> ~/.bashrc
 
 echo "Setting up jshintrc"
-ln -s $PWD/jshintrc ~/.jshintrc
+if [ ! -L ~/.jshintrc ]; then
+    ln -s $PWD/jshintrc ~/.jshintrc
+fi
 
 echo "Setting up phpmd xml ruleset"
-ln -s $PWD/phpmd-ruleset.xml ~/.phpmd-ruleset.xml
+if [ ! -L ~/.phpmd-ruleset.xml ]; then
+    ln -s $PWD/phpmd-ruleset.xml ~/.phpmd-ruleset.xml
+fi
 
 echo "Setting up dir_colors"
-ln -s $PWD/dir_colors ~/.dir_colors
+if [ ! -L ~/.dir_colors ]; then
+    ln -s $PWD/dir_colors ~/.dir_colors
+fi
 
 cd dot-vim
 ./install
