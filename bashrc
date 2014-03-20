@@ -21,6 +21,8 @@ export EDITOR="vim"
 export HISTTIMEFORMAT='%F %T - '
 stty ixany
 stty ixoff -ixon
+export HISTCONTROL=ignoredups
+export HISTCONTROL=ignoreboth
 
 # Bash won't get SIGWINCH if another process is in the foreground.
 # Enable checkwinsize so that bash will check the terminal size when
