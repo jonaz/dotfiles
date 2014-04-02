@@ -27,10 +27,10 @@ au FileType javascript set noexpandtab
 
 
 
-let g:vdebug_features = {
-\    'max_depth': 2048,
-\    'max_children': 128
-\}
+"let g:vdebug_features = {
+"\    'max_depth': 100,
+"\    'max_children': 512
+"\}
 "let g:vdebug_options['server'] = '0.0.0.0'
 "let g:vdebug_options['path_maps'] = {'/storage/vol3/utv.fortnox.local/jf/trunk': '/home/jonaz/svn/trunk/'}
 let g:vdebug_options = {
