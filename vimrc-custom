@@ -14,17 +14,24 @@ func MasVinge()
     return '{'
 endfunc
 
+
+" map space to toggle fold or create new one in visual mode
+nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
+vnoremap <Space> zf
+
 " map ctrl+s to save and run sync_server
 noremap <C-S> :wa<CR>:silent !sync_server<CR>:redraw!<CR>
 
 " for fortnox
 "au FileType php noremap <F3> :set list!<CR>
-au FileType php set nolist
-au FileType php set noexpandtab
+"au FileType php set nolist
+"au FileType php set noexpandtab
 
-au FileType javascript set nolist
-au FileType javascript set noexpandtab
+"au FileType javascript set nolist
+"au FileType javascript set noexpandtab
 
+set nolist
+set noexpandtab
 
 
 "let g:vdebug_features = {
@@ -41,6 +48,11 @@ let g:vdebug_options = {
 \}
 
 
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+"let g:UltiSnipsListSnippets = "<c-j>"
+
 let g:ctrlp_max_files = 100000
 let g:ctrlp_clear_cache_on_exit = 0
 
@@ -54,3 +66,5 @@ let g:syntastic_php_phpmd_post_args = "~/.phpmd-ruleset.xml"
 nnoremap <C-k> :call pdv#DocumentCurrentLine()<CR>
 
 call pathogen#helptags()
+
+
