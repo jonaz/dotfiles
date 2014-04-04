@@ -51,6 +51,8 @@ let g:vdebug_options = {
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+let g:UltiSnipsEditSplit="vertical"
+
 "let g:UltiSnipsListSnippets = "<c-j>"
 
 let g:ctrlp_max_files = 100000
