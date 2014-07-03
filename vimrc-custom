@@ -78,6 +78,11 @@ map <F3> :source ~/.vim_session <cr>     " And load session with F3
 call pathogen#helptags()
 
 
+map <Leader>gac :Gcommit -a -m ""<LEFT>
+map <Leader>gc :Gcommit -m ""<LEFT>
+map <Leader>gs :Gstatus<CR>
+map <Leader>gb :Gblame<CR>
+
 "nmap <leader>lw :CtrlP<CR><C-\>w
 
 "function! ReplaceIt()
