@@ -1,0 +1,20 @@
+#!/bin/bash
+
+function printWithColor {
+	green='\e[0;32m'
+	NC='\e[0m' # No Color
+	echo -e "${green}$1${NC}"
+}
+
+cd dot-vim
+./update-submodules
+cd ../
+
+printWithColor "Git pull to have our latest version"
+git pull
+printWithColor "Git fetch all submodule updates"
+git submodule foreach git pull origin master
+printWithColor "Git commit the updates"
+git commit -am "Updated submodules"
+printWithColor "Git push the updates"
+git push
