@@ -7,7 +7,7 @@ if(!isset($argv[1])){
 
 /**
  * Class BaseMonitor
- * @author John Doe
+ * @author Jonas Falck
  */
 class BaseMonitor{/*{{{*/
 	protected $state;
@@ -72,7 +72,7 @@ class Monitor extends BaseMonitor{/*{{{*/
 	public function getName(){
 		return $this->name;
 	}
-	
+
 	public function setState($state){
 		$this->state = $state;
 		return $this;
