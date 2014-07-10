@@ -125,25 +125,25 @@ switch($args[0]){
 }
 
 
-#xrandr --output LVDS1 --auto --output HDMI3 --auto --right-of LVDS1
-#xrandr --output LVDS1 --auto --output HDMI3 --auto --right-of LVDS1
+//xrandr --output LVDS1 --auto --output HDMI3 --auto --right-of LVDS1
+//xrandr --output LVDS1 --auto --output HDMI3 --auto --right-of LVDS1
 
-#if [ $1 -eq 3 ]; then
-	#xrandr --output HDMI3 --auto --primary --output HDMI1 --auto --right-of HDMI3 --output LVDS1 --auto --left-of HDMI3
-	#xrandr --output LVDS1 --pos 0x312
-#elif [ $1 -eq 2 ]; then
-	#xrandr --output HDMI3 --auto --primary --output HDMI1 --auto --right-of HDMI3 --output LVDS1 --off
-#elif [ $1 -eq 1 ]; then
-	#xrandr --output LVDS1 --auto --primary --output HDMI1 --off --output HDMI3 --off
-#else
-   #echo "Unkown parameter"
-#fi
+//if [ $1 -eq 3 ]; then
+	//xrandr --output HDMI3 --auto --primary --output HDMI1 --auto --right-of HDMI3 --output LVDS1 --auto --left-of HDMI3
+	//xrandr --output LVDS1 --pos 0x312
+//elif [ $1 -eq 2 ]; then
+	//xrandr --output HDMI3 --auto --primary --output HDMI1 --auto --right-of HDMI3 --output LVDS1 --off
+//elif [ $1 -eq 1 ]; then
+	//xrandr --output LVDS1 --auto --primary --output HDMI1 --off --output HDMI3 --off
+//else
+   //echo "Unkown parameter"
+//fi
 
-#alla tre
-#xrandr --output HDMI3 --auto --primary --output HDMI2 --auto --right-of HDMI3 --output LVDS1 --auto --left-of HDMI3
+//#alla tre
+//xrandr --output HDMI3 --auto --primary --output HDMI2 --auto --right-of HDMI3 --output LVDS1 --auto --left-of HDMI3
 
-#2 externa
-#xrandr --output HDMI3 --auto --primary --output HDMI1 --auto --right-of HDMI3 --output LVDS1 --off
+//#2 externa
+//xrandr --output HDMI3 --auto --primary --output HDMI1 --auto --right-of HDMI3 --output LVDS1 --off
 
-#laptop + 1 extern
-#xrandr --output HDMI3 --auto --primary --output LVDS1 --auto --left-of HDMI3
+//#laptop + 1 extern
+//xrandr --output HDMI3 --auto --primary --output LVDS1 --auto --left-of HDMI3
