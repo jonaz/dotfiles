@@ -108,12 +108,12 @@ $monitors = new Monitors();
 switch($args[0]){
 	case 3:
 		$monitors->get('HDMI3')->primary()->auto();
-		$monitors->get('HDMI1')->auto()->rightOf('HDMI3');
+		$monitors->get('HDMI2')->auto()->rightOf('HDMI3');
 		$monitors->get('LVDS1')->auto()->leftOf('HDMI3')->pos('0x312');
 		break;
 	case 2:
 		$monitors->get('HDMI3')->primary()->auto();
-		$monitors->get('HDMI1')->auto()->rightOf('HDMI3');
+		$monitors->get('HDMI2')->auto()->rightOf('HDMI3');
 		$monitors->get('LVDS1')->off();
 		break;
 	case 1:
