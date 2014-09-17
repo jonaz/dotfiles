@@ -132,3 +132,4 @@ map <unique> <leader>oj :<C-U>call JiraOpen()<cr><cr>
 "endfunction
 "nnoremap <leader>r :call ReplaceIt()<cr>
 
+
