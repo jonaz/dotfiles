@@ -78,12 +78,16 @@ let g:syntastic_php_phpmd_post_args = "~/.phpmd-ruleset.xml"
 " this algorithm works well for /** */ style comments in a tab-indented file
 let g:airline#extensions#whitespace#mixed_indent_algo = 1
 
+"vim-go stuff
+let g:go_fmt_command = "goimports"
 
 map <F2> :mksession! ~/.vim_session <cr> " Quick write session with F2
 map <F3> :source ~/.vim_session <cr>     " And load session with F3
 
 call pathogen#helptags()
 
+"tagbar
+nmap <Leader>t :TagbarOpen fjc<CR>
 
 map <Leader>gac :Gcommit -a -m ""<LEFT>
 map <Leader>gc :Gcommit -m ""<LEFT>
