@@ -75,6 +75,7 @@ autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
 autocmd FileType htm set omnifunc=htmlcomplete#CompleteTags
 autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
+autocmd FileType php noremap K :call OpenPhpFunction(expand('<cword>'))<CR>
 autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
 autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 autocmd BufEnter,BufRead     *.inc   setf php
@@ -122,13 +123,10 @@ function! OpenPhpFunction (keyword)
   exe 'norm dGgg'
   exe 'norm V'
 endfunction
-au FileType php noremap K :call OpenPhpFunction(expand('<cword>'))<CR>
 
 "fix autocomplete menu
 highlight PMenu ctermbg=0 ctermfg=white cterm=None
 highlight PMenuSel ctermbg=5 ctermfg=white cterm=Bold
 
-"insert word under cursor in ctrlp
-nmap <leader>lw :CtrlP<CR><C-\>w
 
 source $HOME/.vimrc-custom

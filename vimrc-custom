@@ -1,6 +1,5 @@
-
-
-
+"insert word under cursor in ctrlp
+nmap <leader>lw :CtrlP<CR><C-\>w
 
 inoremap  { <C-R>=MasVinge()<CR>
 
@@ -23,10 +22,13 @@ map <F3> :source ~/.vim_session <cr>     " And load session with F3
 nmap <Leader>t :TagbarOpen fjc<CR>
 
 "git
-map <Leader>gac :Gcommit -a -m ""<LEFT>
-map <Leader>gc :Gcommit -m ""<LEFT>
 map <Leader>gs :Gstatus<CR>
 map <Leader>gb :Gblame<CR>
+
+"golang
+map <Leader>gt :GoTest<CR>
+map <Leader>gi :GoInstall<CR>
+map <Leader>gl :GoLint<CR>
 
 nnoremap <Leader>r :%s/\<<C-r><C-w>\>//g<Left><Left>
 
