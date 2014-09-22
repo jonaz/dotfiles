@@ -1,6 +1,5 @@
 colorscheme solarized
 let g:airline_theme="solarized"
-"let g:solarized_termcolors=256
 
 set shiftwidth=4
 set softtabstop=4
@@ -21,14 +20,6 @@ vnoremap <Space> zf
 
 " map ctrl+s to save and run sync_server
 noremap <C-S> :wa<CR>:silent !sync_server<CR>:redraw!<CR>
-
-" for fortnox
-"au FileType php noremap <F3> :set list!<CR>
-"au FileType php set nolist
-"au FileType php set noexpandtab
-
-"au FileType javascript set nolist
-"au FileType javascript set noexpandtab
 
 set nolist
 set noexpandtab
@@ -84,8 +75,6 @@ let g:go_fmt_command = "goimports"
 map <F2> :mksession! ~/.vim_session <cr> " Quick write session with F2
 map <F3> :source ~/.vim_session <cr>     " And load session with F3
 
-call pathogen#helptags()
-
 "tagbar
 nmap <Leader>t :TagbarOpen fjc<CR>
 
@@ -128,15 +117,4 @@ function! JiraOpen()
 endfun
 
 map <unique> <leader>oj :<C-U>call JiraOpen()<cr><cr>
-
-"nmap <leader>lw :CtrlP<CR><C-\>w
-
-"function! ReplaceIt()
-	"call inputsave()
-	"let replacement = input('Enter replacement:')
-	"call inputrestore()
-	"execute '%s/<C-r><C-w>/'.replacement.'/g'
-"endfunction
-"nnoremap <leader>r :call ReplaceIt()<cr>
-
 

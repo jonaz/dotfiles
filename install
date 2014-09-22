@@ -1,31 +1,53 @@
 #!/bin/bash
 echo "Git pull"
 git pull
-echo "Git submodule init"
-git submodule init
-echo "Git submodule update"
-git submodule update
+#echo "Git submodule init"
+#git submodule init
+#echo "Git submodule update"
 #git submodule update
-git submodule foreach git pull origin master
+#git submodule foreach git pull origin master
 
 #append custom bashrc
 echo "Setting up bashrc"
 grep -q ". $PWD/bashrc" ~/.bashrc || echo ". $PWD/bashrc" >> ~/.bashrc
 
-echo "Setting up jshintrc"
 if [ ! -L ~/.jshintrc ]; then
+	echo "Setting up jshintrc"
     ln -s $PWD/jshintrc ~/.jshintrc
 fi
 
-echo "Setting up phpmd xml ruleset"
 if [ ! -L ~/.phpmd-ruleset.xml ]; then
+	echo "Setting up phpmd xml ruleset"
     ln -s $PWD/phpmd-ruleset.xml ~/.phpmd-ruleset.xml
 fi
 
-echo "Setting up dir_colors"
 if [ ! -L ~/.dir_colors ]; then
+	echo "Setting up dir_colors"
     ln -s $PWD/dir_colors ~/.dir_colors
 fi
 
-cd dot-vim
-./install
+
+if [ ! -d ~/.vim/bundle/ ]; then
+	mkdir -p ~/.vim/bundle
+fi
+
+if [ ! -d ~/.vim/bundle/vundle ]; then
+	git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
+fi
+
+if [ ! -L ~/.vimrc-custom ]; then
+    echo "Creating symbolic link ~/.vimrc-custom to $PWD/../vimrc-custom"
+    ln -s $PWD/vimrc-custom ~/.vimrc-custom
+fi
+
+if [ -f ~/.vimrc ]; then
+    echo "~/.vimrc already exists, please remove or move"
+    exit 1
+fi
+
+
+if [ ! -L ~/.vimrc ]; then
+    echo "Creating symbolic link ~/.vimrc to $PWD/vimrc"
+    ln -s $PWD/vimrc ~/.vimrc
+fi
+
