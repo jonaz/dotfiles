@@ -1,18 +1,8 @@
-colorscheme solarized
-let g:airline_theme="solarized"
 
-set shiftwidth=4
-set softtabstop=4
-set tabstop=4
+
+
+
 inoremap  { <C-R>=MasVinge()<CR>
-func MasVinge()
-    let col = col('.') - 1
-    if getline('.')[col - 1] == ')'
-        return "{\<CR>}\<C-O>\O"
-    endif
-    return '{'
-endfunc
-
 
 " map space to toggle fold or create new one in visual mode
 nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
@@ -21,16 +11,33 @@ vnoremap <Space> zf
 " map ctrl+s to save and run sync_server
 noremap <C-S> :wa<CR>:silent !sync_server<CR>:redraw!<CR>
 
-set nolist
-set noexpandtab
 
+"jira
+map <unique> <leader>oj :<C-U>call JiraOpen()<cr><cr>
+
+"session
+map <F2> :mksession! ~/.vim_session <cr> " Quick write session with F2
+map <F3> :source ~/.vim_session <cr>     " And load session with F3
+
+"tagbar
+nmap <Leader>t :TagbarOpen fjc<CR>
+
+"git
+map <Leader>gac :Gcommit -a -m ""<LEFT>
+map <Leader>gc :Gcommit -m ""<LEFT>
+map <Leader>gs :Gstatus<CR>
+map <Leader>gb :Gblame<CR>
+
+nnoremap <Leader>r :%s/\<<C-r><C-w>\>//g<Left><Left>
+
+vmap v <Plug>(expand_region_expand)
+vmap <C-v> <Plug>(expand_region_shrink)
 
 "let g:vdebug_features = {
 "\    'max_depth': 100,
+"
 "\    'max_children': 512
 "\}
-"let g:vdebug_options['server'] = '0.0.0.0'
-"let g:vdebug_options['path_maps'] = {'/storage/vol3/utv.fortnox.local/jf/trunk': '/home/jonaz/svn/trunk/'}
 let g:vdebug_options = {
 \       "path_maps": {'/storage/vol3/r34-jf': '/home/jonaz/svn/release-3.4','/storage/vol3/trunk-jf': '/home/jonaz/svn/trunk'},
 \       "server": '0.0.0.0',
@@ -45,10 +52,9 @@ let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 let g:UltiSnipsEditSplit="vertical"
 let g:snips_author='Jonas Falck'
 
-"let g:UltiSnipsListSnippets = "<c-j>"
-
 let g:ctrlp_max_files = 100000
 let g:ctrlp_clear_cache_on_exit = 0
+let g:ctrlp_regexp = 1
 
 "phpdoc templates
 let g:pdv_template_dir = $HOME ."/vim_templates_snip"
@@ -72,18 +78,6 @@ let g:airline#extensions#whitespace#mixed_indent_algo = 1
 "vim-go stuff
 let g:go_fmt_command = "goimports"
 
-map <F2> :mksession! ~/.vim_session <cr> " Quick write session with F2
-map <F3> :source ~/.vim_session <cr>     " And load session with F3
-
-"tagbar
-nmap <Leader>t :TagbarOpen fjc<CR>
-
-map <Leader>gac :Gcommit -a -m ""<LEFT>
-map <Leader>gc :Gcommit -m ""<LEFT>
-map <Leader>gs :Gstatus<CR>
-map <Leader>gb :Gblame<CR>
-
-nnoremap <Leader>r :%s/\<<C-r><C-w>\>//g<Left><Left>
 
 "jira
 
@@ -116,5 +110,11 @@ function! JiraOpen()
   execute cmd
 endfun
 
-map <unique> <leader>oj :<C-U>call JiraOpen()<cr><cr>
 
+func MasVinge()
+    let col = col('.') - 1
+    if getline('.')[col - 1] == ')'
+        return "{\<CR>}\<C-O>\O"
+    endif
+    return '{'
+endfunc

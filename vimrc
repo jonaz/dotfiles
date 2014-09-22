@@ -29,33 +29,34 @@ Plugin 'jonaz/vim-snippets'
 Plugin 'tpope/vim-surround'
 Plugin 'evidens/vim-twig'
 Plugin 'tobyS/vmustache'
+Plugin 'terryma/vim-expand-region'
 
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on
 
+colorscheme solarized
+let g:airline_theme="solarized"
+
 syntax enable
 set background=dark
-
+set shiftwidth=4
+set softtabstop=4
+set tabstop=4
 set hlsearch
-set expandtab
 set foldmethod=marker
 set nowrap
 set textwidth=0
-"map <F2> :w!<CR>
-"map <F9> :! gcc -Wall -o %< %<CR>
-map <F10> :! ./%<<CR>
-
-au BufEnter,BufRead     *.inc   setf php
-au BufEnter,BufRead     *.tpl   setf php
-au BufNewFile,BufRead   *.tpl setf php
-au BufNewFile,BufRead   *.inc setf php
-au BufRead,BufNewFile *.pp set filetype=puppet
-au BufRead,BufNewFile *.thtml set filetype=html.twig
-au BufEnter *.css set nocindent
-au BufLeave *.css set cindent
-au  BufNewFile,BufRead *.hbt set filetype=html syntax=mustache | runtime! ftplugin/mustache.vim ftplugin/mustache*.vim ftplugin/mustache/*.vim
+set nolist
+set noexpandtab
+"set list
+"set listchars=tab:>-,trail:-
+set showmode " always show command or insert mode
+set ruler
+set showmatch
+set completeopt+=menuone
+set whichwrap=b,s,<,>,[,]
 set mouse=a
 set number
 set autoindent
@@ -68,20 +69,23 @@ else
 end
 set pastetoggle=<F12>
 
-
 " for C-like programming, have automatic indentation:
 autocmd FileType c,cpp,slang,php,js set cindent
 autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
 autocmd FileType htm set omnifunc=htmlcomplete#CompleteTags
 autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
-let php_sql_query=1
-let php_htmlInStrings=1
-let mapleader = ","
-set makeprg=php\ -l\ %
-set errorformat=%m\ in\ %f\ on\ line\ %l
 autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
 autocmd InsertLeave * if pumvisible() == 0|pclose|endif
+autocmd BufEnter,BufRead     *.inc   setf php
+autocmd BufEnter,BufRead     *.tpl   setf php
+autocmd BufNewFile,BufRead   *.tpl setf php
+autocmd BufNewFile,BufRead   *.inc setf php
+autocmd BufRead,BufNewFile *.pp set filetype=puppet
+autocmd BufRead,BufNewFile *.thtml set filetype=html.twig
+autocmd BufEnter *.css set nocindent
+autocmd BufLeave *.css set cindent
+autocmd BufNewFile,BufRead *.hbt set filetype=html syntax=mustache | runtime! ftplugin/mustache.vim ftplugin/mustache*.vim ftplugin/mustache/*.vim
 
 autocmd FileType *
   \ if &omnifunc != '' |
@@ -90,19 +94,17 @@ autocmd FileType *
   \ endif
 
 let g:syntastic_phpcs_conf=" --standard=Drupal --extensions=php,module,inc,install,test,profile,theme"
-
+let php_sql_query=1
+let php_htmlInStrings=1
+let mapleader = ","
+set makeprg=php\ -l\ %
+set errorformat=%m\ in\ %f\ on\ line\ %l
 
 if has('statusline')
   set laststatus=2
 endif
 
-set list
-set listchars=tab:>-,trail:-
-set showmode                    " always show command or insert mode
-set ruler
-set showmatch
-set completeopt+=menuone
-set whichwrap=b,s,<,>,[,]
+
 
 "; i command mode ger ; i slutet på raden
 noremap ; :s/\([^;]\)$/\1;/<cr>:set nohlsearch<cr>
