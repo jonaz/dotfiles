@@ -10,6 +10,8 @@ vnoremap <Space> zf
 " map ctrl+s to save and run sync_server
 noremap <C-S> :wa<CR>:silent !sync_server<CR>:redraw!<CR>
 
+"; i command mode ger ; i slutet på raden
+noremap ; :s/\([^;]\)$/\1;/<cr>:set nohlsearch<cr>
 
 "jira
 map <unique> <leader>oj :<C-U>call JiraOpen()<cr><cr>
@@ -47,10 +49,32 @@ let g:vdebug_options = {
 \       "break_on_open" : 0,
 \}
 
+"special fix for YouCompleteMe with Ultisnips and the TAB key
+function! g:UltiSnips_Complete()
+    call UltiSnips#ExpandSnippet()
+    if g:ulti_expand_res == 0
+        if pumvisible()
+            return "\<C-n>"
+        else
+            call UltiSnips#JumpForwards()
+            if g:ulti_jump_forwards_res == 0
+               return "\<TAB>"
+            endif
+        endif
+    endif
+    return ""
+endfunction
 
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+let g:UltiSnipsListSnippets="<c-e>"
+au InsertEnter * exec "inoremap <silent> " . g:UltiSnipsExpandTrigger . " <C-R>=g:UltiSnips_Complete()<cr>"
+" this mapping Enter key to <C-y> to chose the current highlight item 
+" and close the selection list, same as other IDEs.
+" CONFLICT with some plugins like tpope/Endwise
+"inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
 let g:UltiSnipsEditSplit="vertical"
 let g:snips_author='Jonas Falck'
 

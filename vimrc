@@ -13,7 +13,6 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'othree/html5.vim'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'tobyS/pdv'
-Plugin 'ervandew/supertab'
 Plugin 'scrooloose/syntastic'
 Plugin 'majutsushi/tagbar'
 Plugin 'vim-php/tagbar-phpctags.vim'
@@ -30,6 +29,8 @@ Plugin 'tpope/vim-surround'
 Plugin 'evidens/vim-twig'
 Plugin 'tobyS/vmustache'
 Plugin 'terryma/vim-expand-region'
+"Plugin 'ervandew/supertab'
+Plugin 'Valloric/YouCompleteMe'
 
 
 " All of your Plugins must be added before the following line
@@ -68,6 +69,9 @@ else
     set ttymouse=xterm2
 end
 set pastetoggle=<F12>
+if has('statusline')
+  set laststatus=2
+endif
 
 " for C-like programming, have automatic indentation:
 autocmd FileType c,cpp,slang,php,js set cindent
@@ -88,27 +92,17 @@ autocmd BufEnter *.css set nocindent
 autocmd BufLeave *.css set cindent
 autocmd BufNewFile,BufRead *.hbt set filetype=html syntax=mustache | runtime! ftplugin/mustache.vim ftplugin/mustache*.vim ftplugin/mustache/*.vim
 
-autocmd FileType *
-  \ if &omnifunc != '' |
-  \   call SuperTabSetDefaultCompletionType("<c-x><c-u>") |
-  \   call SuperTabChain(&omnifunc, "<c-n>") |
-  \ endif
+"autocmd FileType *
+  "\ if &omnifunc != '' |
+  "\   call SuperTabSetDefaultCompletionType("<c-x><c-u>") |
+  "\   call SuperTabChain(&omnifunc, "<c-n>") |
+  "\ endif
 
 let g:syntastic_phpcs_conf=" --standard=Drupal --extensions=php,module,inc,install,test,profile,theme"
 let php_sql_query=1
 let php_htmlInStrings=1
 let mapleader = ","
-set makeprg=php\ -l\ %
-set errorformat=%m\ in\ %f\ on\ line\ %l
-
-if has('statusline')
-  set laststatus=2
-endif
-
-
-
-"; i command mode ger ; i slutet på raden
-noremap ; :s/\([^;]\)$/\1;/<cr>:set nohlsearch<cr>
+"set errorformat=%m\ in\ %f\ on\ line\ %l
 
 function! OpenPhpFunction (keyword)
   let proc_keyword = substitute(a:keyword , '_', '-', 'g')
