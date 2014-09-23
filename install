@@ -51,3 +51,4 @@ if [ ! -L ~/.vimrc ]; then
     ln -s $PWD/vimrc ~/.vimrc
 fi
 
+#TODO npm install in the bundle/tern_for_vim directory
