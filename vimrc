@@ -56,7 +56,7 @@ set noexpandtab
 set showmode " always show command or insert mode
 set ruler
 set showmatch
-set completeopt+=menuone
+set completeopt=menuone "always show matches and dont show preview!
 set whichwrap=b,s,<,>,[,]
 set mouse=a
 set number
@@ -119,8 +119,8 @@ function! OpenPhpFunction (keyword)
 endfunction
 
 "fix autocomplete menu
-highlight PMenu ctermbg=0 ctermfg=white cterm=None
-highlight PMenuSel ctermbg=5 ctermfg=white cterm=Bold
+"highlight PMenu ctermbg=0 ctermfg=white cterm=None
+"highlight PMenuSel ctermbg=5 ctermfg=white cterm=Bold
 
 
 source $HOME/.vimrc-custom
