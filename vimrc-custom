@@ -3,6 +3,9 @@ nmap <leader>lw :CtrlP<CR><C-\>w
 
 inoremap  { <C-R>=MasVinge()<CR>
 
+" normal keyword completion with ,,
+inoremap <leader>, <C-x><C-n>
+
 " map space to toggle fold or create new one in visual mode
 nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
 vnoremap <Space> zf
@@ -103,7 +106,6 @@ let g:airline#extensions#whitespace#mixed_indent_algo = 1
 
 "vim-go stuff
 let g:go_fmt_command = "goimports"
-
 
 "jira
 
