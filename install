@@ -52,7 +52,7 @@ if [ ! -L ~/.vimrc ]; then
 fi
 
 echo "Installing plugins into vim"
-vim -c 'PluginInstall' -c 'qa!'
+vim -u NONE -c 'PluginInstall' -c 'qa!'
 echo "all Done!"
 
 #TODO npm install in the bundle/tern_for_vim directory
