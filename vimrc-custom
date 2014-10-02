@@ -44,6 +44,9 @@ map <Leader>gt :GoTest<CR>
 map <Leader>gi :GoInstall<CR>
 map <Leader>gl :GoLint<CR>
 
+"pretty json
+:command JsonPretty :%!python -m json.tool
+
 nnoremap <Leader>r :%s/\<<C-r><C-w>\>//g<Left><Left>
 
 vmap v <Plug>(expand_region_expand)
@@ -93,6 +96,7 @@ let g:snips_author='Jonas Falck'
 let g:ctrlp_max_files = 100000
 let g:ctrlp_clear_cache_on_exit = 0
 let g:ctrlp_regexp = 1
+let g:ctrlp_lazy_update = 150
 
 "phpdoc templates
 let g:pdv_template_dir = $HOME ."/vim_templates_snip"
