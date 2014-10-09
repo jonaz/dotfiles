@@ -61,9 +61,9 @@ set whichwrap=b,s,<,>,[,]
 set mouse=a
 set number
 set autoindent
-"set ttymouse=xterm2 this caused problems with wide terminals
-"this works:
-if has("mouse_urxvt")
+
+"this works. we must have support and not beeing in a screen!
+if has("mouse_urxvt") && !exists('$STY')
     set ttymouse=urxvt
 else
     set ttymouse=xterm2
