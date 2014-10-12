@@ -9,6 +9,9 @@ git pull
 
 #append custom bashrc
 echo "Setting up bashrc"
+
+git config --global credential.helper 'cache --timeout 3600'
+
 grep -q ". $PWD/bashrc" ~/.bashrc || echo ". $PWD/bashrc" >> ~/.bashrc
 
 if [ ! -L ~/.jshintrc ]; then
