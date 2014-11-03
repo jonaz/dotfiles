@@ -61,6 +61,11 @@ match_lhs=""
 	&& type -P dircolors >/dev/null \
 	&& match_lhs=$(dircolors --print-database)
 
+
+#export GIT_PS1_SHOWDIRTYSTATE=1
+#export GIT_PS1_SHOWUPSTREAM="auto"
+source /usr/share/git/completion/git-prompt.sh
+
 if [[ $'\n'${match_lhs} == *$'\n'"TERM "${safe_term}* ]] ; then
 	# we have colors :-)
 
@@ -105,7 +110,7 @@ if [[ $'\n'${match_lhs} == *$'\n'"TERM "${safe_term}* ]] ; then
 	alias dir="dir --color=auto"
 	alias grep="grep --color=auto"
 	alias dmesg='dmesg --color'
-	PS1="$(if [[ ${EUID} == 0 ]]; then echo '\[$RED\]\h'; else echo '\[$GREEN\]\u@\h'; fi)\[\$BLUE\] \w \$([[ \$? != 0 ]] && echo \"\[\$RED\]:( \")\[$BASE2\]\$\[$RESET\] "
+	PS1="$(if [[ ${EUID} == 0 ]]; then echo '\[$RED\]\h'; else echo '\[$GREEN\]\u@\h'; fi)\[\$BLUE\] \w \$([[ \$? != 0 ]] && echo \"\[\$RED\]:( \")\[$CYAN\]\$(__git_ps1 '[%s]') \[$BASE2\]\$\[$RESET\] "
 
 
 else
