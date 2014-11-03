@@ -64,7 +64,8 @@ match_lhs=""
 
 #export GIT_PS1_SHOWDIRTYSTATE=1
 #export GIT_PS1_SHOWUPSTREAM="auto"
-source /usr/share/git/completion/git-prompt.sh
+#for arch only. debian have this autoincluded.
+[[ -f /usr/share/git/completion/git-prompt.sh ]] && source /usr/share/git/completion/git-prompt.sh
 
 if [[ $'\n'${match_lhs} == *$'\n'"TERM "${safe_term}* ]] ; then
 	# we have colors :-)
