@@ -31,6 +31,7 @@ Plugin 'tobyS/vmustache'
 Plugin 'terryma/vim-expand-region'
 "Plugin 'ervandew/supertab'
 Plugin 'Valloric/YouCompleteMe'
+Plugin 'chrisbra/csv.vim'
 
 
 " All of your Plugins must be added before the following line
