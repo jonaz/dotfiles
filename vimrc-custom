@@ -59,7 +59,11 @@ vmap <C-v> <Plug>(expand_region_shrink)
 "\    'max_children': 512
 "\}
 let g:vdebug_options = {
-\       "path_maps": {'/storage/vol3/r34-jf': '/home/jonaz/svn/release-3.4','/storage/vol3/trunk-jf': '/home/jonaz/svn/trunk'},
+\       "path_maps": {
+\			'/storage/vol3/r34-jf': '/home/jonaz/svn/release-3.4',
+\			'/storage/vol3/r35-jf': '/home/jonaz/svn/release-3.5',
+\			'/storage/vol3/trunk-jf': '/home/jonaz/svn/trunk'
+\		},
 \       "server": '0.0.0.0',
 \       "ide_key" : 'jf',
 \       "break_on_open" : 0,
