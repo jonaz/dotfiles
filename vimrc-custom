@@ -4,6 +4,9 @@ nmap <leader>lw :CtrlP<CR><C-\>w
 inoremap  { <C-R>=MasVinge()<CR>
 
 
+" fortnox indentation
+"au BufRead,BufNewFile /home/jonaz/svn/* setl sw=2 ts=2 sts=2 expandtab list listchars=tab:>-,trail:-
+
 "system clipboard
 vmap <Leader>y "+y
 vmap <Leader>d "+d
