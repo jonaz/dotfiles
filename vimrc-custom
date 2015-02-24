@@ -56,13 +56,13 @@ nnoremap <Leader>r :%s/\<<C-r><C-w>\>//g<Left><Left>
 vmap v <Plug>(expand_region_expand)
 vmap <C-v> <Plug>(expand_region_shrink)
 
-"let g:vdebug_features = {
-"\    'max_depth': 100,
-"
-"\    'max_children': 512
-"\}
+let g:vdebug_features = {
+\    'max_data': 10000,
+\}
+
 let g:vdebug_options = {
 \       "path_maps": {
+\			'/storage/vol3/r214-jf': '/home/jonaz/svn/release-2.14',
 \			'/storage/vol3/r34-jf': '/home/jonaz/svn/release-3.4',
 \			'/storage/vol3/r35-jf': '/home/jonaz/svn/release-3.5',
 \			'/storage/vol3/trunk-jf': '/home/jonaz/svn/trunk'
