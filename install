@@ -38,6 +38,12 @@ if [ ! -d ~/.vim/bundle/vundle ]; then
 	git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
 fi
 
+
+if [ ! -d ~/.fzf ]; then
+	git clone https://github.com/junegunn/fzf.git ~/.fzf
+	~/.fzf/install
+fi
+
 if [ ! -L ~/.vimrc-custom ]; then
     echo "Creating symbolic link ~/.vimrc-custom to $PWD/../vimrc-custom"
     ln -s $PWD/vimrc-custom ~/.vimrc-custom

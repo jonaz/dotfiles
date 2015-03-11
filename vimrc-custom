@@ -1,7 +1,18 @@
 "insert word under cursor in ctrlp
 nmap <leader>lw :CtrlP<CR><C-\>w
 
+
+" Open files in horizontal split
+nnoremap <silent> <C-p> :call fzf#run({
+\   'sink': 'e' })<CR>
+
+command! -nargs=1 Locate call fzf#run(
+      \ {'source': 'locate <q-args>', 'sink': 'e', 'options': '-m'})
+
 inoremap  { <C-R>=MasVinge()<CR>
+
+"copy file path
+nnoremap <silent> <Leader>cp :let @+=expand("%:p")<CR>
 
 
 " fortnox indentation
