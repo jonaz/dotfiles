@@ -2,9 +2,17 @@
 nmap <leader>lw :CtrlP<CR><C-\>w
 
 
-" Open files in horizontal split
+" Open files in fzf
 nnoremap <silent> <C-p> :call fzf#run({
 \   'sink': 'e' })<CR>
+
+" Open MRU in fzf
+command! FZFMru call fzf#run({
+            \'source': v:oldfiles,
+            \'sink' : 'e ',
+            \'options' : '-m',
+            \})
+nnoremap <silent> <C-o> :FZFMru<CR>
 
 command! -nargs=1 Locate call fzf#run(
       \ {'source': 'locate <q-args>', 'sink': 'e', 'options': '-m'})
