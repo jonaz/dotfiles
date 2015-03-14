@@ -2,13 +2,14 @@ set nocompatible
 filetype off
 
 set rtp+=~/.vim/bundle/vundle/
+set rtp+=~/.fzf
 call vundle#begin()
 
 " Let Vundle manage Vundle
 Plugin 'gmarik/vundle'
 
 "plugins
-Plugin 'kien/ctrlp.vim'
+"Plugin 'kien/ctrlp.vim' "replaced by fzf
 Plugin 'tpope/vim-fugitive'
 Plugin 'othree/html5.vim'
 Plugin 'scrooloose/nerdcommenter'
@@ -31,6 +32,7 @@ Plugin 'tobyS/vmustache'
 Plugin 'terryma/vim-expand-region'
 "Plugin 'ervandew/supertab'
 Plugin 'Valloric/YouCompleteMe'
+Plugin 'chrisbra/csv.vim'
 
 
 " All of your Plugins must be added before the following line

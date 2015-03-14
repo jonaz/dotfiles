@@ -4,11 +4,16 @@
 
 #functions for aliases
 customgrepinfile() {
-    grep -r $1 * | vim -c "noremap <enter> <C-w>f<cr>" -c "/$1" -R -
+	grep -r $1 * | vim -c "noremap <enter> <C-w>f<cr>" -c "/$1" -R -
 }
 customgrepfilename() {
-    find . | grep $1 | vim -c "noremap <enter> <C-w>f<cr>" -c "/$1" -R -
+    #find . | grep $1 | vim -c "noremap <enter> <C-w>f<cr>" -c "/$1" -R -
+	local file
+	file=$(fzf --query="$1" --select-1 --exit-0)
+	[ -n "$file" ] && ${EDITOR:-vim} "$file"
 }
+
+
 
 #aliases
 alias f=customgrepinfile
