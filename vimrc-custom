@@ -1,5 +1,10 @@
 "insert word under cursor in ctrlp
-nmap <leader>lw :CtrlP<CR><C-\>w
+"nmap <leader>lw :CtrlP<CR><C-\>w
+fu CtrlPUnderCursor()
+	let l:Command = expand("<cword>")
+	call fzf#run({'sink': 'e','options': '-q '.l:Command })
+endfu 
+nmap <leader>lw :call CtrlPUnderCursor()<CR>
 
 
 " Open files in fzf
@@ -84,7 +89,8 @@ let g:vdebug_options = {
 \			'/storage/vol3/r214-jf': '/home/jonaz/svn/release-2.14',
 \			'/storage/vol3/r34-jf': '/home/jonaz/svn/release-3.4',
 \			'/storage/vol3/r35-jf': '/home/jonaz/svn/release-3.5',
-\			'/storage/vol3/trunk-jf': '/home/jonaz/svn/trunk'
+\			'/storage/vol3/trunk-jf': '/home/jonaz/svn/trunk',
+\			'/storage/vol3/fortnox-jf': '/home/jonaz/git/fortnox'
 \		},
 \       "server": '0.0.0.0',
 \       "ide_key" : 'jf',
