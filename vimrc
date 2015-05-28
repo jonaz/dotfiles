@@ -63,6 +63,7 @@ set whichwrap=b,s,<,>,[,]
 set mouse=a
 set number
 set autoindent
+set scrolloff=5
 
 "this works. we must have support and not beeing in a screen!
 if has("mouse_urxvt") && !exists('$STY')
