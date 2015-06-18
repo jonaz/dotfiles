@@ -22,7 +22,7 @@ nnoremap <silent> <C-o> :FZFMru<CR>
 command! -nargs=1 Locate call fzf#run(
       \ {'source': 'locate <q-args>', 'sink': 'e', 'options': '-m'})
 
-inoremap  { <C-R>=MasVinge()<CR>
+"inoremap  { <C-R>=MasVinge()<CR>
 
 "copy file path
 nnoremap <silent> <Leader>cp :let @+=expand("%:p")<CR>
@@ -185,10 +185,10 @@ function! JiraOpen()
 endfun
 
 
-func MasVinge()
-    let col = col('.') - 1
-    if getline('.')[col - 1] == ')'
-        return "{\<CR>}\<C-O>\O"
-    endif
-    return '{'
-endfunc
+"func MasVinge()
+    "let col = col('.') - 1
+    "if getline('.')[col - 1] == ')'
+        "return "{\<CR>}\<C-O>\O"
+    "endif
+    "return '{'
+"endfunc

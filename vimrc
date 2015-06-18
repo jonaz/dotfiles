@@ -33,6 +33,7 @@ Plugin 'terryma/vim-expand-region'
 "Plugin 'ervandew/supertab'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'chrisbra/csv.vim'
+Plugin 'Raimondi/delimitMate'
 
 
 " All of your Plugins must be added before the following line
