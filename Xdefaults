@@ -1,8 +1,17 @@
 
 
-#fix for home/end in vim
+! fix for home/end in vim
 URxvt*keysym.Home: \033[1~
 URxvt*keysym.End: \033[4~
+
+
+
+! Yankable urls
+URxvt.perl-ext: default,url-select
+URxvt.keysym.C-i: perl:url-select:select_next
+URxvt.url-select.launcher: /usr/bin/google-chrome-stable
+URxvt.url-select.underline: true
+
 
 !-------------------------------------------------------------------------------
 ! Xft settings
