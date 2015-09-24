@@ -120,6 +120,11 @@ switch($args[0]){
 		$monitors->turnOffAllExcept('LVDS1');
 		$monitors->get('LVDS1')->auto()->primary();
 		break;
+	case 'tv':
+		$monitors->turnOffAllExcept('LVDS1');
+		$monitors->get('LVDS1')->auto()->primary();
+		$monitors->get('HDMI1')->auto()->rightOf('LVDS1');
+		break;
 	default:
 		echo "Unknown command\n";
 }
