@@ -46,10 +46,10 @@ URxvt.iso14755:             false
 ! Fonts
 URxvt.allow_bold:           true
 /* URxvt.font:                 -*-terminus-medium-r-normal-*-12-120-72-72-c-60-iso8859-1 */
-URxvt*font: xft:Inconsolata:pixelsize=14:antialias=true:hinting=true
-URxvt*boldFont: xft:Inconsolata:style=bold:pixelsize=14:antialias=true:hinting=true
-!URxvt*font: xft:DejaVu Sans Mono:pixelsize=12:antialias=true:hinting=true
-!URxvt*boldFont: xft:DejaVu Sans Mono:bold:pixelsize=12:antialias=true:hinting=true
+!URxvt*font: xft:Inconsolata:pixelsize=14:antialias=true:hinting=true
+!URxvt*boldFont: xft:Inconsolata:style=bold:pixelsize=14:antialias=true:hinting=true
+URxvt*font: xft:Hack:style:Regular:pixelsize=13:antialias=true:hinting=true
+URxvt*boldFont: xft:Hack:style:Bold:pixelsize=13:antialias=true:hinting=true
 
 ! Fix font space
 URxvt*letterSpace: -1
