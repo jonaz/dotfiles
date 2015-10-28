@@ -10,3 +10,8 @@ cd jonaz-vim-rc
 export GOPATH=~/go
 export PATH=$PATH:$GOPATH/bin
 ```
+
+Install youcompleteme deps for centos:
+```
+yum install cmake gcc-c++ python-libs python-devel
+```
