@@ -19,6 +19,8 @@
 	ci = commit
 	co = checkout
 	p = pull
+	recentwork = log --no-merges --committer jonas.falck
+	trackpush = "!git push --set-upstream origin `git symbolic-ref --short HEAD`"
 [merge]
 	tool = meld
 [core]

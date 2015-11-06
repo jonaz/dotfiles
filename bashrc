@@ -18,6 +18,7 @@ customgrepfilename() {
 #aliases
 alias f=customgrepinfile
 alias fn=customgrepfilename
+alias ll="ls -lhstr"
 alias svndiff="svn diff | vim -R -"
 
 

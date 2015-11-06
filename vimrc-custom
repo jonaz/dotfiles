@@ -84,11 +84,14 @@ let g:vdebug_features = {
 \    'max_data': 10000,
 \}
 
+"			'/home/jonaz/git/fortnox': '/home/jonaz/git/fortnox',
+"			'/storage/vol3/fortnox-jf': '/home/jonaz/git/fortnox',
 let g:vdebug_options = {
 \       "path_maps": {
 \			'/storage/vol3/r214-jf': '/home/jonaz/svn/release-2.14',
 \			'/storage/vol3/r34-jf': '/home/jonaz/svn/release-3.4',
 \			'/storage/vol3/r35-jf': '/home/jonaz/svn/release-3.5',
+\			'/home/jonaz/git/fortnox': '/home/jonaz/git/fortnox',
 \			'/storage/vol3/fortnox-jf': '/home/jonaz/git/fortnox',
 \			'/storage/vol3/trunk-jf': '/home/jonaz/svn/trunk'
 \		},
