@@ -21,6 +21,7 @@
 	p = pull
 	recentwork = log --no-merges --committer jonas.falck
 	trackpush = "!git push --set-upstream origin `git symbolic-ref --short HEAD`"
+	sync = "!git pull && sync_server"
 [merge]
 	tool = meld
 [core]
