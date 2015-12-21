@@ -34,7 +34,8 @@ Plugin 'terryma/vim-expand-region'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'chrisbra/csv.vim'
 Plugin 'Raimondi/delimitMate'
-Plugin 'avakhov/vim-yaml'
+"Plugin 'avakhov/vim-yaml'
+Plugin 'shime/vim-livedown'
 
 
 " All of your Plugins must be added before the following line
