@@ -14,12 +14,17 @@ set $mod Mod4
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below. ISO 10646 = Unicode
 font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+#font xft:Hack 10
 # The font above is very space-efficient, that is, it looks good, sharp and
 # clear in small sizes. However, if you need a lot of unicode glyphs or
 # right-to-left text rendering, you should instead use pango for rendering and
 # chose a FreeType font, such as:
 # font pango:DejaVu Sans Mono 10
-
+set $up l
+set $down k
+set $left j
+# this is ö
+set $right odiaeresis
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier Mod1
 
@@ -73,10 +78,10 @@ bindsym $mod+Pause mode "$mode_system"
 bindsym Mod1+l exec i3lock -i /home/jonaz/Images/arch-linux-15408.png -t
 
 # change focus
-bindsym $mod+h focus left
-bindsym $mod+j focus down
-bindsym $mod+k focus up
-bindsym $mod+l focus right
+bindsym $mod+$left focus left
+bindsym $mod+$down focus down
+bindsym $mod+$up focus up
+bindsym $mod+$right focus right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
@@ -98,7 +103,7 @@ bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
 # using b here since h is busy with vim hjkl
-bindsym $mod+b split h
+bindsym $mod+h split h
 
 # split in vertical orientation
 bindsym $mod+v split v
@@ -191,6 +196,7 @@ bar {
 
 #always move gimp to new workspace
 for_window [class="Gimp"] move container to workspace 4, workspace 5, focus
+assign [class="HipChat"] 10
 
 for_window [class="Pavucontrol"] floating enable, border normal
 
