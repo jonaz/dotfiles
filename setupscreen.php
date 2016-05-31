@@ -107,9 +107,9 @@ $args = array_slice($argv,1);
 $monitors = new Monitors();
 switch($args[0]){
 	case 3:
-		$monitors->get('HDMI3')->primary()->auto();
-		$monitors->get('HDMI2')->auto()->rightOf('HDMI3');
-		$monitors->get('LVDS1')->auto()->leftOf('HDMI3')->pos('0x312');
+		$monitors->get('DP3-2')->primary()->auto();
+		$monitors->get('DP3-1')->auto()->rightOf('DP3-2');
+		$monitors->get('eDP1')->auto()->leftOf('DP3-2')->pos('0x312');
 		break;
 	case 2:
 		$monitors->get('HDMI3')->primary()->auto();
@@ -117,8 +117,8 @@ switch($args[0]){
 		$monitors->get('LVDS1')->off();
 		break;
 	case 1:
-		$monitors->turnOffAllExcept('LVDS1');
-		$monitors->get('LVDS1')->auto()->primary();
+		$monitors->turnOffAllExcept('eDP1');
+		$monitors->get('eDP1')->auto()->primary();
 		break;
 	case 'tv':
 		$monitors->turnOffAllExcept('LVDS1');
