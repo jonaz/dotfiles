@@ -4,6 +4,8 @@
 #
 # Executed by startx (run your window manager from here)
 
+# IF USING lightdm copy this file to .xprofile and remove exec line
+
 if [ -d /etc/X11/xinit/xinitrc.d ]; then
   for f in /etc/X11/xinit/xinitrc.d/*; do
     [ -x "$f" ] && . "$f"
