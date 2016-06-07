@@ -4,7 +4,7 @@
 
 #functions for aliases
 customgrepinfile() {
-	grep -r $1 * | vim -c "noremap <enter> <C-w>f<cr>" -c "/$1" -R -
+	grep -r "$1" * | vim -c "noremap <enter> <C-w>f<cr>" -c "/$1" -R -
 }
 customgrepfilename() {
     #find . | grep $1 | vim -c "noremap <enter> <C-w>f<cr>" -c "/$1" -R -
