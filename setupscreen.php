@@ -51,6 +51,9 @@ class Monitors{/*{{{*/
 
 	public function turnOffAllExcept($name){
 		foreach($this->monitors as $monitor){
+			if($monitor->getState() != 'connected'){
+				continue;
+			}
 			if($monitor->getName() === $name)
 				continue;
 			$monitor->off();
@@ -71,6 +74,14 @@ class Monitor extends BaseMonitor{/*{{{*/
 	 */
 	public function getName(){
 		return $this->name;
+	}
+	/**
+	 * Getter for state
+	 *
+	 * return string
+	 */
+	public function getState(){
+	    return $this->state;
 	}
 
 	public function setState($state){
@@ -126,6 +137,7 @@ switch($args[0]){
 		$monitors->get('HDMI1')->auto()->rightOf('LVDS1');
 		break;
 	default:
+		print_r($monitors->getAll());
 		echo "Unknown command\n";
 }
 
