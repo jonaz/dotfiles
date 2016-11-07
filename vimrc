@@ -41,6 +41,7 @@ Plugin 'mxw/vim-jsx'
 Plugin 'pangloss/vim-javascript'
 Plugin 'othree/yajs.vim'
 Plugin 'heavenshell/vim-jsdoc'
+Plugin 'nathanielc/vim-tickscript'
 
 
 " All of your Plugins must be added before the following line
@@ -91,6 +92,7 @@ autocmd FileType htm set omnifunc=htmlcomplete#CompleteTags
 autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
 autocmd FileType php noremap K :call OpenPhpFunction(expand('<cword>'))<CR>
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
 autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 autocmd BufEnter,BufRead     *.inc   setf php
