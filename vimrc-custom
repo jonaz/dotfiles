@@ -98,6 +98,7 @@ let g:vdebug_options = {
 \       "server": '0.0.0.0',
 \       "ide_key" : 'jf',
 \       "break_on_open" : 0,
+\       "continuous_mode" : 1,
 \}
 
 "special fix for YouCompleteMe with Ultisnips and the TAB key
