@@ -157,6 +157,10 @@ let g:syntastic_html_checkers = ['jshint']
 let g:syntastic_php_phpmd_post_args = "~/.phpmd-ruleset.xml"
 
 
+let g:syntastic_go_checkers = ['go','golint', 'govet', 'errcheck']
+"let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
+
+
 " this algorithm works well for /** */ style comments in a tab-indented file
 let g:airline#extensions#whitespace#mixed_indent_algo = 1
 
