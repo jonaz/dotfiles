@@ -13,6 +13,12 @@ customgrepfilename() {
 	[ -n "$file" ] && ${EDITOR:-vim} "$file"
 }
 
+gitstatusopenfiles() {
+	vim -O $(git status -s | awk '{print $2}')
+}
+gitstatusfind() {
+	git status -s | vim -c "noremap <enter> <C-w>f<cr>" -R -
+}
 
 
 #aliases
