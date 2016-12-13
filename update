@@ -1,0 +1,19 @@
+#!/bin/bash
+echo "Git pull"
+git pull
+
+echo "Update fzf"
+cd ~/.fzf/
+git pull
+./install --all
+cd -
+
+
+echo "Update vim plugins"
+vim +PluginUpdate +qall
+
+echo "rebuild YouCompleteMe"
+
+cd ~/.vim/bundle/YouCompleteMe/
+./install.py --tern-completer --gocode-completer
+cd -
