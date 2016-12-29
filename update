@@ -8,12 +8,16 @@ git pull
 ./install --all
 cd -
 
-
 echo "Update vim plugins"
 vim +PluginUpdate +qall
+
+echo "GoUpdateBinaries"
+vim +GoUpdateBinaries +qall
 
 echo "rebuild YouCompleteMe"
 
 cd ~/.vim/bundle/YouCompleteMe/
 ./install.py --tern-completer --gocode-completer
 cd -
+
+echo "Done"
