@@ -57,6 +57,10 @@ fi
 
 echo "Installing plugins into vim"
 vim +PluginInstall +qall
+
+echo "GoInstallBinaries"
+vim +GoInstallBinaries +qall
+
 echo "all Done!"
 
 #TODO npm install in the bundle/tern_for_vim directory
