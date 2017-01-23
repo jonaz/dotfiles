@@ -35,6 +35,7 @@ stty ixany
 stty ixoff -ixon
 export HISTCONTROL=ignoredups
 export HISTCONTROL=ignoreboth
+export HISTSIZE=10000
 
 # Bash won't get SIGWINCH if another process is in the foreground.
 # Enable checkwinsize so that bash will check the terminal size when
@@ -42,8 +43,6 @@ export HISTCONTROL=ignoreboth
 # http://cnswww.cns.cwru.edu/~chet/bash/FAQ (E11)
 shopt -s checkwinsize
 
-# Enable history appending instead of overwriting.
-shopt -s histappend
 
 
 
@@ -56,6 +55,11 @@ case ${TERM} in
 		PROMPT_COMMAND=${PROMPT_COMMAND:+$PROMPT_COMMAND; }'printf "\033_%s@%s:%s\033\\" "${USER}" "${HOSTNAME%%.*}" "${PWD/#$HOME/~}"'
 		;;
 esac
+
+
+# Enable history appending instead of overwriting.
+shopt -s histappend
+PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a; history -c; history -r"
 
 # Set colorful PS1 only on colorful terminals.
 # dircolors --print-database uses its own built-in database
