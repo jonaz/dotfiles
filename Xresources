@@ -1,8 +1,5 @@
 
 
-! fix for home/end in vim
-URxvt*keysym.Home: \033[1~
-URxvt*keysym.End: \033[4~
 
 
 
@@ -40,7 +37,7 @@ URxvt.fading:               0
 URxvt.saveLines:            12000
 URxvt.internalBorder:       3
 URxvt.lineSpace:            0
-URxvt*termName:             rxvt-unicode
+URxvt*termName:             rxvt-unicode-256color
 URxvt.iso14755:             false
 
 ! Fonts

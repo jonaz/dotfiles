@@ -2,22 +2,30 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+
+HAS_NVIM=false
+VIM_COMMAND="vim"
+if type "nvim" > /dev/null; then
+	HAS_NVIM=true
+	VIM_COMMAND="nvim"
+fi
+
 #functions for aliases
 customgrepinfile() {
-	grep -r "$1" * | vim -c "noremap <enter> <C-w>f<cr>" -c "/$1" -R -
+	grep -r "$1" * | $VIM_COMMAND -c "noremap <enter> <C-w>f<cr>" -c "/$1" -R -
 }
 customgrepfilename() {
     #find . | grep $1 | vim -c "noremap <enter> <C-w>f<cr>" -c "/$1" -R -
 	local file
 	file=$(fzf --query="$1" --select-1 --exit-0)
-	[ -n "$file" ] && ${EDITOR:-vim} "$file"
+	[ -n "$file" ] && ${EDITOR:-$VIM_COMMAND} "$file"
 }
 
 gitstatusopenfiles() {
-	vim -O $(git status -s | awk '{print $2}')
+	$VIM_COMMAND -O $(git status -s | awk '{print $2}')
 }
 gitstatusfind() {
-	git status -s | vim -c "noremap <enter> <C-w>f<cr>" -R -
+	git status -s | $VIM_COMMAND -c "noremap <enter> <C-w>f<cr>" -R -
 }
 
 
@@ -27,9 +35,14 @@ alias fn=customgrepfilename
 alias ll="ls -lhstr"
 alias svndiff="svn diff | vim -R -"
 
+# if we have nvim alias vim to it
+if $HAS_NVIM ; then
+  alias vim='nvim'
+fi
+
 
 #settings
-export EDITOR="vim"
+export EDITOR="$VIM_COMMAND"
 export HISTTIMEFORMAT='%F %T - '
 stty ixany
 stty ixoff -ixon

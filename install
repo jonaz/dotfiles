@@ -1,4 +1,11 @@
 #!/bin/bash
+HAS_NVIM=false
+VIM_COMMAND="vim"
+if type "nvim" > /dev/null; then
+	HAS_NVIM=true
+	VIM_COMMAND="nvim"
+fi
+
 echo "Git pull"
 git pull
 
@@ -36,12 +43,23 @@ fi
 
 if [ ! -d ~/.fzf ]; then
 	git clone https://github.com/junegunn/fzf.git ~/.fzf
-	~/.fzf/install
+	~/.fzf/install --all
 fi
 
 if [ ! -L ~/.vimrc-custom ]; then
     echo "Creating symbolic link ~/.vimrc-custom to $PWD/../vimrc-custom"
     ln -s $PWD/vimrc-custom ~/.vimrc-custom
+
+fi
+
+if [ ! -d ~/.config/nvim/ ]; then
+	echo "Creating ~/.config/nvim"
+	mkdir ~/.config/nvim/
+fi
+
+if [ ! -L ~/.config/nvim/init.vim ]; then
+	echo "Creating symlink for vimrc to neovim init.vim"
+	ln -s ~/.vimrc ~/.config/nvim/init.vim
 fi
 
 if [ -f ~/.vimrc ]; then
@@ -55,11 +73,15 @@ if [ ! -L ~/.vimrc ]; then
     ln -s $PWD/vimrc ~/.vimrc
 fi
 
+
+
 echo "Installing plugins into vim"
-vim +PluginInstall +qall
+nvim +PluginInstall +qall
 
 echo "GoInstallBinaries"
-vim +GoInstallBinaries +qall
+nvim +GoInstallBinaries +qall
+
+nvim +"call deoplete#sources#padawan#InstallServer()" +qa
 
 echo "all Done!"
 

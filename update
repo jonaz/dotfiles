@@ -1,4 +1,12 @@
 #!/bin/bash
+HAS_NVIM=false
+VIM_COMMAND="vim"
+if type "nvim" > /dev/null; then
+	HAS_NVIM=true
+	VIM_COMMAND="nvim"
+fi
+
+
 echo "Git pull"
 git pull
 
@@ -9,15 +17,23 @@ git pull
 cd -
 
 echo "Update vim plugins"
-vim +PluginUpdate +qall
+nvim +PluginUpdate +qall
 
 echo "GoUpdateBinaries"
-vim +GoUpdateBinaries +qall
+nvim +GoUpdateBinaries +qall
 
-echo "rebuild YouCompleteMe"
 
-cd ~/.vim/bundle/YouCompleteMe/
-./install.py --tern-completer --gocode-completer
-cd -
+echo "Install/update gocode"
+go get -u github.com/nsf/gocode
+
+echo "install padawan server"
+nvim +"call deoplete#sources#padawan#UpdateServer()" +qa
+
+if ! $HAS_NVIM; then
+	echo "rebuild YouCompleteMe"
+	cd ~/.vim/bundle/YouCompleteMe/
+	./install.py --tern-completer --gocode-completer
+	cd -
+fi
 
 echo "Done"

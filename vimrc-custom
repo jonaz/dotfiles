@@ -22,7 +22,6 @@ nnoremap <silent> <C-o> :FZFMru<CR>
 command! -nargs=1 Locate call fzf#run(
       \ {'source': 'locate <q-args>', 'sink': 'e', 'options': '-m'})
 
-"inoremap  { <C-R>=MasVinge()<CR>
 
 "copy file path
 nnoremap <silent> <Leader>cp :let @+=expand("%:p")<CR>
@@ -101,39 +100,27 @@ let g:vdebug_options = {
 \       "continuous_mode" : 1,
 \}
 
-"special fix for YouCompleteMe with Ultisnips and the TAB key
+"special fix for autocompletion with Ultisnips and the TAB key
+let g:ulti_expand_or_jump_res = 0
 function! g:UltiSnips_Complete()
-    call UltiSnips#ExpandSnippet()
-    if g:ulti_expand_res == 0
-        if pumvisible()
-            return "\<C-n>"
-        else
-            call UltiSnips#JumpForwards()
-            if g:ulti_jump_forwards_res == 0
-               return "\<TAB>"
-            endif
-        endif
-    endif
-    return ""
+	call UltiSnips#ExpandSnippet()
+	if g:ulti_expand_res == 0
+		if pumvisible()
+			return "\<C-n>"
+		else
+			call UltiSnips#JumpForwards()
+			if g:ulti_jump_forwards_res == 0
+			   return "\<TAB>"
+			endif
+		endif
+	endif
+	return ""
 endfunction
-
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-let g:UltiSnipsListSnippets="<c-e>"
 au InsertEnter * exec "inoremap <silent> " . g:UltiSnipsExpandTrigger . " <C-R>=g:UltiSnips_Complete()<cr>"
-" this mapping Enter key to <C-y> to chose the current highlight item
-" and close the selection list, same as other IDEs.
-" CONFLICT with some plugins like tpope/Endwise
-"inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
 
 let g:UltiSnipsEditSplit="vertical"
 let g:snips_author='Jonas Falck'
-
-let g:ctrlp_max_files = 100000
-let g:ctrlp_clear_cache_on_exit = 0
-let g:ctrlp_regexp = 1
-let g:ctrlp_lazy_update = 150
 
 "phpdoc templates
 let g:pdv_template_dir = $HOME ."/vim_templates_snip"
@@ -141,31 +128,44 @@ let g:pdv_template_dir = $HOME ."/vim_templates_snip"
 "nnoremap <C-k> :call pdv#DocumentCurrentLine()<CR>
 nnoremap <C-k> :call pdv#DocumentWithSnip()<CR>
 
-"let g:syntastic_javascript_jshint_conf = "~/.jshintrc"
-let g:syntastic_javascript_checkers = ['eslint']
-"let g:syntastic_javascript_jshint_args = '--config ~/.jshintrc'
-let g:syntastic_html_jshint_args = '--config ~/.jshintrc'
-let g:syntastic_html_checkers = ['jshint']
-
-
-"let g:syntastic_html_checkers = ['tidy']
-"let g:syntastic_html_tidy_exec = 'tidy5'
-"
-"let g:syntastic_html_checkers = ['tidy','jshint']
-"let g:syntastic_html_tidy_exec = 'tidy'
-
-let g:syntastic_php_phpmd_post_args = "~/.phpmd-ruleset.xml"
-
-
-let g:syntastic_go_checkers = ['go','golint', 'govet', 'errcheck']
-"let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
-
 
 " this algorithm works well for /** */ style comments in a tab-indented file
 let g:airline#extensions#whitespace#mixed_indent_algo = 1
 
 "vim-go stuff
 let g:go_fmt_command = "goimports"
+let g:go_highlight_build_constraints = 1
+let g:go_highlight_extra_types = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_types = 1
+" highlight variables and functions with same name
+let g:go_auto_sameids = 1
+let g:go_auto_type_info = 1
+
+" ale stuff
+" Error and warning signs.
+"let g:ale_sign_error = '⤫'
+"let g:ale_sign_warning = '⚠'
+let g:airline#extensions#ale#enabled = 1
+let g:ale_linters = {'go': ['go build', 'gometalinter', 'gofmt']}
+let g:ale_php_phpmd_ruleset = "~/.phpmd-ruleset.xml"
+
+
+" deoplete stuff
+inoremap <silent><expr> <TAB>
+\ pumvisible() ? "\<C-n>" :
+\ <SID>check_back_space() ? "\<TAB>" :
+\ deoplete#mappings#manual_complete()
+function! s:check_back_space() abort "{{{
+	let col = col('.') - 1
+	return !col || getline('.')[col - 1]  =~ '\s'
+endfunction"}}}
+inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<C-h>"
+
 
 "jira
 
@@ -199,10 +199,3 @@ function! JiraOpen()
 endfun
 
 
-"func MasVinge()
-    "let col = col('.') - 1
-    "if getline('.')[col - 1] == ')'
-        "return "{\<CR>}\<C-O>\O"
-    "endif
-    "return '{'
-"endfunc
