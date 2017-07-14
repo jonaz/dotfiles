@@ -15,8 +15,8 @@ Plugin 'othree/html5.vim'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'tobyS/pdv'
 Plugin 'w0rp/ale'
-Plugin 'majutsushi/tagbar'
-Plugin 'vim-php/tagbar-phpctags.vim'
+"Plugin 'majutsushi/tagbar'
+"Plugin 'vim-php/tagbar-phpctags.vim'
 Plugin 'marijnh/tern_for_vim'
 Plugin 'SirVer/ultisnips'
 Plugin 'joonty/vdebug'
@@ -36,6 +36,7 @@ if has('nvim')
 	Plugin 'Shougo/deoplete.nvim'
 	Plugin 'zchee/deoplete-go'
 	Plugin 'padawan-php/deoplete-padawan'
+	Plugin 'kassio/neoterm'
 else
 	Plugin 'Valloric/YouCompleteMe'
 end
@@ -81,6 +82,10 @@ set mouse=a
 set number
 set autoindent
 set scrolloff=5
+
+"line numbers
+
+nnoremap <F11> :set relativenumber!<cr>
 
 "this works. we must have support and not beeing in a screen!
 if !has('nvim')
@@ -134,5 +139,11 @@ function! OpenPhpFunction (keyword)
   exe 'norm dGgg'
   exe 'norm V'
 endfunction
+
+if !isdirectory($HOME."/.vim/undo-dir")
+    call mkdir($HOME."/.vim/undo-dir", "", 0700)
+endif
+set undodir=~/.vim/undo-dir
+set undofile
 
 source $HOME/.vimrc-custom

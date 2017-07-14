@@ -38,6 +38,9 @@ nmap <Leader>P "+P
 vmap <Leader>p "+p
 vmap <Leader>P "+P
 
+" neovim natively support system clipboard
+set clipboard+=unnamedplus
+
 " normal keyword completion with ,,
 inoremap <leader>, <C-x><C-n>
 
@@ -46,7 +49,7 @@ nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
 vnoremap <Space> zf
 
 " map ctrl+s to save and run sync_server
-noremap <C-S> :wa<CR>:silent !sync_server<CR>:redraw!<CR>
+noremap <C-S> :call TermCloseIfOK("sync_server")<CR>
 
 "; i command mode ger ; i slutet på raden
 noremap ; :s/\([^;]\)$/\1;/<cr>:set nohlsearch<cr>
@@ -59,7 +62,7 @@ map <F2> :mksession! ~/.vim_session <cr> " Quick write session with F2
 map <F3> :source ~/.vim_session <cr>     " And load session with F3
 
 "tagbar
-nmap <Leader>t :TagbarOpen fjc<CR>
+"nmap <Leader>t :TagbarOpen fjc<CR>
 
 "git
 map <Leader>gs :Gstatus<CR>
@@ -198,4 +201,58 @@ function! JiraOpen()
   execute cmd
 endfun
 
+"terminal stuff
+nmap <Leader>t :Topen<CR>
 
+fun! FZFIsOpen()
+    let running = filter(range(1, bufnr('$')), "bufname(v:val) =~# ';#FZF'")
+	if len(running)
+		return 1
+	endif
+	return 0
+endfun
+tnoremap <expr><esc> FZFIsOpen() ? "\<esc>" : "\<C-\>\<C-n>"
+
+fun! TermCloseIfOK(cmd)
+	let l:origin = exists('*win_getid') ? win_getid() : 0
+	:split
+	:enew
+	let opts = {'suffix': ' # vim-test', 'origin': l:origin}
+	let opts.new_window_id = exists('*win_getid') ? win_getid() : 0
+	function! opts.on_exit(job_id, exit_code, event) dict
+		if a:exit_code == 0
+			call win_gotoid(self.new_window_id)
+			close
+		endif
+	endfunction
+	function! opts.on_stdout(job_id, data, event) dict
+		if self.origin != 0
+			call win_gotoid(self.origin)
+		endif
+	endfunction
+
+	call termopen(a:cmd, opts)
+endfun
+
+
+fun! s:change_branch(e)
+	let res = system("git checkout " . a:e)
+	:e!
+	:AirlineRefresh
+	echom 'Changed branch to ' . a:e
+endfun
+
+command! Gbranch call fzf#run(
+	\ {
+	\ 'source': 'git branch -a --format "%(refname:short)" | sed "s#^origin/##" | sort | uniq',
+	\ 'sink': function('<sid>change_branch'),
+	\ 'options': '-m',
+	\ 'down': '20%'
+	\})
+
+map <Leader>gc :Gbranch<CR>
+
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
