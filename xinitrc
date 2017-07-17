@@ -16,7 +16,7 @@ fi
 [[ -f ~/.Xresources ]] && xrdb -merge -I$HOME ~/.Xresources
 
 #xrandr --output HDMI3 --auto --primary --output VGA1 --auto --right-of HDMI3 --output LVDS1 --off
-#~/jonaz-vim-rc/setupscreen.php 3
+#~/jonaz-dotfiles/setupscreen.php 3
 
 #fix mouse
 xset m 1/1 0
