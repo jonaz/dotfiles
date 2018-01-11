@@ -12,7 +12,7 @@ fi
 
 #functions for aliases
 customgrepinfile() {
-	grep -r "$1" * | $VIM_COMMAND -c "noremap <enter> <C-w>f<cr>" -c "/$1" -R -
+	ag --vimgrep "$1" * | $VIM_COMMAND -c "noremap <enter> <C-w>F" -c "/$1" -R -
 }
 customgrepfilename() {
     #find . | grep $1 | vim -c "noremap <enter> <C-w>f<cr>" -c "/$1" -R -
@@ -169,6 +169,8 @@ unset safe_term match_lhs
 
 # GIT heart FZF
 # -------------
+
+export FZF_DEFAULT_COMMAND="ag -l"
 
 is_in_git_repo() {
   git rev-parse HEAD > /dev/null 2>&1
