@@ -21,14 +21,6 @@ customgrepfilename() {
 	[ -n "$file" ] && ${EDITOR:-$VIM_COMMAND} "$file"
 }
 
-gitstatusopenfiles() {
-	$VIM_COMMAND -O $(git status -s | awk '{print $2}')
-}
-gitstatusfind() {
-	git status -s | $VIM_COMMAND -c "noremap <enter> <C-w>f<cr>" -R -
-}
-
-
 #aliases
 alias f=customgrepinfile
 alias fn=customgrepfilename
@@ -182,10 +174,9 @@ fzf-down() {
 
 gf() {
   is_in_git_repo || return
-  git -c color.status=always status --short |
-  fzf-down -m --ansi --nth 2..,.. \
-    --preview '(git diff --color=always -- {-1} | sed 1,4d; cat {-1}) | head -500' |
-  cut -c4- | sed 's/.* -> //'
+  local file
+  file=$(git -c color.status=always status --short | fzf-down --select-1 -m --ansi --nth 2..,.. --preview '(git diff --color=always -- {-1} | sed 1,4d; cat {-1}) | head -500' | cut -c4- | sed 's/.* -> //')
+  [ -n "$file" ] && ${EDITOR:-$VIM_COMMAND} "$file"
 }
 
 gb() {

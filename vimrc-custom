@@ -8,13 +8,18 @@ nmap <leader>lw :call CtrlPUnderCursor()<CR>
 
 
 " Open files in fzf
-nnoremap <silent> <C-p> :call fzf#run({
-\   'sink': 'e' })<CR>
+nnoremap <silent> <C-p> :call fzf#run({'sink': 'e' })<CR>
+
+" Open git status files in fzf
+function! s:gitstatusopen(line)
+	execute 'edit' split(a:line, " ")[1]
+endfunction
+nnoremap <silent> <C-u> :call fzf#run({'sink': function('<sid>gitstatusopen'),'source':'git -c color.status=always status --short', 'options':'--ansi'})<CR>
 
 " Open MRU in fzf
 command! FZFMru call fzf#run({
             \'source': v:oldfiles,
-            \'sink' : 'e ',
+            \'sink' : 'e',
             \'options' : '-m',
             \})
 nnoremap <silent> <C-o> :FZFMru<CR>
