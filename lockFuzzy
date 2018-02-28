@@ -1,14 +1,17 @@
 #!/bin/sh -e
 
+[ -e ~/.lockFuzzy-running ] && exit 0
+
 # Take a screenshot
 scrot /tmp/screen_locked.png
 
 # Pixellate it 10x
 mogrify -scale 10% -scale 1000% /tmp/screen_locked.png
 
-# Lock screen displaying this image.
 echo "`date  +"%Y-%m-%dT%H:%M:%S"` LOCKED" >> /var/log/i3lock
-i3lock -n -i /tmp/screen_locked.png
 
+touch ~/.lockFuzzy-running
+i3lock -n -i /tmp/screen_locked.png
+rm ~/.lockFuzzy-running
 
 echo "`date  +"%Y-%m-%dT%H:%M:%S"` UNLOCKED" >> /var/log/i3lock
