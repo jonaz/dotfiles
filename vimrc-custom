@@ -153,6 +153,7 @@ let g:go_highlight_types = 1
 " highlight variables and functions with same name
 let g:go_auto_sameids = 1
 let g:go_auto_type_info = 1
+let g:go_addtags_transform = 'camelcase'
 
 " ale stuff
 " Error and warning signs.
