@@ -78,6 +78,7 @@ map <Leader>gt :GoTest<CR>
 map <Leader>gi :GoInstall<CR>
 map <Leader>gl :GoLint<CR>
 map <Leader>gr :GoRun<CR>
+map <F9> :GoBuild<CR>
 
 "pretty json
 :command JsonPretty :%!python -m json.tool
