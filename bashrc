@@ -88,6 +88,28 @@ match_lhs=""
 #for arch only. debian have this autoincluded.
 [[ -f /usr/share/git/completion/git-prompt.sh ]] && source /usr/share/git/completion/git-prompt.sh
 
+
+source ~/bin/kube-ps1.sh
+
+k(){
+	if [[ $PS1 = *"kube_ps1"* ]]; then
+		ps1_normal
+	else
+		ps1_kube
+	fi
+}
+
+ps1_normal() {
+	PS1="$(if [[ ${EUID} == 0 ]]; then echo '\[$RED\]\h'; else echo '\[$GREEN\]\u@\h'; fi)\[\$BLUE\] \w \$([[ \$? != 0 ]] && echo \"\[\$RED\]:( \")\[$CYAN\]\$(__git_ps1 '[%s]') \[$BASE2\]\$\[$RESET\] "
+}
+
+ps1_kube() {
+	KUBE_PS1_PREFIX="["
+	KUBE_PS1_SUFFIX="]"
+	KUBE_PS1_SYMBOL_ENABLE=false
+	PS1="$(if [[ ${EUID} == 0 ]]; then echo '\[$RED\]\h'; else echo '\[$GREEN\]\u@\h'; fi)\[\$BLUE\] \w \$([[ \$? != 0 ]] && echo \"\[\$RED\]:( \")\[$CYAN\]\$(__git_ps1 '[%s]') \$(kube_ps1) \[$BASE2\]\$\[$RESET\] "
+}
+
 if [[ $'\n'${match_lhs} == *$'\n'"TERM "${safe_term}* ]] ; then
 	# we have colors :-)
 
@@ -132,7 +154,7 @@ if [[ $'\n'${match_lhs} == *$'\n'"TERM "${safe_term}* ]] ; then
 	alias dir="dir --color=auto"
 	alias grep="grep --color=auto"
 	alias dmesg='dmesg --color'
-	PS1="$(if [[ ${EUID} == 0 ]]; then echo '\[$RED\]\h'; else echo '\[$GREEN\]\u@\h'; fi)\[\$BLUE\] \w \$([[ \$? != 0 ]] && echo \"\[\$RED\]:( \")\[$CYAN\]\$(__git_ps1 '[%s]') \[$BASE2\]\$\[$RESET\] "
+	ps1_normal
 
 
 else

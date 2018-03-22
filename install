@@ -16,6 +16,11 @@ git config --global credential.helper 'cache --timeout 3600'
 
 grep -q ". $PWD/bashrc" ~/.bashrc || echo ". $PWD/bashrc" >> ~/.bashrc
 
+
+echo "Install kube-ps1"
+curl -s -o ~/bin/kube-ps1.sh https://raw.githubusercontent.com/jonmosco/kube-ps1/master/kube-ps1.sh
+
+
 if [ ! -L ~/.jshintrc ]; then
 	echo "Setting up jshintrc"
     ln -s $PWD/jshintrc ~/.jshintrc

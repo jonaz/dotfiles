@@ -31,17 +31,33 @@ command! -nargs=1 Locate call fzf#run(
 "copy file path
 nnoremap <silent> <Leader>cp :let @+=expand("%:p")<CR>
 
+"function! s:tags_sink(line)
+  "let parts = split(a:line, '\t\zs')
+  "let excmd = matchstr(parts[2:], '^.*\ze;"\t')
+  "execute 'silent e' parts[1][:-2]
+  "let [magic, &magic] = [&magic, 0]
+  "execute excmd
+  "let &magic = magic
+"endfunction
 
-" fortnox indentation
-"au BufRead,BufNewFile /home/jonaz/svn/* setl sw=2 ts=2 sts=2 expandtab list listchars=tab:>-,trail:-
+"function! s:tags()
+  "if empty(tagfiles())
+    "echohl WarningMsg
+    "echom 'Preparing tags'
+    "echohl None
+    "call system('gotags *')
+  "endif
 
-"system clipboard
-vmap <Leader>y "+y
-vmap <Leader>d "+d
-nmap <Leader>p "+p
-nmap <Leader>P "+P
-vmap <Leader>p "+p
-vmap <Leader>P "+P
+  "call fzf#run({
+  "\ 'source':  'cat '.join(map(tagfiles(), 'fnamemodify(v:val, ":S")')).
+  "\            '| grep -v -a ^!',
+  "\ 'options': '+m -d "\t" --with-nth 1,4.. -n 1 --tiebreak=index',
+  "\ 'down':    '40%',
+  "\ 'sink':    function('s:tags_sink')})
+"endfunction
+
+"command! Tags call s:tags()
+
 
 " neovim natively support system clipboard
 set clipboard+=unnamedplus

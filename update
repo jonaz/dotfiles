@@ -16,6 +16,10 @@ git pull
 ./install --all
 cd -
 
+
+echo "Update kube-ps1"
+curl -s -o ~/bin/kube-ps1.sh https://raw.githubusercontent.com/jonmosco/kube-ps1/master/kube-ps1.sh
+
 echo "Update vim plugins"
 $VIM_COMMAND +PluginUpdate +qall
 
