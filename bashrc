@@ -100,14 +100,14 @@ k(){
 }
 
 ps1_normal() {
-	PS1="$(if [[ ${EUID} == 0 ]]; then echo '\[$RED\]\h'; else echo '\[$GREEN\]\u@\h'; fi)\[\$BLUE\] \w \$([[ \$? != 0 ]] && echo \"\[\$RED\]:( \")\[$CYAN\]\$(__git_ps1 '[%s]') \[$BASE2\]\$\[$RESET\] "
+	PS1="$(if [[ ${EUID} == 0 ]]; then echo '\[$RED\]\h'; else echo '\[$GREEN\]\u@\h'; fi)\[\$BLUE\] \w \$([[ \$? != 0 ]] && echo \"\[\$RED\]:( \")\[$CYAN\]\$(__git_ps1 '[%s]') \[$BASE2\]\n\$\[$RESET\] "
 }
 
 ps1_kube() {
 	KUBE_PS1_PREFIX="["
 	KUBE_PS1_SUFFIX="]"
 	KUBE_PS1_SYMBOL_ENABLE=false
-	PS1="$(if [[ ${EUID} == 0 ]]; then echo '\[$RED\]\h'; else echo '\[$GREEN\]\u@\h'; fi)\[\$BLUE\] \w \$([[ \$? != 0 ]] && echo \"\[\$RED\]:( \")\[$CYAN\]\$(__git_ps1 '[%s]') \$(kube_ps1) \[$BASE2\]\$\[$RESET\] "
+	PS1="$(if [[ ${EUID} == 0 ]]; then echo '\[$RED\]\h'; else echo '\[$GREEN\]\u@\h'; fi)\[\$BLUE\] \w \$([[ \$? != 0 ]] && echo \"\[\$RED\]:( \")\[$CYAN\]\$(__git_ps1 '[%s]') \$(kube_ps1) \[$BASE2\]\n\$\[$RESET\] "
 }
 
 if [[ $'\n'${match_lhs} == *$'\n'"TERM "${safe_term}* ]] ; then
