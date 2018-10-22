@@ -33,6 +33,7 @@ Plugin 'tpope/vim-surround'
 Plugin 'evidens/vim-twig'
 Plugin 'tobyS/vmustache'
 Plugin 'terryma/vim-expand-region'
+Plugin 'google/vim-jsonnet'
 
 if has('nvim')
 	Plugin 'Shougo/deoplete.nvim'
