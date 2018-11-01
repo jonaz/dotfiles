@@ -98,6 +98,8 @@ map <F9> :GoBuild<CR>
 
 "pretty json
 :command JsonPretty :%!python -m json.tool
+" pretty xml
+command XmlPretty :%!xmllint --format -
 
 nnoremap <Leader>r :%s/\<<C-r><C-w>\>//g<Left><Left>
 
