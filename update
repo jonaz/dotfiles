@@ -26,10 +26,6 @@ $VIM_COMMAND +PluginUpdate +qall
 echo "GoUpdateBinaries"
 $VIM_COMMAND +GoUpdateBinaries +qall
 
-
-echo "Install/update gocode"
-go get -u github.com/nsf/gocode
-
 if $HAS_NVIM; then
 	echo "install padawan server"
 	$VIM_COMMAND +"call deoplete#sources#padawan#UpdateServer()" +qa

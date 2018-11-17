@@ -8,32 +8,34 @@ call vundle#begin()
 " Let Vundle manage Vundle
 Plugin 'gmarik/vundle'
 
-"plugins
-"Plugin 'kien/ctrlp.vim' "replaced by fzf
 Plugin 'tpope/vim-fugitive'
-Plugin 'othree/html5.vim'
 Plugin 'scrooloose/nerdcommenter'
-Plugin 'tobyS/pdv'
 Plugin 'w0rp/ale'
-"Plugin 'majutsushi/tagbar'
-"Plugin 'vim-php/tagbar-phpctags.vim'
-Plugin 'marijnh/tern_for_vim'
-Plugin 'SirVer/ultisnips'
 Plugin 'joonty/vdebug'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'fatih/vim-go'
+Plugin 'iCyMind/NeoSolarized'
 Plugin 'AndrewRadev/splitjoin.vim'
-Plugin 'martinda/Jenkinsfile-vim-syntax'
-Plugin 'groenewege/vim-less'
-Plugin 'mustache/vim-mustache-handlebars'
-Plugin 'honza/vim-snippets'
 Plugin 'tpope/vim-surround'
-Plugin 'evidens/vim-twig'
-Plugin 'tobyS/vmustache'
 Plugin 'terryma/vim-expand-region'
+
+" snippet stuff
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
+
+" language / syntax support
+Plugin 'fatih/vim-go'
 Plugin 'google/vim-jsonnet'
+Plugin 'chrisbra/csv.vim'
+Plugin 'shime/vim-livedown'
+Plugin 'mxw/vim-jsx'
+Plugin 'pangloss/vim-javascript'
+Plugin 'othree/yajs.vim'
+Plugin 'martinda/Jenkinsfile-vim-syntax'
+Plugin 'evidens/vim-twig'
+Plugin 'othree/html5.vim'
+Plugin 'mustache/vim-mustache-handlebars'
+Plugin 'groenewege/vim-less'
 
 if has('nvim')
 	Plugin 'Shougo/deoplete.nvim'
@@ -43,14 +45,11 @@ if has('nvim')
 else
 	Plugin 'Valloric/YouCompleteMe'
 end
-Plugin 'chrisbra/csv.vim'
+
 Plugin 'Raimondi/delimitMate'
-Plugin 'shime/vim-livedown'
-Plugin 'mxw/vim-jsx'
-Plugin 'pangloss/vim-javascript'
-Plugin 'othree/yajs.vim'
 Plugin 'heavenshell/vim-jsdoc'
-Plugin 'nathanielc/vim-tickscript'
+Plugin 'tobyS/pdv'
+Plugin 'tobyS/vmustache' "dep of pdv
 
 
 " All of your Plugins must be added before the following line
@@ -59,7 +58,7 @@ filetype plugin indent on
 
 let g:deoplete#enable_at_startup = 1
 
-colorscheme solarized
+colorscheme NeoSolarized
 let g:airline_theme="solarized"
 
 
@@ -85,6 +84,8 @@ set mouse=a
 set number
 set autoindent
 set scrolloff=5
+set ttyfast                     " Indicate fast terminal conn for faster redraw
+set noswapfile
 
 "line numbers
 
