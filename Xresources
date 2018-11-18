@@ -46,8 +46,8 @@ URxvt.allow_bold:           true
 !URxvt*font: xft:Inconsolata:pixelsize=14:antialias=true:hinting=true
 !URxvt*boldFont: xft:Inconsolata:style=bold:pixelsize=14:antialias=true:hinting=true
 ! Home
-URxvt*font: xft:Hack:style:Regular:size=11:antialias=true:hinting=true
-URxvt*boldFont: xft:Hack:style:Bold:size=11:antialias=true:hinting=true
+URxvt*font: xft:Hack:style:Regular:size=11:antialias=true:hinting=true, xft:DejaVu Sans Mono:pixelsize=14:antialias=true:hinting=true
+URxvt*boldFont: xft:Hack:style:Bold:size=11:antialias=true:hinting=true, xft:DejaVu Sans Mono:pixelsize=14:antialias=true:hinting=true
 ! Work
 URxvt*font: xft:Hack:style:Regular:pixelsize=13:antialias=true:hinting=true
 URxvt*boldFont: xft:Hack:style:Bold:pixelsize=13:antialias=true:hinting=true
