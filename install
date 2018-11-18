@@ -46,10 +46,6 @@ if [ ! -d ~/.vim/bundle/ ]; then
 	mkdir -p ~/.vim/bundle
 fi
 
-if [ ! -d ~/.vim/bundle/vundle ]; then
-	git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
-fi
-
 
 if [ ! -d ~/.fzf ]; then
 	git clone https://github.com/junegunn/fzf.git ~/.fzf

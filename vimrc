@@ -1,60 +1,61 @@
 set nocompatible
-filetype off
 
-set rtp+=~/.vim/bundle/vundle/
+if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
+  silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
 set rtp+=~/.fzf
-call vundle#begin()
 
-" Let Vundle manage Vundle
-Plugin 'gmarik/vundle'
+call plug#begin('~/.vim/bundle')
 
-Plugin 'tpope/vim-fugitive'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'w0rp/ale'
-Plugin 'joonty/vdebug'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'iCyMind/NeoSolarized'
-Plugin 'AndrewRadev/splitjoin.vim'
-Plugin 'tpope/vim-surround'
-Plugin 'terryma/vim-expand-region'
+Plug 'junegunn/vim-plug'
+
+Plug 'tpope/vim-fugitive'
+Plug 'scrooloose/nerdcommenter'
+Plug 'w0rp/ale'
+Plug 'joonty/vdebug'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'iCyMind/NeoSolarized'
+Plug 'AndrewRadev/splitjoin.vim'
+Plug 'tpope/vim-surround'
+Plug 'terryma/vim-expand-region'
 
 " snippet stuff
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 
 " language / syntax support
-Plugin 'fatih/vim-go'
-Plugin 'google/vim-jsonnet'
-Plugin 'chrisbra/csv.vim'
-Plugin 'shime/vim-livedown'
-Plugin 'mxw/vim-jsx'
-Plugin 'pangloss/vim-javascript'
-Plugin 'othree/yajs.vim'
-Plugin 'martinda/Jenkinsfile-vim-syntax'
-Plugin 'evidens/vim-twig'
-Plugin 'othree/html5.vim'
-Plugin 'mustache/vim-mustache-handlebars'
-Plugin 'groenewege/vim-less'
+Plug 'fatih/vim-go'
+Plug 'google/vim-jsonnet', { 'for': 'jsonnet' }
+Plug 'chrisbra/csv.vim'
+Plug 'shime/vim-livedown', { 'for': 'markdown' }
+Plug 'mxw/vim-jsx'
+Plug 'pangloss/vim-javascript'
+Plug 'othree/yajs.vim'
+Plug 'martinda/Jenkinsfile-vim-syntax'
+Plug 'evidens/vim-twig'
+Plug 'othree/html5.vim'
+Plug 'mustache/vim-mustache-handlebars'
+Plug 'groenewege/vim-less'
 
 if has('nvim')
-	Plugin 'Shougo/deoplete.nvim'
-	Plugin 'zchee/deoplete-go'
-	Plugin 'padawan-php/deoplete-padawan'
-	Plugin 'kassio/neoterm'
+	Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+	Plug 'zchee/deoplete-go'
+	Plug 'padawan-php/deoplete-padawan', { 'do': 'composer install' }
+	Plug 'kassio/neoterm'
 else
-	Plugin 'Valloric/YouCompleteMe'
+	Plug 'Valloric/YouCompleteMe'
 end
 
-Plugin 'Raimondi/delimitMate'
-Plugin 'heavenshell/vim-jsdoc'
-Plugin 'tobyS/pdv'
-Plugin 'tobyS/vmustache' "dep of pdv
+Plug 'Raimondi/delimitMate'
+Plug 'heavenshell/vim-jsdoc'
+Plug 'tobyS/pdv', { 'for': 'php' }
+Plug 'tobyS/vmustache', { 'for': 'php' } "dep of pdv
 
-
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on
+call plug#end()
 
 let g:deoplete#enable_at_startup = 1
 
