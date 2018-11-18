@@ -21,6 +21,10 @@ customgrepfilename() {
 	[ -n "$file" ] && ${EDITOR:-$VIM_COMMAND} "$file"
 }
 
+g(){
+	cd $HOME/go/src
+}
+
 #aliases
 alias f=customgrepinfile
 alias fn=customgrepfilename
