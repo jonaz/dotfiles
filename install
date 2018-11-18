@@ -82,10 +82,7 @@ fi
 
 
 echo "Installing plugins into vim"
-nvim +PluginInstall +qall
-
-echo "GoInstallBinaries"
-nvim +GoInstallBinaries +qall
+nvim +PlugInstall +qall
 
 nvim +"call deoplete#sources#padawan#InstallServer()" +qa
 

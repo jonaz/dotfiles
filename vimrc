@@ -28,7 +28,7 @@ Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
 " language / syntax support
-Plug 'fatih/vim-go'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'google/vim-jsonnet', { 'for': 'jsonnet' }
 Plug 'chrisbra/csv.vim'
 Plug 'shime/vim-livedown', { 'for': 'markdown' }

@@ -21,17 +21,13 @@ echo "Update kube-ps1"
 curl -s -o ~/bin/kube-ps1.sh https://raw.githubusercontent.com/jonmosco/kube-ps1/master/kube-ps1.sh
 
 echo "Update vim plugins"
-$VIM_COMMAND +PluginUpdate +qall
-
-echo "GoUpdateBinaries"
-$VIM_COMMAND +GoUpdateBinaries +qall
+$VIM_COMMAND +PlugUpgrade +qall
+$VIM_COMMAND +PlugUpdate +qall
 
 if $HAS_NVIM; then
 	echo "install padawan server"
 	$VIM_COMMAND +"call deoplete#sources#padawan#UpdateServer()" +qa
 
-	echo "deoplete UpdateRemotePlugins"
-	$VIM_COMMAND +UpdateRemotePlugins +qall
 fi
 
 if ! $HAS_NVIM; then
