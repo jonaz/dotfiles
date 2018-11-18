@@ -29,7 +29,6 @@ g(){
 alias f=customgrepinfile
 alias fn=customgrepfilename
 alias ll="ls -lhstr"
-alias svndiff="svn diff | vim -R -"
 
 # if we have nvim alias vim to it
 if $HAS_NVIM ; then

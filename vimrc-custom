@@ -42,10 +42,6 @@ set clipboard+=unnamedplus
 " normal keyword completion with ,,
 inoremap <leader>, <C-x><C-n>
 
-" map space to toggle fold or create new one in visual mode
-nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
-vnoremap <Space> zf
-
 " map ctrl+s to save and run sync_server
 noremap <C-S> :call TermCloseIfOK("sync_server")<CR>
 
@@ -59,14 +55,13 @@ map <unique> <leader>oj :<C-U>call JiraOpen()<cr><cr>
 map <F2> :mksession! ~/.vim_session <cr> " Quick write session with F2
 map <F3> :source ~/.vim_session <cr>     " And load session with F3
 
-"tagbar
-"nmap <Leader>t :TagbarOpen fjc<CR>
 
 "git
 map <Leader>gs :Gstatus<CR>
 map <Leader>gb :Gblame<CR>
 
-
+" ctrl+a to quit current buffer
+nnoremap <silent> <C-a> :bd<CR>
 
 "pretty json
 :command JsonPretty :%!python -m json.tool
@@ -86,12 +81,8 @@ let g:vdebug_features = {
 "			'/storage/vol3/fortnox-jf': '/home/jonaz/git/fortnox',
 let g:vdebug_options = {
 \       "path_maps": {
-\			'/storage/vol3/r214-jf': '/home/jonaz/svn/release-2.14',
-\			'/storage/vol3/r34-jf': '/home/jonaz/svn/release-3.4',
-\			'/storage/vol3/r35-jf': '/home/jonaz/svn/release-3.5',
 \			'/home/jonaz/git/fortnox': '/home/jonaz/git/fortnox',
-\			'/storage/vol3/fortnox-jf': '/home/jonaz/git/fortnox',
-\			'/storage/vol3/trunk-jf': '/home/jonaz/svn/trunk'
+\			'/storage/vol3/fortnox-jf': '/home/jonaz/git/fortnox'
 \		},
 \       "server": '0.0.0.0',
 \       "ide_key" : 'jf',
