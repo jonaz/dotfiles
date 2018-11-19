@@ -33,6 +33,7 @@ alias ll="ls -lhstr"
 # if we have nvim alias vim to it
 if $HAS_NVIM ; then
   alias vim='nvim'
+  alias vimdiff='nvim -d'
 fi
 
 
