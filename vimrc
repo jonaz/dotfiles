@@ -22,6 +22,8 @@ Plug 'iCyMind/NeoSolarized'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'tpope/vim-surround'
 Plug 'terryma/vim-expand-region'
+Plug 'tpope/vim-eunuch'
+Plug 'mhinz/vim-startify'
 
 " snippet stuff
 Plug 'SirVer/ultisnips'
@@ -40,6 +42,8 @@ Plug 'evidens/vim-twig'
 Plug 'othree/html5.vim'
 Plug 'mustache/vim-mustache-handlebars'
 Plug 'groenewege/vim-less'
+Plug 'chr4/nginx.vim', { 'for': 'nginx' }
+Plug 'ekalinin/Dockerfile.vim', { 'for': 'Dockerfile' }
 
 if has('nvim')
 	Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
