@@ -15,7 +15,7 @@ Plug 'junegunn/vim-plug'
 Plug 'tpope/vim-fugitive'
 Plug 'scrooloose/nerdcommenter'
 Plug 'w0rp/ale'
-Plug 'joonty/vdebug'
+Plug 'joonty/vdebug', { 'for': 'php' }
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'iCyMind/NeoSolarized'
