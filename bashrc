@@ -25,6 +25,15 @@ g(){
 	cd $HOME/go/src
 }
 
+git-remove-orphan-branches(){
+	git fetch -p
+	git branch -vv | grep "gone]" | grep -v "\*" | awk '{print $1}' | xargs -r git branch -d
+}
+git-list-orphan-branches(){
+	git fetch -p
+	git branch -vv | grep "gone]" | grep -v "\*"
+}
+
 #aliases
 alias f=customgrepinfile
 alias fn=customgrepfilename
