@@ -25,6 +25,11 @@ g(){
 	cd $HOME/go/src
 }
 
+# open lastpass for search in fzf and copy selected to clipboard
+p(){
+	lpass show -c --password $(lpass ls -l |fzf | grep -Po "\[id: (.+)\] " | awk '{print $2}' |  sed 's/\]//g')
+}
+
 git-remove-orphan-branches(){
 	git fetch -p
 	git branch -vv | grep "gone]" | grep -v "\*" | awk '{print $1}' | xargs -r git branch -d
