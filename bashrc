@@ -14,6 +14,11 @@ fi
 customgrepinfile() {
 	ag --vimgrep "$1" . | $VIM_COMMAND -c "noremap <enter> <C-w>F" -c "/$1" -R -
 }
+
+fv(){
+	vim  -c ":Ag $1"
+}
+
 customgrepfilename() {
     #find . | grep $1 | vim -c "noremap <enter> <C-w>f<cr>" -c "/$1" -R -
 	local file
