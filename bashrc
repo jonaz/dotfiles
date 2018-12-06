@@ -19,6 +19,11 @@ fv(){
 	vim  -c ":Ag $1"
 }
 
+findaskinput(){
+	read -p "Search for: " $term
+	vim  -c ":Ag $term"
+}
+
 customgrepfilename() {
     #find . | grep $1 | vim -c "noremap <enter> <C-w>f<cr>" -c "/$1" -R -
 	local file
@@ -266,3 +271,4 @@ bind '"\C-g\C-h": "$(gh)\e\C-e\er"'
 bind '"\C-g\C-r": "$(gr)\e\C-e\er"'
 bind '"\C-g\C-d": "git diff\n"'
 bind '"\C-g\C-s": "git status\n"'
+bind '"\C-f": "findaskinput\n"'
