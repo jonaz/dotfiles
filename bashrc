@@ -21,7 +21,7 @@ fv(){
 
 findaskinput(){
 	read -p "Search for: " $term
-	vim  -c ":Ag $term"
+	$VIM_COMMAND  -c ":Ag $term"
 }
 
 customgrepfilename() {
