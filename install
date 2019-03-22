@@ -86,6 +86,9 @@ nvim +PlugInstall +qall
 
 nvim +"call deoplete#sources#padawan#InstallServer()" +qa
 
+echo "Install golangci-lint"
+curl -sfL https://install.goreleaser.com/github.com/golangci/golangci-lint.sh | sh -s -- -b $(go env GOPATH)/bin
+
 echo "all Done!"
 
 #TODO npm install in the bundle/tern_for_vim directory
