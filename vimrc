@@ -44,6 +44,7 @@ Plug 'mustache/vim-mustache-handlebars'
 Plug 'groenewege/vim-less'
 Plug 'chr4/nginx.vim', { 'for': 'nginx' }
 Plug 'ekalinin/Dockerfile.vim', { 'for': 'Dockerfile' }
+Plug 'leafgarland/typescript-vim'
 
 if has('nvim')
 	Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
