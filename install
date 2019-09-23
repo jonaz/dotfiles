@@ -6,6 +6,9 @@ if type "nvim" > /dev/null; then
 	VIM_COMMAND="nvim"
 fi
 
+# install fonts
+# sudo pacman -S noto-fonts-cjk noto-fonts-emoji noto-fonts-extra ttf-bitstream-vera ttf-croscore ttf-dejavu ttf-hack ttf-roboto
+
 echo "Git pull"
 git pull
 
