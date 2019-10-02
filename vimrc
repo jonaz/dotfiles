@@ -45,6 +45,7 @@ Plug 'groenewege/vim-less'
 Plug 'chr4/nginx.vim', { 'for': 'nginx' }
 Plug 'ekalinin/Dockerfile.vim', { 'for': 'Dockerfile' }
 Plug 'leafgarland/typescript-vim'
+Plug 'peitalin/vim-jsx-typescript'
 
 if has('nvim')
 	Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
