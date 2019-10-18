@@ -198,11 +198,11 @@ endfunction
 " Error and warning signs.
 let g:ale_sign_error = '✘'
 let g:ale_sign_warning = '⚠'
-let g:airline#extensions#ale#enabled = 1
 let g:ale_linters = {'go': ['go build', 'golangci-lint']}
-let g:ale_go_golangci_lint_options = '--enable-all --disable lll --disable goimports --disable gochecknoinits --disable gochecknoglobals'
+let g:ale_go_golangci_lint_options = '--enable-all --disable wsl --disable lll --disable goimports --disable gochecknoinits --disable gochecknoglobals --fix'
 let g:ale_go_golangci_lint_package = 1
 let g:ale_php_phpmd_ruleset = "~/.phpmd-ruleset.xml"
+let g:airline#extensions#ale#enabled = 1
 
 
 " deoplete stuff
