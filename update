@@ -1,11 +1,4 @@
 #!/bin/bash
-HAS_NVIM=false
-VIM_COMMAND="vim"
-if type "nvim" > /dev/null; then
-	HAS_NVIM=true
-	VIM_COMMAND="nvim"
-fi
-
 
 echo "Git pull"
 git pull
@@ -21,23 +14,11 @@ echo "Update kube-ps1"
 curl -s -o ~/bin/kube-ps1.sh https://raw.githubusercontent.com/jonmosco/kube-ps1/master/kube-ps1.sh
 
 echo "Update vim plugins"
-$VIM_COMMAND +PlugUpgrade +qall
-$VIM_COMMAND +PlugUpdate +qall
+nvim +PlugUpgrade +qall
+nvim +PlugUpdate +qall
 
 echo "Update golangci-lint"
 curl -sfL https://install.goreleaser.com/github.com/golangci/golangci-lint.sh | sh -s -- -b $(go env GOPATH)/bin
 
-if $HAS_NVIM; then
-	echo "install padawan server"
-	$VIM_COMMAND +"call deoplete#sources#padawan#UpdateServer()" +qa
-
-fi
-
-if ! $HAS_NVIM; then
-	echo "rebuild YouCompleteMe"
-	cd ~/.vim/bundle/YouCompleteMe/
-	./install.py --tern-completer --gocode-completer
-	cd -
-fi
 
 echo "Done"

@@ -3,10 +3,8 @@
 [[ $- != *i* ]] && return
 
 
-HAS_NVIM=false
 VIM_COMMAND="vim"
 if type "nvim" > /dev/null; then
-	HAS_NVIM=true
 	VIM_COMMAND="nvim"
 fi
 
@@ -56,10 +54,8 @@ alias ll="ls -lhstr"
 alias gd="git diff"
 
 # if we have nvim alias vim to it
-if $HAS_NVIM ; then
-  alias vim='nvim'
-  alias vimdiff='nvim -d'
-fi
+alias vim='nvim'
+alias vimdiff='nvim -d'
 
 
 #settings

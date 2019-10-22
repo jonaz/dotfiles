@@ -34,7 +34,6 @@ Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'google/vim-jsonnet', { 'for': 'jsonnet' }
 Plug 'chrisbra/csv.vim'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
-Plug 'mxw/vim-jsx'
 Plug 'pangloss/vim-javascript'
 Plug 'othree/yajs.vim'
 Plug 'martinda/Jenkinsfile-vim-syntax'
@@ -44,22 +43,17 @@ Plug 'mustache/vim-mustache-handlebars'
 Plug 'groenewege/vim-less'
 Plug 'chr4/nginx.vim', { 'for': 'nginx' }
 Plug 'ekalinin/Dockerfile.vim', { 'for': 'Dockerfile' }
-Plug 'leafgarland/typescript-vim'
-Plug 'peitalin/vim-jsx-typescript'
+Plug 'HerringtonDarkholme/yats.vim'
+Plug 'maxmellon/vim-jsx-pretty'
 
-if has('nvim')
-	Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-	Plug 'zchee/deoplete-go'
-	Plug 'padawan-php/deoplete-padawan', { 'do': 'composer install' }
-	Plug 'kassio/neoterm'
-else
-	Plug 'Valloric/YouCompleteMe'
-end
+" completion
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'zchee/deoplete-go'
+Plug 'phpactor/phpactor' ,  {'do': 'composer install', 'for': 'php'}
+Plug 'kristijanhusak/deoplete-phpactor'
 
+Plug 'kassio/neoterm'
 Plug 'Raimondi/delimitMate'
-Plug 'heavenshell/vim-jsdoc'
-Plug 'tobyS/pdv', { 'for': 'php' }
-Plug 'tobyS/vmustache', { 'for': 'php' } "dep of pdv
 
 call plug#end()
 

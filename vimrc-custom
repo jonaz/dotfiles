@@ -112,12 +112,6 @@ au InsertEnter * exec "inoremap <silent> " . g:UltiSnipsExpandTrigger . " <C-R>=
 let g:UltiSnipsEditSplit="vertical"
 let g:snips_author='Jonas Falck'
 
-"phpdoc templates
-let g:pdv_template_dir = $HOME ."/vim_templates_snip"
-"let g:pdv_template_dir = $HOME ."/.vim/bundle/pdv/templates_snip"
-"nnoremap <C-k> :call pdv#DocumentCurrentLine()<CR>
-nnoremap <C-k> :call pdv#DocumentWithSnip()<CR>
-
 
 " this algorithm works well for /** */ style comments in a tab-indented file
 let g:airline#extensions#whitespace#mixed_indent_algo = 1
@@ -198,7 +192,12 @@ endfunction
 " Error and warning signs.
 let g:ale_sign_error = '✘'
 let g:ale_sign_warning = '⚠'
-let g:ale_linters = {'go': ['go build', 'golangci-lint']}
+
+" use tsserver which then calls tslint for now
+let g:ale_linters_ignore = {'typescript': ['tslint'], 'typescriptreact': ['tslint']}
+let g:ale_linters = {
+			\'go': ['go build', 'golangci-lint'],
+			\}
 let g:ale_go_golangci_lint_options = '--enable-all --disable wsl --disable lll --disable goimports --disable gochecknoinits --disable gochecknoglobals --fix'
 let g:ale_go_golangci_lint_package = 1
 let g:ale_php_phpmd_ruleset = "~/.phpmd-ruleset.xml"
@@ -206,6 +205,9 @@ let g:airline#extensions#ale#enabled = 1
 
 
 " deoplete stuff
+call deoplete#custom#option('sources', {
+\ 'typescriptreact': ['ale'],
+\})
 inoremap <silent><expr> <TAB>
 \ pumvisible() ? "\<C-n>" :
 \ <SID>check_back_space() ? "\<TAB>" :
