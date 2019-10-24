@@ -208,6 +208,9 @@ let g:airline#extensions#ale#enabled = 1
 call deoplete#custom#option('sources', {
 \ 'typescriptreact': ['ale'],
 \})
+call deoplete#custom#option('omni_patterns', {
+\ 'go': '[^. *\t]\.\w*',
+\})
 inoremap <silent><expr> <TAB>
 \ pumvisible() ? "\<C-n>" :
 \ <SID>check_back_space() ? "\<TAB>" :

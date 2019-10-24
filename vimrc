@@ -48,7 +48,6 @@ Plug 'maxmellon/vim-jsx-pretty'
 
 " completion
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'zchee/deoplete-go'
 Plug 'phpactor/phpactor' ,  {'do': 'composer install', 'for': 'php'}
 Plug 'kristijanhusak/deoplete-phpactor'
 
