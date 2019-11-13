@@ -31,6 +31,9 @@ floating_modifier Mod1
 # start a terminal
 bindsym $mod+Return exec i3-sensible-terminal
 
+#copy password from lastpass
+bindsym $mod+p exec "urxvt -e bash -c \\"bash --rcfile <(echo '. ~/.bashrc; p && sleep 0.5 && exit')\\""
+
 # kill focused window
 bindsym $mod+Shift+q kill
 
