@@ -87,6 +87,9 @@ set scrolloff=5
 set ttyfast                     " Indicate fast terminal conn for faster redraw
 set noswapfile
 
+" neovim natively support system clipboard
+set clipboard+=unnamedplus
+
 "line numbers
 
 nnoremap <F11> :set relativenumber!<cr>

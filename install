@@ -2,6 +2,8 @@
 
 # install fonts
 # sudo pacman -S noto-fonts-cjk noto-fonts-emoji noto-fonts-extra ttf-bitstream-vera ttf-croscore ttf-dejavu ttf-hack ttf-roboto
+# deps for phpactor
+# sudo pacman -S extra/php-intl
 
 echo "Git pull"
 git pull
