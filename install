@@ -1,9 +1,15 @@
 #!/bin/bash
+set -e
 
-# install fonts
-# sudo pacman -S noto-fonts-cjk noto-fonts-emoji noto-fonts-extra ttf-bitstream-vera ttf-croscore ttf-dejavu ttf-hack ttf-roboto
-# deps for phpactor
-# sudo pacman -S extra/php-intl
+echo "Install arch pacman deps"
+i(){
+	sudo pacman -S --needed $1
+}
+i neovim python-pynvim
+i noto-fonts-cjk noto-fonts-emoji noto-fonts-extra ttf-bitstream-vera ttf-croscore ttf-dejavu ttf-hack ttf-roboto ttf-hack #fonts
+i vint # ale linter for vim config
+i extra/php-intl # deps for phpactor
+i prettier # json js tsx formatter
 
 echo "Git pull"
 git pull
@@ -15,9 +21,10 @@ git config --global credential.helper 'cache --timeout 3600'
 
 grep -q ". $PWD/bashrc" ~/.bashrc || echo ". $PWD/bashrc" >> ~/.bashrc
 
-
-echo "Install kube-ps1"
-curl -s -o ~/bin/kube-ps1.sh https://raw.githubusercontent.com/jonmosco/kube-ps1/master/kube-ps1.sh
+if [ ! -f ~/bin/kube-ps1.sh ]; then
+	echo "Install kube-ps1"
+	curl -s -o ~/bin/kube-ps1.sh https://raw.githubusercontent.com/jonmosco/kube-ps1/master/kube-ps1.sh
+fi
 
 
 if [ ! -L ~/.jshintrc ]; then
@@ -67,8 +74,6 @@ if [ ! -L ~/.config/nvim/init.vim ]; then
 	ln -s ~/.vimrc ~/.config/nvim/init.vim
 fi
 
-
-
 if [ ! -L ~/.vimrc ]; then
 	if [ -f ~/.vimrc ]; then
 		echo "~/.vimrc already exists, please remove or move"
@@ -84,9 +89,10 @@ echo "Installing plugins into vim"
 nvim +PlugInstall +qall
 
 
-echo "Install golangci-lint"
-curl -sfL https://install.goreleaser.com/github.com/golangci/golangci-lint.sh | sh -s -- -b $(go env GOPATH)/bin
+#must be after PlugInstall since we want newer golangci-lint than :GoInstallBinaries provide
+if [ ! -f ~/go/bin/golangci-lint ]; then
+	echo "Install golangci-lint"
+	curl -sfL https://install.goreleaser.com/github.com/golangci/golangci-lint.sh | sh -s -- -b $(go env GOPATH)/bin
+fi
 
 echo "all Done!"
-
-#TODO npm install in the bundle/tern_for_vim directory

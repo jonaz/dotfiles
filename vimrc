@@ -59,7 +59,7 @@ call plug#end()
 let g:deoplete#enable_at_startup = 1
 
 colorscheme NeoSolarized
-let g:airline_theme="solarized"
+let g:airline_theme='solarized'
 
 
 syntax enable
@@ -96,7 +96,7 @@ nnoremap <F11> :set relativenumber!<cr>
 
 "this works. we must have support and not beeing in a screen!
 if !has('nvim')
-	if has("mouse_urxvt") && !exists('$STY')
+	if has('mouse_urxvt') && !exists('$STY')
 		set ttymouse=urxvt
 	else
 		set ttymouse=xterm2
@@ -130,7 +130,7 @@ autocmd BufNewFile,BufRead *.hbt set filetype=html syntax=mustache | runtime! ft
 
 let php_sql_query=1
 let php_htmlInStrings=1
-let mapleader = ","
+let mapleader = ','
 "set errorformat=%m\ in\ %f\ on\ line\ %l
 
 function! OpenPhpFunction (keyword)

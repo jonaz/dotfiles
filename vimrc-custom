@@ -1,7 +1,6 @@
 "insert word under cursor in ctrlp
-"nmap <leader>lw :CtrlP<CR><C-\>w
 fu CtrlPUnderCursor()
-	let l:Command = expand("<cword>")
+	let l:Command = expand('<cword>')
 	call fzf#run({'sink': 'e','options': '-q '.l:Command })
 endfu 
 nmap <leader>lw :call CtrlPUnderCursor()<CR>
@@ -12,7 +11,7 @@ nnoremap <silent> <C-p> :call fzf#run({'sink': 'e', 'options':'--prompt "files> 
 
 " Open git status files in fzf
 function! s:gitstatusopen(line)
-	execute 'edit' split(a:line, " ")[1]
+	execute 'edit' split(a:line, ' ')[1]
 endfunction
 nnoremap <silent> <C-u> :call fzf#run({
 	\'sink': function('<sid>gitstatusopen'),
@@ -76,14 +75,14 @@ let g:vdebug_features = {
 "			'/home/jonaz/git/fortnox': '/home/jonaz/git/fortnox',
 "			'/storage/vol3/fortnox-jf': '/home/jonaz/git/fortnox',
 let g:vdebug_options = {
-\       "path_maps": {
+\       'path_maps': {
 \			'/home/jonaz/git/fortnox': '/home/jonaz/git/fortnox',
 \			'/storage/vol3/fortnox-jf': '/home/jonaz/git/fortnox'
 \		},
-\       "server": '0.0.0.0',
-\       "ide_key" : 'jf',
-\       "break_on_open" : 0,
-\       "continuous_mode" : 1,
+\       'server': '0.0.0.0',
+\       'ide_key' : 'jf',
+\       'break_on_open' : 0,
+\       'continuous_mode' : 1,
 \}
 
 "special fix for autocompletion with Ultisnips and the TAB key
