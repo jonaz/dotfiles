@@ -53,6 +53,7 @@ Plug 'kristijanhusak/deoplete-phpactor'
 
 Plug 'kassio/neoterm'
 Plug 'Raimondi/delimitMate'
+Plug 'mg979/vim-visual-multi'
 
 call plug#end()
 
