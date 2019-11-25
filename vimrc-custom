@@ -99,7 +99,7 @@ function! g:UltiSnips_Complete()
 			endif
 		endif
 	endif
-	return ""
+	return '' 
 endfunction
 au InsertEnter * exec "inoremap <silent> " . g:UltiSnipsExpandTrigger . " <C-R>=g:UltiSnips_Complete()<cr>"
 
@@ -406,3 +406,7 @@ command! -nargs=* Ag call fzf#run({
 " delimitMate
 let delimitMate_expand_cr = 1
 let delimitMate_balance_matchpairs = 1
+
+" vim-visual-multi
+" messes wih shift-left/right without this
+let g:VM_default_mappings = 0
