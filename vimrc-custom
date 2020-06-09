@@ -200,6 +200,8 @@ let g:airline#extensions#ale#enabled = 1
 
 
 " deoplete stuff
+"
+call deoplete#custom#option('min_pattern_length', 1)
 call deoplete#custom#option('sources', {
 \ 'typescriptreact': ['ale'],
 \})
