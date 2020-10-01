@@ -1,12 +1,10 @@
-set nocompatible
-
 if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
   silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
-set rtp+=~/.fzf
+set runtimepath+=~/.fzf
 
 call plug#begin('~/.vim/bundle')
 
@@ -109,24 +107,27 @@ if has('statusline')
 endif
 
 " for C-like programming, have automatic indentation:
-autocmd FileType c,cpp,slang,php,js set cindent
-autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
-autocmd FileType htm set omnifunc=htmlcomplete#CompleteTags
-autocmd FileType css set omnifunc=csscomplete#CompleteCSS
-autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
-autocmd FileType php noremap K :call OpenPhpFunction(expand('<cword>'))<CR>
-autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
-autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
-autocmd InsertLeave * if pumvisible() == 0|pclose|endif
-autocmd BufEnter,BufRead     *.inc   setf php
-autocmd BufEnter,BufRead     *.tpl   setf php
-autocmd BufNewFile,BufRead   *.tpl setf php
-autocmd BufNewFile,BufRead   *.inc setf php
-autocmd BufRead,BufNewFile *.pp set filetype=puppet
-autocmd BufRead,BufNewFile *.thtml set filetype=html.twig
-autocmd BufEnter *.css set nocindent
-autocmd BufLeave *.css set cindent
-autocmd BufNewFile,BufRead *.hbt set filetype=html syntax=mustache | runtime! ftplugin/mustache.vim ftplugin/mustache*.vim ftplugin/mustache/*.vim
+augroup webcode
+	autocmd FileType c,cpp,slang,php,js set cindent
+	autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
+	autocmd FileType htm set omnifunc=htmlcomplete#CompleteTags
+	autocmd FileType css set omnifunc=csscomplete#CompleteCSS
+	autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
+	autocmd FileType php noremap K :call OpenPhpFunction(expand('<cword>'))<CR>
+	autocmd BufEnter,BufRead     *.inc   setf php
+	autocmd BufEnter,BufRead     *.tpl   setf php
+	autocmd BufNewFile,BufRead   *.tpl setf php
+	autocmd BufNewFile,BufRead   *.inc setf php
+	autocmd BufRead,BufNewFile *.pp set filetype=puppet
+	autocmd BufRead,BufNewFile *.thtml set filetype=html.twig
+	autocmd BufEnter *.css set nocindent
+	autocmd BufLeave *.css set cindent
+	autocmd BufNewFile,BufRead *.hbt set filetype=html syntax=mustache | runtime! ftplugin/mustache.vim ftplugin/mustache*.vim ftplugin/mustache/*.vim
+augroup END
+
+augroup AU_NAME
+	autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+augroup end
 
 
 let php_sql_query=1
@@ -148,8 +149,8 @@ function! OpenPhpFunction (keyword)
   exe 'norm V'
 endfunction
 
-if !isdirectory($HOME."/.vim/undo-dir")
-    call mkdir($HOME."/.vim/undo-dir", "", 0700)
+if !isdirectory($HOME.'/.vim/undo-dir')
+    call mkdir($HOME.'/.vim/undo-dir', '', 0700)
 endif
 set undodir=~/.vim/undo-dir
 set undofile
