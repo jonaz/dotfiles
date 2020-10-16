@@ -173,6 +173,13 @@ augroup go
   autocmd Filetype go command! -bang AS call go#alternate#Switch(<bang>0, 'split')
   autocmd Filetype go command! -bang AT call go#alternate#Switch(<bang>0, 'tabe')
 augroup END
+augroup typescript
+  autocmd!
+  autocmd FileType typescript nnoremap <buffer> <silent> gd :ALEGoToDefinition<cr>
+  autocmd FileType typescriptreact nnoremap <buffer> <silent> gd :ALEGoToDefinition<cr>
+  autocmd FileType typescript nnoremap <buffer> <silent> <C-LeftMouse> <LeftMouse>:ALEGoToDefinition<cr>
+  autocmd FileType typescriptreact nnoremap <buffer> <silent> <C-LeftMouse> <LeftMouse>:ALEGoToDefinition<cr>
+augroup END
 
 " build_go_files is a custom function that builds or compiles the test file.
 " It calls :GoBuild if its a Go file, or :GoTestCompile if it's a test file
@@ -207,6 +214,7 @@ let g:airline#extensions#ale#enabled = 1
 call deoplete#custom#option('min_pattern_length', 1)
 call deoplete#custom#option('sources', {
 \ 'typescriptreact': ['ale'],
+\ 'typescript': ['ale'],
 \})
 call deoplete#custom#option('omni_patterns', {
 \ 'go': '[^. *\t]\.\w*',
