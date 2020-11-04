@@ -208,6 +208,9 @@ let g:ale_go_golangci_lint_package = 1
 let g:ale_php_phpmd_ruleset = '~/.phpmd-ruleset.xml'
 let g:airline#extensions#ale#enabled = 1
 
+nmap <silent> <C-k> <Plug>(ale_previous)
+nmap <silent> <C-j> <Plug>(ale_next)
+
 
 " deoplete stuff
 "
@@ -318,12 +321,6 @@ command! Gbranch call fzf#run(
 	\})
 
 map <Leader>gc :Gbranch<CR>
-
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
-
 
 " Startify stuff
 let g:startify_files_number = 5
