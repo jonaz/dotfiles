@@ -14,6 +14,7 @@ i noto-fonts-cjk noto-fonts-emoji noto-fonts-extra ttf-bitstream-vera ttf-crosco
 i vint # ale linter for vim config
 i extra/php-intl # deps for phpactor
 i prettier # json js tsx formatter
+i yarn
 
 echo "Git pull"
 git pull
