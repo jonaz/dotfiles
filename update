@@ -2,7 +2,7 @@
 set -e
 
 echo "Git pull"
-git pull
+git pull --autostash
 
 echo "Update fzf"
 cd ~/.fzf/
