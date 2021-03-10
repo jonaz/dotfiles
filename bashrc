@@ -39,6 +39,19 @@ p(){
 	echo "Copied password to clipboard"
 }
 
+kssh(){
+	node=$(kubectl get node --no-headers=true | fzf | awk '{print $1}')
+	ssh $node
+}
+
+mkssh(){
+	nodes=$(kubectl get node --no-headers=true | grep $1 | awk '{print $1}')
+	while IFS= read -r node; do
+		echo "ssh into $node"
+		urxvt -e "bash" -c "ssh $node; bash" &
+	done <<< "$nodes"
+}
+
 git-remove-orphan-branches(){
 	git fetch -p
 	git branch -vv | grep "gone]" | grep -v "\*" | awk '{print $1}' | xargs -r git branch -d
