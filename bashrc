@@ -13,10 +13,6 @@ customgrepinfile() {
 	ag --vimgrep "$1" . | $VIM_COMMAND -c "noremap <enter> <C-w>F" -c "/$1" -R -
 }
 
-fv(){
-	vim  -c ":Ag $1"
-}
-
 findaskinput(){
 	read -p "Search for: " $term
 	$VIM_COMMAND  -c ":Ag $term"
@@ -40,8 +36,12 @@ p(){
 }
 
 kssh(){
-	node=$(kubectl get node --no-headers=true | fzf | awk '{print $1}')
-	ssh $node
+    if  [ -z "$1" ]; then
+	    node=$(kubectl get node --no-headers=true | fzf | awk '{print $1}')
+    else 
+	    node=$(kubectl --context $1 get node --no-headers=true | fzf | awk '{print $1}')
+	fi
+    ssh $node
 }
 
 mkssh(){
@@ -74,12 +74,17 @@ alias vimdiff='nvim -d'
 
 #settings
 export EDITOR="$VIM_COMMAND"
-export HISTTIMEFORMAT='%F %T - '
+HISTTIMEFORMAT='%F %T - '
 stty ixany
 stty ixoff -ixon
-export HISTCONTROL=ignoredups
-export HISTCONTROL=ignoreboth
-export HISTSIZE=10000
+HISTCONTROL=ignoreboth
+HISTSIZE=100000
+HISTFILESIZE=10000000
+
+
+# Enable history appending instead of overwriting.
+shopt -s histappend
+PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a; history -n"
 
 export LPASS_AGENT_TIMEOUT=28800
 
@@ -89,23 +94,6 @@ export LPASS_AGENT_TIMEOUT=28800
 # http://cnswww.cns.cwru.edu/~chet/bash/FAQ (E11)
 shopt -s checkwinsize
 
-
-
-
-
-case ${TERM} in
-	xterm*|rxvt*|Eterm|aterm|kterm|gnome*)
-		PROMPT_COMMAND=${PROMPT_COMMAND:+$PROMPT_COMMAND; }'printf "\033]0;%s@%s:%s\007" "${USER}" "${HOSTNAME%%.*}" "${PWD/#$HOME/~}"'
-		;;
-	screen)
-		PROMPT_COMMAND=${PROMPT_COMMAND:+$PROMPT_COMMAND; }'printf "\033_%s@%s:%s\033\\" "${USER}" "${HOSTNAME%%.*}" "${PWD/#$HOME/~}"'
-		;;
-esac
-
-
-# Enable history appending instead of overwriting.
-shopt -s histappend
-PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a; history -c; history -r"
 
 # Set colorful PS1 only on colorful terminals.
 # dircolors --print-database uses its own built-in database
