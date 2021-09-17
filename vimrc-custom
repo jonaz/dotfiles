@@ -52,8 +52,8 @@ map <F3> :source ~/.vim_session <cr>     " And load session with F3
 
 
 "git
-map <Leader>gs :Gstatus<CR>
-map <Leader>gb :Gblame<CR>
+map <Leader>gs :Git<CR>
+map <Leader>gb :Git blame<CR>
 
 " ctrl+a to quit current buffer
 nnoremap <silent> <C-a> :bd<CR>
