@@ -155,4 +155,6 @@ endif
 set undodir=~/.vim/undo-dir
 set undofile
 
+"set regexpengine=0
+
 source $HOME/.vimrc-custom
