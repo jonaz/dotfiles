@@ -115,7 +115,7 @@ let g:snips_author='Jonas Falck'
 let g:airline#extensions#whitespace#mixed_indent_algo = 1
 
 "vim-go stuff
-let g:go_fmt_command = 'goimports'
+let g:go_fmt_command = 'gopls'
 let g:go_highlight_build_constraints = 1
 let g:go_highlight_extra_types = 1
 let g:go_highlight_fields = 1
