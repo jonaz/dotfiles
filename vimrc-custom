@@ -59,7 +59,7 @@ map <Leader>gb :Git blame<CR>
 nnoremap <silent> <C-a> :bd<CR>
 
 "pretty json
-:command JsonPretty :%!python -m json.tool
+:command JsonPretty :set ft=json | :%!python -m json.tool
 " pretty xml
 command XmlPretty :%!xmllint --format -
 
@@ -203,7 +203,7 @@ let g:ale_linters_ignore = {'typescript': ['tslint'], 'typescriptreact': ['tslin
 let g:ale_linters = {
 			\'go': ['go build', 'golangci-lint'],
 			\}
-let g:ale_go_golangci_lint_options = '--enable-all --disable wsl --disable lll --disable goimports --disable gochecknoinits --disable gochecknoglobals --disable gomnd --disable gofmt --disable unused --disable nlreturn --disable exhaustivestruct --disable gofumpt --fix'
+let g:ale_go_golangci_lint_options = '--enable-all --disable wsl --disable lll --disable goimports --disable gochecknoinits --disable gochecknoglobals --disable gomnd --disable gofmt --disable unused --disable nlreturn --disable exhaustivestruct --disable gofumpt --disable varnamelen --fix'
 let g:ale_go_golangci_lint_package = 1
 let g:ale_php_phpmd_ruleset = '~/.phpmd-ruleset.xml'
 let g:airline#extensions#ale#enabled = 1
