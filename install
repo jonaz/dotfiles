@@ -63,20 +63,9 @@ if [ ! -d ~/.fzf ]; then
 	~/.fzf/install --all
 fi
 
-if [ ! -L ~/.vimrc-custom ]; then
-    echo "Creating symbolic link ~/.vimrc-custom to $PWD/../vimrc-custom"
-    ln -s $PWD/vimrc-custom ~/.vimrc-custom
-
-fi
-
 if [ ! -d ~/.config/nvim/ ]; then
 	echo "Creating ~/.config/nvim"
 	mkdir ~/.config/nvim/
-fi
-
-if [ ! -L ~/.config/nvim/init.vim ]; then
-	echo "Creating symlink for vimrc to neovim init.vim"
-	ln -s ~/.vimrc ~/.config/nvim/init.vim
 fi
 
 if [ ! -L ~/.vimrc ]; then
@@ -84,15 +73,12 @@ if [ ! -L ~/.vimrc ]; then
 		echo "~/.vimrc already exists, please remove or move"
 		exit 1
 	fi
-    echo "Creating symbolic link ~/.vimrc to $PWD/vimrc"
-    ln -s $PWD/vimrc ~/.vimrc
+    echo "Creating symbolic link ~/.config/nvim/init.vim to $PWD/vimrc"
+    ln -s $PWD/vimrc ~/.config/nvim/init.vim
 fi
-
-
 
 echo "Installing plugins into vim"
 nvim +PlugInstall +qall
-
 
 #must be after PlugInstall since we want newer golangci-lint than :GoInstallBinaries provide
 if [ ! -f ~/go/bin/golangci-lint ]; then
