@@ -15,6 +15,7 @@ i vint # ale linter for vim config
 i extra/php-intl # deps for phpactor
 i prettier # json js tsx formatter
 i yarn
+i ansible-lint
 
 echo "Git pull"
 git pull
@@ -63,18 +64,19 @@ if [ ! -d ~/.fzf ]; then
 	~/.fzf/install --all
 fi
 
-if [ ! -d ~/.config/nvim/ ]; then
+if [ ! -d ~/.config/nvim/lua ]; then
 	echo "Creating ~/.config/nvim"
-	mkdir ~/.config/nvim/
+	mkdir -p ~/.config/nvim/lua
 fi
 
-if [ ! -L ~/.vimrc ]; then
-	if [ -f ~/.vimrc ]; then
-		echo "~/.vimrc already exists, please remove or move"
-		exit 1
-	fi
+if [ ! -L ~/.config/nvim/init.vim ]; then
     echo "Creating symbolic link ~/.config/nvim/init.vim to $PWD/vimrc"
     ln -s $PWD/vimrc ~/.config/nvim/init.vim
+fi
+
+if [ ! -L ~/.config/nvim/lua/config.lua ]; then
+    echo "Creating symbolic link ~/.config/nvim/lua/config.lua to $PWD/config.lua"
+    ln -s $PWD/config.lua ~/.config/nvim/lua/config.lua
 fi
 
 echo "Installing plugins into vim"

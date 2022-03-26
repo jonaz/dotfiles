@@ -22,15 +22,17 @@ Plug 'tpope/vim-surround'
 Plug 'terryma/vim-expand-region'
 Plug 'tpope/vim-eunuch'
 Plug 'mhinz/vim-startify'
+Plug 'kassio/neoterm'
+Plug 'junegunn/fzf.vim'
 
 " snippet stuff
-Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
+Plug 'dcampos/nvim-snippy'
+Plug 'dcampos/cmp-snippy'
 
 " language / syntax support
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'google/vim-jsonnet', { 'for': 'jsonnet' }
-Plug 'chrisbra/csv.vim'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 Plug 'pangloss/vim-javascript'
 Plug 'othree/yajs.vim'
@@ -45,18 +47,23 @@ Plug 'HerringtonDarkholme/yats.vim'
 Plug 'maxmellon/vim-jsx-pretty'
 
 " completion
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'phpactor/phpactor' ,  {'do': 'composer install --no-dev -o', 'for': 'php'}
-Plug 'kristijanhusak/deoplete-phpactor'
+Plug 'neovim/nvim-lspconfig'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/cmp-cmdline'
+Plug 'hrsh7th/nvim-cmp'
 
-Plug 'kassio/neoterm'
 Plug 'Raimondi/delimitMate'
 Plug 'mg979/vim-visual-multi'
 
 call plug#end()
 
-let g:deoplete#enable_at_startup = 1
+lua require('config')
 
+"let g:deoplete#enable_at_startup = 1
+
+set termguicolors
 colorscheme NeoSolarized
 let g:airline_theme='solarized'
 
@@ -77,7 +84,8 @@ set noexpandtab
 set showmode " always show command or insert mode
 set ruler
 set showmatch
-set completeopt=menuone "always show matches and dont show preview!
+"set completeopt=menuone "always show matches and dont show preview!
+set completeopt=menu,menuone,noselect
 set whichwrap=b,s,<,>,[,]
 set mouse=a
 set number
@@ -85,6 +93,7 @@ set autoindent
 set scrolloff=5
 set ttyfast                     " Indicate fast terminal conn for faster redraw
 set noswapfile
+set tagfunc=v:lua.vim.lsp.tagfunc
 
 " neovim natively support system clipboard
 set clipboard+=unnamedplus
@@ -155,6 +164,8 @@ endif
 set undodir=~/.vim/undo-dir
 set undofile
 
+" FZF stuff
+
 " insert word under cursor in ctrlp;
 fu CtrlPUnderCursor()
 	let l:Command = expand('<cword>')
@@ -162,9 +173,13 @@ fu CtrlPUnderCursor()
 endfu 
 nmap <leader>lw :call CtrlPUnderCursor()<CR>
 
+let g:fzf_preview_window = ['down:50%', 'ctrl-/']
 
 " Open files in fzf
-nnoremap <silent> <C-p> :call fzf#run({'sink': 'e', 'options':'--prompt "files> " ' })<CR>
+nnoremap <silent> <C-p> :call fzf#run({'sink': 'e', 'options':'--prompt "files> " ','down': '75%' })<CR>
+
+" search current buffer in fzf
+nnoremap <silent> <C-l> :BLines<CR>
 
 " Open git status files in fzf
 function! s:gitstatusopen(line)
@@ -173,20 +188,12 @@ endfunction
 nnoremap <silent> <C-u> :call fzf#run({
 	\'sink': function('<sid>gitstatusopen'),
 	\'source':'git -c color.status=always status --short',
-	\'options':'--ansi'}
+	\'options':'--ansi',
+	\ 'down': '50%'}
 	\)<CR>
 
 " Open MRU in fzf
-command! FZFMru call fzf#run({
-            \'source': v:oldfiles,
-            \'sink' : 'e',
-            \'options' : '-m --prompt "recent> "',
-            \})
-nnoremap <silent> <C-o> :FZFMru<CR>
-
-command! -nargs=1 Locate call fzf#run(
-      \ {'source': 'locate <q-args>', 'sink': 'e', 'options': '-m'})
-
+nnoremap <silent> <C-o> :History<CR>
 
 "copy file path
 nnoremap <silent> <Leader>cp :let @+=expand("%:p")<CR>
@@ -200,8 +207,6 @@ noremap <C-S> :call TermCloseIfOK("sync_server")<CR>
 "; in command mode  ; at EOL
 noremap ; :s/\([^;]\)$/\1;/<cr>:set nohlsearch<cr>
 
-"jira
-map <unique> <leader>oj :<C-U>call JiraOpen()<cr><cr>
 
 "session
 map <F2> :mksession! ~/.vim_session <cr> " Quick write session with F2
@@ -218,7 +223,7 @@ nnoremap <silent> <C-a> :bd<CR>
 "pretty json
 :command JsonPretty :set ft=json | :%!python -m json.tool
 " pretty xml
-command XmlPretty :%!xmllint --format -
+command XmlPretty :set ft=xml | :%!xmllint --format -
 
 nnoremap <Leader>re :%s/\<<C-r><C-w>\>//g<Left><Left>
 
@@ -229,8 +234,6 @@ let g:vdebug_features = {
 \    'max_data': 100000,
 \}
 
-"			'/home/jonaz/git/fortnox': '/home/jonaz/git/fortnox',
-"			'/storage/vol3/fortnox-jf': '/home/jonaz/git/fortnox',
 let g:vdebug_options = {
 \       'path_maps': {
 \			'/home/jonaz/git/fortnox': '/home/jonaz/git/fortnox',
@@ -242,37 +245,12 @@ let g:vdebug_options = {
 \       'continuous_mode' : 1,
 \}
 
-"special fix for autocompletion with Ultisnips and the TAB key
-
-let g:ulti_expand_or_jump_res = 0
-function! g:UltiSnips_Complete()
-	call UltiSnips#ExpandSnippet()
-	if g:ulti_expand_res == 0
-		if pumvisible()
-			return "\<C-n>"
-		else
-			call UltiSnips#JumpForwards()
-			if g:ulti_jump_forwards_res == 0
-			   return "\<TAB>"
-			endif
-		endif
-	endif
-	return '' 
-endfunction
-augroup ultisnipfix
-	au InsertEnter * exec "inoremap <silent> " . g:UltiSnipsExpandTrigger . " <C-R>=g:UltiSnips_Complete()<cr>"
-augroup end
-
-
-let g:UltiSnipsEditSplit='vertical'
-let g:snips_author='Jonas Falck'
-
-
 " this algorithm works well for /** */ style comments in a tab-indented file
 let g:airline#extensions#whitespace#mixed_indent_algo = 1
 
 "vim-go stuff
 let g:go_fmt_command = 'gopls'
+let g:go_code_completion_enabled = 0
 let g:go_highlight_build_constraints = 1
 let g:go_highlight_extra_types = 1
 let g:go_highlight_fields = 1
@@ -285,7 +263,7 @@ let g:go_highlight_types = 1
 let g:go_auto_sameids = 1
 let g:go_auto_type_info = 1
 let g:go_addtags_transform = 'camelcase'
-let g:go_gocode_unimported_packages = 1
+let g:go_def_mapping_enabled = 0
 
 " Open :GoDeclsDir with ctrl-g
 nmap <C-g> :GoDeclsDir<cr>
@@ -295,6 +273,7 @@ imap <C-g> <esc>:<C-u>GoDeclsDir<cr>
 map <Leader>gi :GoInstall<CR>
 map <Leader>gl :GoLint<CR>
 map <Leader>gr :GoRun<CR>
+
 
 augroup go
   autocmd!
@@ -330,13 +309,7 @@ augroup go
   autocmd Filetype go command! -bang AS call go#alternate#Switch(<bang>0, 'split')
   autocmd Filetype go command! -bang AT call go#alternate#Switch(<bang>0, 'tabe')
 augroup END
-augroup typescript
-  autocmd!
-  autocmd FileType typescript nnoremap <buffer> <silent> gd :ALEGoToDefinition<cr>
-  autocmd FileType typescriptreact nnoremap <buffer> <silent> gd :ALEGoToDefinition<cr>
-  autocmd FileType typescript nnoremap <buffer> <silent> <C-LeftMouse> <LeftMouse>:ALEGoToDefinition<cr>
-  autocmd FileType typescriptreact nnoremap <buffer> <silent> <C-LeftMouse> <LeftMouse>:ALEGoToDefinition<cr>
-augroup END
+
 
 " build_go_files is a custom function that builds or compiles the test file.
 " It calls :GoBuild if its a Go file, or :GoTestCompile if it's a test file
@@ -368,71 +341,17 @@ let g:airline#extensions#ale#enabled = 1
 nmap <silent> <C-k> <Plug>(ale_previous)
 nmap <silent> <C-j> <Plug>(ale_next)
 
-
-" deoplete stuff
-"
-call deoplete#custom#option('min_pattern_length', 1)
-call deoplete#custom#option('sources', {
-\ 'typescriptreact': ['ale'],
-\ 'typescript': ['ale'],
-\})
-call deoplete#custom#option('omni_patterns', {
-\ 'go': '[^. *\t]\.\w*',
-\})
-
-inoremap <silent><expr> <TAB>
-\ pumvisible() ? "\<C-n>" :
-\ <SID>check_back_space() ? "\<TAB>" :
-\ deoplete#mappings#manual_complete()
-function! s:check_back_space() abort 
-	let col = col('.') - 1
-	return !col || getline('.')[col - 1]  =~ '\s'
-endfunction
-inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<C-h>"
-
-
-"jira
-
-function! s:get_visual_selection()
-  let [lnum1, col1] = getpos("'<")[1:2]
-  let [lnum2, col2] = getpos("'>")[1:2]
-  let lines = getline(lnum1, lnum2)
-  let lines[-1] = lines[-1][: col2 - 1]
-  let lines[0] = lines[0][col1 - 1:]
-  return join(lines, "\n")
-endfunction
-
-" When cursor is over a jira ticket number, for example EXT-1234, launch
-" browser to for ticket page.
-function! JiraOpen()
-  " Highlighting the number depends on where the cursor is.
-  let char = getline('.')[col('.') - 1]
-  if (matchstr(char,'-') !=? '')
-    silent exe "normal e3bv3e\<Esc>"
-  elseif (matchstr(char,'\d') !=? '')
-    silent exe "normal e3bv3e\<Esc>"
-  elseif (matchstr(char,'\w') !=? '')
-    silent exe "normal ebv3e\<Esc>"
-  else
-    " Cursor not on a ticket.
-    return 0
-  endif
-  let key = s:get_visual_selection()
-  let cmd = ':!/usr/bin/google-chrome-stable jira/browse/' . key
-  execute cmd
-endfun
-
 "terminal stuff
 nmap <Leader>t :Topen<CR>
 
-fun! FZFIsOpen()
-    let running = filter(range(1, bufnr('$')), "bufname(v:val) =~# ';#FZF'")
-	if len(running)
-		return 1
-	endif
-	return 0
-endfun
-tnoremap <expr><esc> FZFIsOpen() ? "\<esc>" : "\<C-\>\<C-n>"
+"fun! FZFIsOpen()
+    "let running = filter(range(1, bufnr('$')), "bufname(v:val) =~# ';#FZF'")
+	"if len(running)
+		"return 1
+	"endif
+	"return 0
+"endfun
+"tnoremap <expr><esc> FZFIsOpen() ? "\<esc>" : "\<C-\>\<C-n>"
 
 fun! TermCloseIfOK(cmd)
 	let l:origin = exists('*win_getid') ? win_getid() : 0
@@ -511,68 +430,6 @@ augroup startify
 augroup end
 
 
-function! s:line_handler(l)
-  let keys = split(a:l, ':\t')
-  exec 'buf' keys[0]
-  exec keys[1]
-  normal! ^zz
-endfunction
-
-function! s:buffer_lines()
-  let res = []
-  for b in filter(range(1, bufnr('$')), 'buflisted(v:val)')
-    call extend(res, map(getbufline(b,0,'$'), 'b . ":\t" . (v:key + 1) . ":\t" . v:val '))
-  endfor
-  return res
-endfunction
-
-command! FZFLines call fzf#run({
-\   'source':  <sid>buffer_lines(),
-\   'sink':    function('<sid>line_handler'),
-\   'options': '--extended --nth=3..',
-\   'down':    '60%'
-\})
-
-nnoremap <silent> <C-l> :FZFLines<CR>
-
-
-function! s:ag_to_qf(line)
-  let parts = split(a:line, ':')
-  return {'filename': parts[0], 'lnum': parts[1], 'col': parts[2],
-        \ 'text': join(parts[3:], ':')}
-endfunction
-
-function! s:ag_handler(lines)
-  if len(a:lines) < 2 | return | endif
-
-  let cmd = get({'ctrl-x': 'split',
-               \ 'ctrl-v': 'vertical split',
-               \ 'ctrl-t': 'tabe'}, a:lines[0], 'e')
-  let list = map(a:lines[1:], 's:ag_to_qf(v:val)')
-
-  let first = list[0]
-  execute cmd escape(first.filename, ' %#\')
-  execute first.lnum
-  execute 'normal!' first.col.'|zz'
-
-  if len(list) > 1
-    call setqflist(list)
-    copen
-    wincmd p
-  endif
-endfunction
-
-command! -nargs=* Ag call fzf#run({
-\ 'source':  printf('ag --nogroup --column --color "%s"',
-\                   escape(empty(<q-args>) ? '^(?=.)' : <q-args>, '"\')),
-\ 'sink*':    function('<sid>ag_handler'),
-\ 'options': '-1 --ansi --expect=ctrl-t,ctrl-v,ctrl-x --delimiter : --nth 4.. '.
-\            '--multi --bind=ctrl-a:select-all,ctrl-d:deselect-all '.
-\            '--color hl:68,hl+:110',
-\ 'down':    '50%'
-\ })
-
-
 " delimitMate
 let delimitMate_expand_cr = 1
 let delimitMate_balance_matchpairs = 1
@@ -580,3 +437,7 @@ let delimitMate_balance_matchpairs = 1
 " vim-visual-multi
 " messes wih shift-left/right without this
 let g:VM_default_mappings = 0
+
+
+
+nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>
