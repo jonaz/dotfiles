@@ -16,6 +16,7 @@ i extra/php-intl # deps for phpactor
 i prettier # json js tsx formatter
 i yarn
 i ansible-lint
+i git-delta
 
 echo "Git pull"
 git pull

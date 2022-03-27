@@ -118,10 +118,6 @@ endif
 " for C-like programming, have automatic indentation:
 augroup webcode
 	autocmd FileType c,cpp,slang,php,js set cindent
-	autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
-	autocmd FileType htm set omnifunc=htmlcomplete#CompleteTags
-	autocmd FileType css set omnifunc=csscomplete#CompleteCSS
-	autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
 	autocmd FileType php noremap K :call OpenPhpFunction(expand('<cword>'))<CR>
 	autocmd BufEnter,BufRead     *.inc   setf php
 	autocmd BufEnter,BufRead     *.tpl   setf php
@@ -324,6 +320,8 @@ endfunction
 
 
 " ale stuff
+let g:ale_completion_enabled = 0
+let g:ale_completion_autoimport = 0
 " Error and warning signs.
 let g:ale_sign_error = '✘'
 let g:ale_sign_warning = '⚠'
@@ -441,3 +439,6 @@ let g:VM_default_mappings = 0
 
 
 nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>
+nnoremap <silent> gr <cmd>lua vim.lsp.buf.references()<CR>
+nnoremap <silent> <space>f <cmd>lua vim.lsp.buf.formatting()<CR>
+nnoremap <silent> <space>rn <cmd>lua vim.lsp.buf.rename()<CR>
