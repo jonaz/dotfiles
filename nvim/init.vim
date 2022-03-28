@@ -169,7 +169,8 @@ fu CtrlPUnderCursor()
 endfu 
 nmap <leader>lw :call CtrlPUnderCursor()<CR>
 
-let g:fzf_preview_window = ['down:50%', 'ctrl-/']
+let g:fzf_preview_window = ['up:25%', 'ctrl-/']
+let g:fzf_layout = { 'down': '50%' }
 
 " Open files in fzf
 nnoremap <silent> <C-p> :call fzf#run({'sink': 'e', 'options':'--prompt "files> " ','down': '50%' })<CR>
