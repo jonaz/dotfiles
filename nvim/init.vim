@@ -117,7 +117,7 @@ endif
 
 " for C-like programming, have automatic indentation:
 augroup webcode
-	autocmd FileType c,cpp,slang,php,js set cindent
+	"autocmd FileType c,cpp,slang,php,js set cindent
 	autocmd FileType php noremap K :call OpenPhpFunction(expand('<cword>'))<CR>
 	autocmd BufEnter,BufRead     *.inc   setf php
 	autocmd BufEnter,BufRead     *.tpl   setf php
@@ -125,8 +125,8 @@ augroup webcode
 	autocmd BufNewFile,BufRead   *.inc setf php
 	autocmd BufRead,BufNewFile *.pp set filetype=puppet
 	autocmd BufRead,BufNewFile *.thtml set filetype=html.twig
-	autocmd BufEnter *.css set nocindent
-	autocmd BufLeave *.css set cindent
+	"autocmd BufEnter *.css set nocindent
+	"autocmd BufLeave *.css set cindent
 	autocmd BufNewFile,BufRead *.hbt set filetype=html syntax=mustache | runtime! ftplugin/mustache.vim ftplugin/mustache*.vim ftplugin/mustache/*.vim
 augroup END
 
@@ -245,7 +245,6 @@ let g:vdebug_options = {
 let g:airline#extensions#whitespace#mixed_indent_algo = 1
 
 "vim-go stuff
-let g:go_fmt_command = 'gopls'
 let g:go_code_completion_enabled = 0
 let g:go_highlight_build_constraints = 1
 let g:go_highlight_extra_types = 1
@@ -273,9 +272,6 @@ map <Leader>gr :GoRun<CR>
 
 augroup go
   autocmd!
-
-  " Show by default 4 spaces for a tab
-  autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4
 
   " :GoBuild and :GoTestCompile
   autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
@@ -341,15 +337,6 @@ nmap <silent> <C-j> <Plug>(ale_next)
 
 "terminal stuff
 nmap <Leader>t :Topen<CR>
-
-"fun! FZFIsOpen()
-    "let running = filter(range(1, bufnr('$')), "bufname(v:val) =~# ';#FZF'")
-	"if len(running)
-		"return 1
-	"endif
-	"return 0
-"endfun
-"tnoremap <expr><esc> FZFIsOpen() ? "\<esc>" : "\<C-\>\<C-n>"
 
 fun! TermCloseIfOK(cmd)
 	let l:origin = exists('*win_getid') ? win_getid() : 0
