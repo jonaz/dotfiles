@@ -45,6 +45,7 @@ Plug 'chr4/nginx.vim', { 'for': 'nginx' }
 Plug 'ekalinin/Dockerfile.vim', { 'for': 'Dockerfile' }
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'maxmellon/vim-jsx-pretty'
+Plug 'pearofducks/ansible-vim'
 
 " completion
 Plug 'neovim/nvim-lspconfig'
@@ -84,7 +85,6 @@ set noexpandtab
 set showmode " always show command or insert mode
 set ruler
 set showmatch
-"set completeopt=menuone "always show matches and dont show preview!
 set completeopt=menu,menuone,noselect
 set whichwrap=b,s,<,>,[,]
 set mouse=a
@@ -172,7 +172,7 @@ nmap <leader>lw :call CtrlPUnderCursor()<CR>
 let g:fzf_preview_window = ['down:50%', 'ctrl-/']
 
 " Open files in fzf
-nnoremap <silent> <C-p> :call fzf#run({'sink': 'e', 'options':'--prompt "files> " ','down': '75%' })<CR>
+nnoremap <silent> <C-p> :call fzf#run({'sink': 'e', 'options':'--prompt "files> " ','down': '50%' })<CR>
 
 " search current buffer in fzf
 nnoremap <silent> <C-l> :BLines<CR>
@@ -438,6 +438,7 @@ let g:VM_default_mappings = 0
 
 
 
+" lsp go to def etc
 nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>
 nnoremap <silent> gr <cmd>lua vim.lsp.buf.references()<CR>
 nnoremap <silent> <space>f <cmd>lua vim.lsp.buf.formatting()<CR>

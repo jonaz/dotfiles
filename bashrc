@@ -10,7 +10,7 @@ fi
 
 #functions for aliases
 customgrepinfile() {
-	ag --vimgrep "$1" . | $VIM_COMMAND -c "noremap <enter> <C-w>F" -c "/$1" -R -
+	ag --vimgrep "$1" . | $VIM_COMMAND -c "set noro" -c "noremap <enter> <C-w>F" -c "/$1" -R -
 }
 
 findaskinput(){

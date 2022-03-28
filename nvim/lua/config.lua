@@ -8,6 +8,7 @@ local has_words_before = function()
 end
 
 cmp.setup({
+	preselect = cmp.PreselectMode.None,
 	snippet = {
 		expand = function(args)
 			 require('snippy').expand_snippet(args.body)
@@ -48,6 +49,7 @@ cmp.setup({
 	sources = cmp.config.sources({
 		{ name = 'nvim_lsp' },
 		{ name = 'snippy' },
+		{ name = 'path' },
 	}, {
 		{ name = 'buffer' },
 	})
@@ -82,7 +84,18 @@ cmp.setup.cmdline(':', {
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 local lspconfig = require('lspconfig')
-local servers = { 'clangd', 'rust_analyzer', 'pyright', 'tsserver', 'gopls', 'phpactor', 'vimls' }
+local servers = {
+	'clangd',
+	'rust_analyzer',
+	'pyright',
+	'tsserver',
+	'gopls',
+	'phpactor',
+	'vimls',
+	'jsonnet_ls',
+	'ansiblels',
+}
+-- TODO css/scss html etc: https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#tailwindcss
 
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup {

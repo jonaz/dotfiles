@@ -65,19 +65,8 @@ if [ ! -d ~/.fzf ]; then
 	~/.fzf/install --all
 fi
 
-if [ ! -d ~/.config/nvim/lua ]; then
-	echo "Creating ~/.config/nvim"
-	mkdir -p ~/.config/nvim/lua
-fi
-
-if [ ! -L ~/.config/nvim/init.vim ]; then
-    echo "Creating symbolic link ~/.config/nvim/init.vim to $PWD/vimrc"
-    ln -s $PWD/vimrc ~/.config/nvim/init.vim
-fi
-
-if [ ! -L ~/.config/nvim/lua/config.lua ]; then
-    echo "Creating symbolic link ~/.config/nvim/lua/config.lua to $PWD/config.lua"
-    ln -s $PWD/config.lua ~/.config/nvim/lua/config.lua
+if [ ! -L ~/.config/nvim ]; then
+    ln -s $PWD/nvim ~/.config/nvim
 fi
 
 echo "Installing plugins into vim"

@@ -1,8 +1,11 @@
 [user]
-	email = jonas.falck@gmail.com
 	name = Jonas Falck
+	email = jonas.falck@gmail.com
 [push]
 	default = simple
+[core]
+	excludesfile = /home/jonaz/.gitignore
+	pager = delta
 [web]
 	browser = google-chrome-stable
 [credential]
@@ -23,7 +26,15 @@
 	trackpush = "!git push --set-upstream origin `git symbolic-ref --short HEAD`"
 	sync = "!git pull && sync_server"
 	rb = "!f() { git fetch origin \"$1\" && git rebase FETCH_HEAD;}; f"
+[interactive]
+    diffFilter = delta --color-only
+
+[delta]
+    navigate = true  # use n and N to move between diff sections
+	syntax-theme = Solarized (dark)
+
 [merge]
-	tool = meld
-[core]
-	excludesfile = /home/jonaz/.gitignore
+    conflictstyle = diff3
+
+[diff]
+    colorMoved = default
