@@ -5,6 +5,7 @@ if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
 endif
 
 set runtimepath+=~/.fzf
+let g:ale_disable_lsp = 1 "must be before plugin are loaded
 
 call plug#begin('~/.vim/bundle')
 
