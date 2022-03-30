@@ -26,12 +26,28 @@
 	trackpush = "!git push --set-upstream origin `git symbolic-ref --short HEAD`"
 	sync = "!git pull && sync_server"
 	rb = "!f() { git fetch origin \"$1\" && git rebase FETCH_HEAD;}; f"
+[pull]
+	rebase = true
 [interactive]
     diffFilter = delta --color-only
 
 [delta]
     navigate = true  # use n and N to move between diff sections
+    line-numbers = true
+    ;syntax-theme = TwoDark
 	syntax-theme = Solarized (dark)
+    width = 1
+    minus-style = syntax "#450a15"
+    minus-emph-style = syntax "#600818"
+    plus-style = syntax "#0b4820"
+    plus-emph-style = syntax "#175c2e"
+    hunk-header-style = syntax bold
+    hunk-header-decoration-style = omit
+    file-style = yellow italic
+    file-decoration-style = yellow ul
+    line-numbers-zero-style = "#4b5263"
+    line-numbers-left-format = "{nm:^4} "
+    line-numbers-right-format = "{np:^4} "
 
 [merge]
     conflictstyle = diff3
