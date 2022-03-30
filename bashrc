@@ -3,6 +3,18 @@
 [[ $- != *i* ]] && return
 
 
+# copied from /etc/bash.bashrc and added alacritty*
+case ${TERM} in
+  xterm*|rxvt*|Eterm|alacritty*|aterm|kterm|gnome*)
+    PROMPT_COMMAND=${PROMPT_COMMAND:+$PROMPT_COMMAND; }'printf "\033]0;%s@%s:%s\007" "${USER}" "${HOSTNAME%%.*}" "${PWD/#$HOME/\~}"'
+
+    ;;
+  screen*)
+    PROMPT_COMMAND=${PROMPT_COMMAND:+$PROMPT_COMMAND; }'printf "\033_%s@%s:%s\033\\" "${USER}" "${HOSTNAME%%.*}" "${PWD/#$HOME/\~}"'
+    ;;
+esac
+
+
 VIM_COMMAND="vim"
 if type "nvim" > /dev/null; then
 	VIM_COMMAND="nvim"

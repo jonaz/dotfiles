@@ -1,14 +1,25 @@
 #!/bin/bash
 set -e
 
-echo "Install arch pacman deps"
+# lnk "file here" "file in home"
+lnk(){
+	FROM=$2
+	TO=$1
+	if [ ! -L "$HOME/$FROM" ]; then
+		echo "Creating symbolic link from $HOME/$FROM to $PWD/$TO"
+		ln -s "$PWD/$TO" "$HOME/$FROM"
+	fi
+}
+
 i(){
 	if ! [ -x "$(command -v pacman)" ]; then
 	  echo "pacman not found. skipping install of $@"
 	  return
 	fi
-	sudo pacman -S --needed $@
+	sudo pacman -S --needed "$@"
 }
+
+echo "Install arch pacman deps"
 i neovim python-pynvim
 i noto-fonts-cjk noto-fonts-emoji noto-fonts-extra ttf-bitstream-vera ttf-croscore ttf-dejavu ttf-hack ttf-roboto ttf-hack #fonts
 i vint # ale linter for vim config
@@ -17,15 +28,13 @@ i prettier # json js tsx formatter
 i yarn
 i ansible-lint
 i git-delta
+i alacritty
 
 echo "Git pull"
-git pull
+git pull --autostash
 
-#append custom bashrc
 echo "Setting up bashrc"
-
 git config --global credential.helper 'cache --timeout 3600'
-
 grep -q ". $PWD/bashrc" ~/.bashrc || echo ". $PWD/bashrc" >> ~/.bashrc
 
 if [ ! -f ~/bin/kube-ps1.sh ]; then
@@ -33,41 +42,19 @@ if [ ! -f ~/bin/kube-ps1.sh ]; then
 	curl -s -o ~/bin/kube-ps1.sh https://raw.githubusercontent.com/jonmosco/kube-ps1/master/kube-ps1.sh
 fi
 
-
-if [ ! -L ~/.jshintrc ]; then
-	echo "Setting up jshintrc"
-    ln -s $PWD/jshintrc ~/.jshintrc
-fi
-
-if [ ! -L ~/bin/lockFuzzy ]; then
-	echo "Installing lockFuzzy"
-    ln -s $PWD/lockFuzzy ~/bin/lockFuzzy
-fi
-
-if [ ! -L ~/.phpmd-ruleset.xml ]; then
-	echo "Setting up phpmd xml ruleset"
-    ln -s $PWD/phpmd-ruleset.xml ~/.phpmd-ruleset.xml
-fi
-
-if [ ! -L ~/.dir_colors ]; then
-	echo "Setting up dir_colors"
-    ln -s $PWD/dir_colors ~/.dir_colors
-fi
-
-
-if [ ! -d ~/.vim/bundle/ ]; then
-	mkdir -p ~/.vim/bundle
-fi
-
+mkdir -p ~/.vim/bundle
 
 if [ ! -d ~/.fzf ]; then
 	git clone https://github.com/junegunn/fzf.git ~/.fzf
 	~/.fzf/install --all
 fi
 
-if [ ! -L ~/.config/nvim ]; then
-    ln -s $PWD/nvim ~/.config/nvim
-fi
+lnk "jshintrc" ".jshintrc"
+lnk "lockFuzzy" "bin/lockFuzzy"
+lnk "phpmd-ruleset.xml" ".phpmd-ruleset.xml"
+lnk "dir_colors" ".dir_colors"
+lnk "nvim" ".config/nvim"
+lnk "alacritty" ".config/alacritty"
 
 echo "Installing plugins into vim"
 nvim +PlugInstall +qall
@@ -78,4 +65,4 @@ if [ ! -f ~/go/bin/golangci-lint ]; then
 	curl -sfL https://install.goreleaser.com/github.com/golangci/golangci-lint.sh | sh -s -- -b $(go env GOPATH)/bin
 fi
 
-echo "all Done!"
+echo "done"

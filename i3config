@@ -13,8 +13,8 @@ set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below. ISO 10646 = Unicode
-font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
-#font xft:Hack 10
+#font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+font xft:Hack 9
 # The font above is very space-efficient, that is, it looks good, sharp and
 # clear in small sizes. However, if you need a lot of unicode glyphs or
 # right-to-left text rendering, you should instead use pango for rendering and
@@ -32,7 +32,7 @@ floating_modifier Mod1
 bindsym $mod+Return exec i3-sensible-terminal
 
 #copy password from lastpass
-bindsym $mod+p exec "urxvt -e bash -c \\"bash --rcfile <(echo '. ~/.bashrc; p && sleep 0.5 && exit')\\""
+bindsym $mod+p exec "i3-sensible-terminal -e bash -c \\"bash --rcfile <(echo '. ~/.bashrc; p && sleep 0.5 && exit')\\""
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -50,7 +50,7 @@ bindsym $mod+d exec --no-startup-id i3-dmenu-desktop --dmenu="rofi -dmenu -i"
 
 #autostart
 exec --no-startup-id clipit
-exec xautolock -corners 0-00 -time 3 -locker '~/bin/lockFuzzy' &
+exec --no-startup-id xautolock -corners 0-00 -time 3 -locker '~/bin/lockFuzzy' &
 
 
 
@@ -62,13 +62,15 @@ bindsym --release Mod1+Sys_Req exec scrot -s -e 'mv $f ~/Screenshots/'
 #move workspaces to monitor left right
 bindsym Control+Mod1+Left move workspace to output left
 bindsym Control+Mod1+Right move workspace to output right
+bindsym Control+Mod1+Up move workspace to output up
+bindsym Control+Mod1+Down move workspace to output down
 
 
 set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
 mode "$mode_system" {
     bindsym l exec --no-startup-id i3exit lock, mode "default"
     bindsym e exec --no-startup-id i3exit logout, mode "default"
-    bindsym s exec --no-startup-id i3exit suspend, mode "default"
+    bindsym s exec --no-startup-id i3exit shutdown, mode "default"
     bindsym h exec --no-startup-id i3exit hibernate, mode "default"
     bindsym r exec --no-startup-id i3exit reboot, mode "default"
     bindsym Shift+s exec --no-startup-id i3exit shutdown, mode "default"
@@ -204,7 +206,6 @@ bar {
 
 #always move gimp to new workspace
 for_window [class="Gimp"] move container to workspace 4, workspace 5, focus
-assign [class="HipChat"] 10
 assign [class="google-chrome"] 1
 assign [class="^URxvt$" instance="^w1$"] 1
 assign [class="^URxvt$" instance="^w2$"] 2
@@ -226,9 +227,8 @@ bindsym $mod+z scratchpad show
 exec --no-startup-id feh --bg-scale /home/jonaz/Images/arch-linux-15408.png
 
 #autostart
-exec --no-startup-id clipit
-exec urxvt -name w1
-exec urxvt -name w2
+exec i3-sensible-terminal -name w1
+exec i3-sensible-terminal -name w2
 exec google-chrome-stable
 
 
