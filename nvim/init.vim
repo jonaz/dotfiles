@@ -19,7 +19,6 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'iCyMind/NeoSolarized'
 Plug 'AndrewRadev/splitjoin.vim'
-Plug 'tpope/vim-surround'
 Plug 'terryma/vim-expand-region'
 Plug 'tpope/vim-eunuch'
 Plug 'mhinz/vim-startify'
@@ -57,6 +56,7 @@ Plug 'hrsh7th/cmp-cmdline'
 Plug 'hrsh7th/nvim-cmp'
 
 Plug 'Raimondi/delimitMate'
+Plug 'machakann/vim-sandwich'
 Plug 'mg979/vim-visual-multi'
 
 call plug#end()
