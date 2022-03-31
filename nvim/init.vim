@@ -12,7 +12,8 @@ call plug#begin('~/.vim/bundle')
 Plug 'junegunn/vim-plug'
 
 Plug 'tpope/vim-fugitive'
-Plug 'scrooloose/nerdcommenter'
+"Plug 'scrooloose/nerdcommenter'
+Plug 'terrortylor/nvim-comment'
 Plug 'w0rp/ale'
 Plug 'joonty/vdebug', { 'for': 'php' }
 Plug 'vim-airline/vim-airline'
@@ -55,9 +56,11 @@ Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-cmdline'
 Plug 'hrsh7th/nvim-cmp'
 
-Plug 'Raimondi/delimitMate'
+" Plug 'Raimondi/delimitMate'
+Plug 'windwp/nvim-autopairs'
 Plug 'machakann/vim-sandwich'
 Plug 'mg979/vim-visual-multi'
+Plug 'machakann/vim-swap'
 
 call plug#end()
 
@@ -418,13 +421,12 @@ augroup end
 
 
 " delimitMate
-let delimitMate_expand_cr = 1
-let delimitMate_balance_matchpairs = 1
+" let delimitMate_expand_cr = 1
+" let delimitMate_balance_matchpairs = 1
 
 " vim-visual-multi
 " messes wih shift-left/right without this
 let g:VM_default_mappings = 0
-
 
 
 " lsp go to def etc
