@@ -12,8 +12,8 @@ call plug#begin('~/.vim/bundle')
 Plug 'junegunn/vim-plug'
 
 Plug 'tpope/vim-fugitive'
-"Plug 'scrooloose/nerdcommenter'
-Plug 'terrortylor/nvim-comment'
+Plug 'scrooloose/nerdcommenter'
+"Plug 'terrortylor/nvim-comment'
 Plug 'w0rp/ale'
 Plug 'joonty/vdebug', { 'for': 'php' }
 Plug 'vim-airline/vim-airline'
