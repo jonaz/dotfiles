@@ -222,7 +222,7 @@ map <Leader>gb :Git blame<CR>
 nnoremap <silent> <C-a> :bd<CR>
 
 "pretty json
-:command JsonPretty :set ft=json | :%!python -m json.tool
+:command JsonPretty :set ft=json | :%!python -m json.tool --tab
 " pretty xml
 command XmlPretty :set ft=xml | :%!xmllint --format -
 
