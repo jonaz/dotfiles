@@ -37,10 +37,6 @@ customgrepfilename() {
 	[ -n "$file" ] && ${EDITOR:-$VIM_COMMAND} "$file"
 }
 
-g(){
-	cd $HOME/go/src
-}
-
 # open lastpass for search in fzf and copy selected to clipboard
 p(){
 	lpass show -c --password $(lpass ls -l |fzf | grep -Po "\[id: (.+)\] " | awk '{print $2}' |  sed 's/\]//g')

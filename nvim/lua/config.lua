@@ -84,7 +84,7 @@ cmp.setup.cmdline(':', {
 })
 
 -- Setup lspconfig.
-local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 local lspconfig = require('lspconfig')
 local servers = {
@@ -96,7 +96,6 @@ local servers = {
 	'phpactor',
 	'vimls',
 	'jsonnet_ls',
-	'ansiblels',
 }
 -- TODO css/scss html etc: https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#tailwindcss
 
@@ -106,6 +105,17 @@ for _, lsp in ipairs(servers) do
     capabilities = capabilities,
   }
 end
+
+require('lspconfig').ansiblels.setup{
+	capabilities = capabilities,
+	settings = {
+		ansible = {
+			python = {
+				interpreterPath = '/usr/bin/python',
+			},
+		},
+	},
+}
 
 -- lua LSP
 local runtime_path = vim.split(package.path, ';')

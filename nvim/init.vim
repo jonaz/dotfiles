@@ -217,6 +217,7 @@ map <F3> :source ~/.vim_session <cr>     " And load session with F3
 "git
 map <Leader>gs :Git<CR>
 map <Leader>gb :Git blame<CR>
+map <Leader>gd :Gdiffsplit<CR>
 
 " ctrl+a to quit current buffer
 nnoremap <silent> <C-a> :bd<CR>
@@ -328,7 +329,7 @@ let g:ale_sign_error = '✘'
 let g:ale_sign_warning = '⚠'
 
 " use tsserver which then calls tslint for now
-let g:ale_linters_ignore = {'typescript': ['tslint'], 'typescriptreact': ['tslint']}
+let g:ale_linters_ignore = {'typescript': ['tslint'], 'typescriptreact': ['tslint'], 'ansible': ['ansible_lint']}
 let g:ale_linters = {
 			\'go': ['go build', 'golangci-lint'],
 			\}
