@@ -9,16 +9,11 @@ let g:ale_disable_lsp = 1 "must be before plugin are loaded
 
 call plug#begin('~/.vim/bundle')
 
-Plug 'junegunn/vim-plug'
-
 Plug 'tpope/vim-fugitive'
-Plug 'scrooloose/nerdcommenter'
-"Plug 'terrortylor/nvim-comment'
+Plug 'terrortylor/nvim-comment'
 Plug 'w0rp/ale'
-Plug 'joonty/vdebug', { 'for': 'php' }
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'iCyMind/NeoSolarized'
+Plug 'nvim-lualine/lualine.nvim'
+Plug 'ishan9299/nvim-solarized-lua'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'terryma/vim-expand-region'
 Plug 'tpope/vim-eunuch'
@@ -32,6 +27,7 @@ Plug 'dcampos/nvim-snippy'
 Plug 'dcampos/cmp-snippy'
 
 " language / syntax support
+Plug 'joonty/vdebug', { 'for': 'php' }
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'google/vim-jsonnet', { 'for': 'jsonnet' }
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
@@ -63,14 +59,13 @@ Plug 'mg979/vim-visual-multi'
 Plug 'machakann/vim-swap'
 
 call plug#end()
+let mapleader = ','
 
 lua require('config')
 
-"let g:deoplete#enable_at_startup = 1
-
+"colors
 set termguicolors
-colorscheme NeoSolarized
-let g:airline_theme='solarized'
+colorscheme solarized
 
 
 syntax enable
@@ -78,24 +73,16 @@ set background=dark
 set shiftwidth=4
 set softtabstop=4
 set tabstop=4
-set hlsearch
 set foldmethod=marker
 set nowrap
-set textwidth=0
-set nolist
-set noexpandtab
 "set list
 "set listchars=tab:>-,trail:-
-set showmode " always show command or insert mode
-set ruler
 set showmatch
 set completeopt=menu,menuone,noselect
 set whichwrap=b,s,<,>,[,]
 set mouse=a
 set number
-set autoindent
 set scrolloff=5
-set ttyfast                     " Indicate fast terminal conn for faster redraw
 set noswapfile
 set tagfunc=v:lua.vim.lsp.tagfunc
 
@@ -105,32 +92,16 @@ set clipboard+=unnamedplus
 "line numbers
 
 nnoremap <F11> :set relativenumber!<cr>
-
-"this works. we must have support and not beeing in a screen!
-if !has('nvim')
-	if has('mouse_urxvt') && !exists('$STY')
-		set ttymouse=urxvt
-	else
-		set ttymouse=xterm2
-	end
-endif
 set pastetoggle=<F12>
-if has('statusline')
-  set laststatus=2
-endif
 
 " for C-like programming, have automatic indentation:
 augroup webcode
-	"autocmd FileType c,cpp,slang,php,js set cindent
-	autocmd FileType php noremap K :call OpenPhpFunction(expand('<cword>'))<CR>
 	autocmd BufEnter,BufRead     *.inc   setf php
 	autocmd BufEnter,BufRead     *.tpl   setf php
 	autocmd BufNewFile,BufRead   *.tpl setf php
 	autocmd BufNewFile,BufRead   *.inc setf php
 	autocmd BufRead,BufNewFile *.pp set filetype=puppet
 	autocmd BufRead,BufNewFile *.thtml set filetype=html.twig
-	"autocmd BufEnter *.css set nocindent
-	"autocmd BufLeave *.css set cindent
 	autocmd BufNewFile,BufRead *.hbt set filetype=html syntax=mustache | runtime! ftplugin/mustache.vim ftplugin/mustache*.vim ftplugin/mustache/*.vim
 augroup END
 
@@ -141,23 +112,8 @@ augroup end
 
 let php_sql_query=1
 let php_htmlInStrings=1
-let mapleader = ','
-"set errorformat=%m\ in\ %f\ on\ line\ %l
 
-function! OpenPhpFunction (keyword)
-  let proc_keyword = substitute(a:keyword , '_', '-', 'g')
-  exe '10 split'
-  exe 'enew'
-  exe 'set buftype=nofile'
-  exe 'silent r!links -dump http://www.php.net/manual/en/print/function.'.proc_keyword.'.php'
-  exe 'norm gg'
-  exe 'call search ("Description")'
-  exe 'norm jdgg'
-  exe 'call search("User Contributed Notes")'
-  exe 'norm dGgg'
-  exe 'norm V'
-endfunction
-
+" undo stuff
 if !isdirectory($HOME.'/.vim/undo-dir')
     call mkdir($HOME.'/.vim/undo-dir', '', 0700)
 endif
@@ -206,7 +162,7 @@ inoremap <leader>, <C-x><C-n>
 noremap <C-S> :call TermCloseIfOK("sync_server")<CR>
 
 "; in command mode  ; at EOL
-noremap ; :s/\([^;]\)$/\1;/<cr>:set nohlsearch<cr>
+" noremap ; :s/\([^;]\)$/\1;/<cr>:set nohlsearch<cr>
 
 
 "session
@@ -247,8 +203,6 @@ let g:vdebug_options = {
 \       'continuous_mode' : 1,
 \}
 
-" this algorithm works well for /** */ style comments in a tab-indented file
-let g:airline#extensions#whitespace#mixed_indent_algo = 1
 
 "vim-go stuff
 let g:go_code_completion_enabled = 0
@@ -336,7 +290,6 @@ let g:ale_linters = {
 let g:ale_go_golangci_lint_options = '--enable-all --disable wsl --disable lll --disable goimports --disable gochecknoinits --disable gochecknoglobals --disable gomnd --disable gofmt --disable unused --disable nlreturn --disable exhaustivestruct --disable gofumpt --disable varnamelen --disable gci --fix'
 let g:ale_go_golangci_lint_package = 1
 let g:ale_php_phpmd_ruleset = '~/.phpmd-ruleset.xml'
-let g:airline#extensions#ale#enabled = 1
 
 nmap <silent> <C-k> <Plug>(ale_previous)
 nmap <silent> <C-j> <Plug>(ale_next)
@@ -419,11 +372,6 @@ let g:startify_commands = [
 augroup startify
 	autocmd User Startified setlocal cursorline
 augroup end
-
-
-" delimitMate
-" let delimitMate_expand_cr = 1
-" let delimitMate_balance_matchpairs = 1
 
 " vim-visual-multi
 " messes wih shift-left/right without this

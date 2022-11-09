@@ -3,27 +3,34 @@ local cmp = require 'cmp'
 local snippy = require("snippy")
 
 local has_words_before = function()
-  local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-  return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+	local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+	return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 end
 
--- require('nvim_comment').setup()
-require('nvim-autopairs').setup{}
+-- comment stuff
+require('nvim_comment').setup({
+	create_mappings = false,
+	-- line_mapping = '<leader>c<space>',
+	-- operator_mapping = '<leader>c<space>',
+})
+-- i want same mappings for insert/visual
+vim.api.nvim_set_keymap('n', '<leader>c<space>', ':CommentToggle<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('v', '<leader>c<space>', ":'<,'>CommentToggle<CR>", { noremap = true, silent = true })
+
+require('nvim-autopairs').setup()
+require('lualine').setup()
 
 cmp.setup({
 	preselect = cmp.PreselectMode.None,
 	snippet = {
 		expand = function(args)
-			 require('snippy').expand_snippet(args.body)
+			require('snippy').expand_snippet(args.body)
 		end,
 	},
-	mapping = {
-		['<C-p>'] = cmp.mapping.select_prev_item(),
-		['<C-n>'] = cmp.mapping.select_next_item(),
+	mapping = cmp.mapping.preset.insert({
 		['<C-d>'] = cmp.mapping.scroll_docs(-4),
 		['<C-f>'] = cmp.mapping.scroll_docs(4),
 		['<C-Space>'] = cmp.mapping.complete(),
-		['<C-e>'] = cmp.mapping.close(),
 		['<CR>'] = cmp.mapping.confirm {
 			behavior = cmp.ConfirmBehavior.Replace,
 			select = true,
@@ -48,7 +55,7 @@ cmp.setup({
 				fallback()
 			end
 		end, { "i", "s" }),
-	},
+	}),
 	sources = cmp.config.sources({
 		{ name = 'nvim_lsp' },
 		{ name = 'snippy' },
@@ -68,7 +75,8 @@ cmp.setup.filetype('gitcommit', {
 })
 
 -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
-cmp.setup.cmdline('/', {
+cmp.setup.cmdline({ '/', '?' }, {
+	mapping = cmp.mapping.preset.cmdline(),
 	sources = {
 		{ name = 'buffer' }
 	}
@@ -76,6 +84,7 @@ cmp.setup.cmdline('/', {
 
 -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline(':', {
+	mapping = cmp.mapping.preset.cmdline(),
 	sources = cmp.config.sources({
 		{ name = 'path' }
 	}, {
@@ -100,13 +109,13 @@ local servers = {
 -- TODO css/scss html etc: https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#tailwindcss
 
 for _, lsp in ipairs(servers) do
-  lspconfig[lsp].setup {
-    -- on_attach = my_custom_on_attach,
-    capabilities = capabilities,
-  }
+	lspconfig[lsp].setup {
+		-- on_attach = my_custom_on_attach,
+		capabilities = capabilities,
+	}
 end
 
-require('lspconfig').ansiblels.setup{
+require('lspconfig').ansiblels.setup {
 	capabilities = capabilities,
 	settings = {
 		ansible = {
@@ -121,7 +130,7 @@ require('lspconfig').ansiblels.setup{
 local runtime_path = vim.split(package.path, ';')
 table.insert(runtime_path, "lua/?.lua")
 table.insert(runtime_path, "lua/?/init.lua")
-require'lspconfig'.sumneko_lua.setup {
+require 'lspconfig'.sumneko_lua.setup {
 	capabilities = capabilities,
 	settings = {
 		Lua = {
@@ -133,7 +142,7 @@ require'lspconfig'.sumneko_lua.setup {
 			},
 			diagnostics = {
 				-- Get the language server to recognize the `vim` global
-				globals = {'vim'},
+				globals = { 'vim' },
 			},
 			workspace = {
 				-- Make the server aware of Neovim runtime files
@@ -147,10 +156,3 @@ require'lspconfig'.sumneko_lua.setup {
 	},
 }
 
---[[
-local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
-for type, icon in pairs(signs) do
-  local hl = "DiagnosticSign" .. type
-  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-end
---]]
