@@ -54,7 +54,7 @@ Plug 'hrsh7th/nvim-cmp'
 
 " Plug 'Raimondi/delimitMate'
 Plug 'windwp/nvim-autopairs'
-Plug 'machakann/vim-sandwich'
+Plug 'kylechui/nvim-surround'
 Plug 'mg979/vim-visual-multi'
 Plug 'machakann/vim-swap'
 

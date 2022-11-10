@@ -18,7 +18,8 @@ vim.api.nvim_set_keymap('n', '<leader>c<space>', ':CommentToggle<CR>', { noremap
 vim.api.nvim_set_keymap('v', '<leader>c<space>', ":'<,'>CommentToggle<CR>", { noremap = true, silent = true })
 
 require('nvim-autopairs').setup()
-require('lualine').setup()
+require('lualine').setup({})
+require("nvim-surround").setup({})
 
 cmp.setup({
 	preselect = cmp.PreselectMode.None,
@@ -155,4 +156,3 @@ require 'lspconfig'.sumneko_lua.setup {
 		},
 	},
 }
-
