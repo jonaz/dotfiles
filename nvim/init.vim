@@ -9,6 +9,7 @@ let g:ale_disable_lsp = 1 "must be before plugin are loaded
 
 call plug#begin('~/.vim/bundle')
 
+Plug 'ggandor/leap.nvim'
 Plug 'tpope/vim-fugitive'
 Plug 'terrortylor/nvim-comment'
 Plug 'w0rp/ale'

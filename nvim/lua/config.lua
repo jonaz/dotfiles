@@ -20,6 +20,7 @@ vim.api.nvim_set_keymap('v', '<leader>c<space>', ":'<,'>CommentToggle<CR>", { no
 require('nvim-autopairs').setup()
 require('lualine').setup({})
 require("nvim-surround").setup({})
+require('leap').add_default_mappings()
 
 cmp.setup({
 	preselect = cmp.PreselectMode.None,
