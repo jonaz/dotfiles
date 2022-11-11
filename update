@@ -17,6 +17,7 @@ curl -s -o ~/bin/kube-ps1.sh https://raw.githubusercontent.com/jonmosco/kube-ps1
 echo "Update vim plugins"
 nvim +PlugUpgrade +qall
 nvim +PlugUpdate +qall
+nvim +GoUpdateBinaries +qall
 
 #must be after PlugUpgrade since we want newer golangci-lint than :GoUpdateBinaries provide
 echo "Update golangci-lint"

@@ -184,6 +184,8 @@ nnoremap <silent> <C-a> :bd<CR>
 " pretty xml
 command XmlPretty :set ft=xml | :%!xmllint --format -
 
+command DiffBuffers :windo diffthis
+
 nnoremap <Leader>re :%s/\<<C-r><C-w>\>//g<Left><Left>
 
 vmap v <Plug>(expand_region_expand)
