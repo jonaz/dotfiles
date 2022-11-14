@@ -18,7 +18,17 @@ vim.api.nvim_set_keymap('n', '<leader>c<space>', ':CommentToggle<CR>', { noremap
 vim.api.nvim_set_keymap('v', '<leader>c<space>', ":'<,'>CommentToggle<CR>", { noremap = true, silent = true })
 
 require('nvim-autopairs').setup()
-require('lualine').setup({})
+require('lualine').setup({
+	inactive_sections = {
+		lualine_c = {
+			{
+				'filename',
+				path = 1,
+				shorting_target = 10,
+			}
+		},
+	}
+})
 require("nvim-surround").setup({})
 require('leap').add_default_mappings()
 
