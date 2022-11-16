@@ -43,6 +43,10 @@ p(){
 	echo "Copied password to clipboard"
 }
 
+vimj(){
+	nvim -c 'execute "normal! p"' -c "JsonPretty"
+}
+
 kssh(){
     if  [ -z "$1" ]; then
 	    node=$(kubectl get node --no-headers=true | fzf | awk '{print $1}')
