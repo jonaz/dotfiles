@@ -380,12 +380,6 @@ augroup end
 let g:VM_default_mappings = 0
 
 
-" lsp go to def etc
-nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>
-nnoremap <silent> gr <cmd>lua vim.lsp.buf.references()<CR>
-nnoremap <silent> <space>f <cmd>lua vim.lsp.buf.formatting()<CR>
-nnoremap <silent> <space>rn <cmd>lua vim.lsp.buf.rename()<CR>
-
 " fix strange error sign with nvim-solarized-lua theme and ALE. This will only
 " show red cross and not red background on it.
 hi Error cterm=bold,reverse ctermfg=23 ctermbg=203 gui=bold,reverse guifg=#002b36 guibg=#dc322f
