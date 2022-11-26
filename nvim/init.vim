@@ -285,7 +285,7 @@ let g:ale_sign_error = '✘'
 let g:ale_sign_warning = '⚠'
 
 " use tsserver which then calls tslint for now
-let g:ale_linters_ignore = {'typescript': ['tslint'], 'typescriptreact': ['tslint'], 'ansible': ['ansible_lint']}
+let g:ale_linters_ignore = {'typescript': ['tslint'], 'typescriptreact': ['tslint'], 'ansible': ['ansible_lint'], 'php': ['phpstan', 'phpmd']}
 let g:ale_linters = {
 			\'go': ['go build', 'golangci-lint'],
 			\}
