@@ -27,7 +27,6 @@ yum install cmake gcc-c++ python-libs python-devel
     :windo diffthis - diff two open splits
 ### nvim-surround
     Old text                    Command         New text
---------------------------------------------------------------------------------
     surr*ound_words             ysiw)           (surround_words)
     *make strings               ys$"            "make strings"
     [delete ar*ound me!]        ds]             delete around me!
