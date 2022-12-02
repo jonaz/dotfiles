@@ -23,9 +23,18 @@ yum install cmake gcc-c++ python-libs python-devel
     :Gbrowse - Open file on github in browser
     :Gmove   - move the file to another location. / means repo root. no / means relative to file current locaation.
     :Gstatus - show git status
-    cs"'     - replaces surrounding " with surrounding '
     ,c<space>- Toggles inline comments
     :windo diffthis - diff two open splits
+### nvim-surround
+    Old text                    Command         New text
+--------------------------------------------------------------------------------
+    surr*ound_words             ysiw)           (surround_words)
+    *make strings               ys$"            "make strings"
+    [delete ar*ound me!]        ds]             delete around me!
+    remove <b>HTML t*ags</b>    dst             remove HTML tags
+    'change quot*es'            cs'"            "change quotes"
+    <b>or tag* types</b>        csth1<CR>       <h1>or tag types</h1>
+    delete(functi*on calls)     dsf             function calls
 
 ### search replace multiple files in vim
 
