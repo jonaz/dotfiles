@@ -29,6 +29,7 @@ i yarn
 i ansible-lint
 i git-delta
 i alacritty
+i ripgrep
 
 echo "Git pull"
 git pull --autostash

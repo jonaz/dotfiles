@@ -22,12 +22,12 @@ fi
 
 #functions for aliases
 customgrepinfile() {
-	ag --vimgrep "$1" . | $VIM_COMMAND -c "set noro" -c "noremap <enter> <C-w>F" -c "/$1" -R -
+	rg --vimgrep "$1" . | $VIM_COMMAND -c "set noro" -c "noremap <enter> <C-w>F" -c "/$1" -R -
 }
 
 findaskinput(){
 	read -p "Search for: " $term
-	$VIM_COMMAND  -c ":Ag $term"
+	$VIM_COMMAND  -c ":Rg $term"
 }
 
 customgrepfilename() {
@@ -225,7 +225,7 @@ unset safe_term match_lhs
 # GIT heart FZF
 # -------------
 
-export FZF_DEFAULT_COMMAND="ag -l"
+export FZF_DEFAULT_COMMAND="rg --files"
 
 is_in_git_repo() {
   git rev-parse HEAD > /dev/null 2>&1
