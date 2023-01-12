@@ -289,7 +289,7 @@ let g:ale_linters_ignore = {'typescript': ['tslint'], 'typescriptreact': ['tslin
 let g:ale_linters = {
 			\'go': ['go build', 'golangci-lint'],
 			\}
-let g:ale_go_golangci_lint_options = '--enable-all --disable wsl --disable lll --disable goimports --disable gochecknoinits --disable gochecknoglobals --disable gomnd --disable gofmt --disable unused --disable nlreturn --disable exhaustivestruct --disable gofumpt --disable varnamelen --disable gci --fix'
+let g:ale_go_golangci_lint_options = '--enable-all --disable wsl --disable lll --disable goimports --disable gochecknoinits --disable gochecknoglobals --disable gomnd --disable gofmt --disable unused --disable nlreturn --disable exhaustivestruct --disable gofumpt --disable varnamelen --disable gci'
 let g:ale_go_golangci_lint_package = 1
 let g:ale_php_phpmd_ruleset = '~/.phpmd-ruleset.xml'
 
