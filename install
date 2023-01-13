@@ -30,6 +30,7 @@ i ansible-lint
 i git-delta
 i alacritty
 i ripgrep
+i bash-language-server
 
 echo "Git pull"
 git pull --autostash

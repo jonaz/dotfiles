@@ -1,11 +1,19 @@
 -- Setup nvim-cmp.
 local cmp = require 'cmp'
 local snippy = require("snippy")
+local null_ls = require("null-ls")
 
 local has_words_before = function()
 	local line, col = unpack(vim.api.nvim_win_get_cursor(0))
 	return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 end
+
+null_ls.setup({
+    sources = {
+		null_ls.builtins.formatting.shfmt,
+		null_ls.builtins.diagnostics.golangci_lint,
+    },
+})
 
 -- comment stuff
 require('nvim_comment').setup({
@@ -141,6 +149,7 @@ local servers = {
 	'phpactor',
 	'vimls',
 	'jsonnet_ls',
+	'bashls',
 }
 -- TODO css/scss html etc: https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#tailwindcss
 
@@ -185,6 +194,7 @@ require 'lspconfig'.sumneko_lua.setup {
 			workspace = {
 				-- Make the server aware of Neovim runtime files
 				library = vim.api.nvim_get_runtime_file("", true),
+				checkThirdParty = false,
 			},
 			-- Do not send telemetry data containing a randomized but unique identifier
 			telemetry = {
