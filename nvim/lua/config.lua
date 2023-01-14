@@ -215,7 +215,6 @@ require 'lspconfig'.sumneko_lua.setup {
 require('nvim-treesitter.configs').setup {
 	-- Add languages to be installed here that you want installed for treesitter
 	ensure_installed = {
-		'comment',
 		'dockerfile',
 		'c',
 		'cpp',
@@ -230,7 +229,11 @@ require('nvim-treesitter.configs').setup {
 		'help',
 		'vim',
 		'php',
+		'comment',
 		'yaml',
+		'bash',
+		'jsonnet',
+		'json',
 	},
 
 	highlight = {
