@@ -9,13 +9,17 @@ local has_words_before = function()
 end
 
 null_ls.setup({
-    sources = {
+	sources = {
+		null_ls.builtins.formatting.nginx_beautifier,
+		null_ls.builtins.formatting.trim_whitespace,
 		null_ls.builtins.formatting.shfmt,
+		null_ls.builtins.diagnostics.staticcheck,
 		null_ls.builtins.diagnostics.golangci_lint,
-    },
+		null_ls.builtins.diagnostics.hadolint,
+	},
 })
 
--- comment stuff
+-- nvim-comment stuff
 require('nvim_comment').setup({
 	create_mappings = false,
 	-- line_mapping = '<leader>c<space>',
@@ -37,6 +41,9 @@ require('lualine').setup({
 		},
 	}
 })
+
+require "fidget".setup {} -- lsp loading info
+require('nvim-lightbulb').setup({ autocmd = { enabled = true } })
 require("nvim-surround").setup({})
 require('leap').add_default_mappings()
 
@@ -199,6 +206,88 @@ require 'lspconfig'.sumneko_lua.setup {
 			-- Do not send telemetry data containing a randomized but unique identifier
 			telemetry = {
 				enable = false,
+			},
+		},
+	},
+}
+
+-- treesitter stuff
+require('nvim-treesitter.configs').setup {
+	-- Add languages to be installed here that you want installed for treesitter
+	ensure_installed = {
+		'comment',
+		'dockerfile',
+		'c',
+		'cpp',
+		'go',
+		'gomod',
+		'lua',
+		'python',
+		'rust',
+		'typescript',
+		'tsx',
+		'javascript',
+		'help',
+		'vim',
+		'php',
+		'yaml',
+	},
+
+	highlight = {
+		enable = true,
+		additional_vim_regex_highlighting = false,
+	},
+	indent = { enable = true, disable = { 'python' } },
+	incremental_selection = {
+		enable = true,
+		keymaps = {
+			init_selection = '<c-space>',
+			node_incremental = '<c-space>',
+			scope_incremental = '<c-s>',
+			node_decremental = '<c-backspace>',
+		},
+	},
+	textobjects = {
+		select = {
+			enable = true,
+			lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim
+			keymaps = {
+				-- You can use the capture groups defined in textobjects.scm
+				['aa'] = '@parameter.outer',
+				['ia'] = '@parameter.inner',
+				['af'] = '@function.outer',
+				['if'] = '@function.inner',
+				['ac'] = '@class.outer',
+				['ic'] = '@class.inner',
+			},
+		},
+		move = {
+			enable = true,
+			set_jumps = true, -- whether to set jumps in the jumplist
+			goto_next_start = {
+				[']m'] = '@function.outer',
+				[']]'] = '@class.outer',
+			},
+			goto_next_end = {
+				[']M'] = '@function.outer',
+				[']['] = '@class.outer',
+			},
+			goto_previous_start = {
+				['[m'] = '@function.outer',
+				['[['] = '@class.outer',
+			},
+			goto_previous_end = {
+				['[M'] = '@function.outer',
+				['[]'] = '@class.outer',
+			},
+		},
+		swap = {
+			enable = true,
+			swap_next = {
+				['<leader>a'] = '@parameter.inner',
+			},
+			swap_previous = {
+				['<leader>A'] = '@parameter.inner',
 			},
 		},
 	},

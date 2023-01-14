@@ -18,7 +18,6 @@ Plug 'nvim-lua/plenary.nvim' " dep for null-ls
 Plug 'nvim-lualine/lualine.nvim'
 Plug 'ishan9299/nvim-solarized-lua'
 Plug 'AndrewRadev/splitjoin.vim'
-Plug 'terryma/vim-expand-region'
 Plug 'tpope/vim-eunuch'
 Plug 'mhinz/vim-startify'
 Plug 'kassio/neoterm'
@@ -30,36 +29,39 @@ Plug 'dcampos/nvim-snippy'
 Plug 'dcampos/cmp-snippy'
 
 " language / syntax support
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+" Plug 'nvim-treesitter/nvim-treesitter-textobjects' " TODO configure this
+" Plug 'nvim-treesitter/playground'
 Plug 'joonty/vdebug', { 'for': 'php' }
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'google/vim-jsonnet', { 'for': 'jsonnet' }
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
-Plug 'pangloss/vim-javascript'
-Plug 'othree/yajs.vim'
+" Plug 'pangloss/vim-javascript'
+" Plug 'othree/yajs.vim'
 Plug 'martinda/Jenkinsfile-vim-syntax'
 Plug 'evidens/vim-twig'
 Plug 'othree/html5.vim'
 Plug 'mustache/vim-mustache-handlebars'
 Plug 'groenewege/vim-less'
 Plug 'chr4/nginx.vim', { 'for': 'nginx' }
-Plug 'ekalinin/Dockerfile.vim', { 'for': 'Dockerfile' }
-Plug 'HerringtonDarkholme/yats.vim'
-Plug 'maxmellon/vim-jsx-pretty'
+" Plug 'HerringtonDarkholme/yats.vim'
+" Plug 'maxmellon/vim-jsx-pretty'
 Plug 'pearofducks/ansible-vim'
 
 " completion
+Plug 'j-hui/fidget.nvim' "lsp loading info
 Plug 'neovim/nvim-lspconfig'
+Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-cmdline'
-Plug 'hrsh7th/nvim-cmp'
+Plug 'kosayoda/nvim-lightbulb'
 
-" Plug 'Raimondi/delimitMate'
 Plug 'windwp/nvim-autopairs'
 Plug 'kylechui/nvim-surround'
-Plug 'mg979/vim-visual-multi'
-Plug 'machakann/vim-swap'
+" Plug 'mg979/vim-visual-multi'
+" Plug 'machakann/vim-swap' " use treesitter-textobjects instead
 
 call plug#end()
 let mapleader = ','
@@ -189,8 +191,6 @@ command DiffBuffers :windo diffthis
 
 nnoremap <Leader>re :%s/\<<C-r><C-w>\>//g<Left><Left>
 
-vmap v <Plug>(expand_region_expand)
-vmap <C-v> <Plug>(expand_region_shrink)
 
 let g:vdebug_features = {
 \    'max_data': 100000,
@@ -279,24 +279,25 @@ function! s:build_go_files()
 endfunction
 
 
-" ale stuff
-let g:ale_completion_enabled = 0
-let g:ale_completion_autoimport = 0
-" Error and warning signs.
-let g:ale_sign_error = '✘'
-let g:ale_sign_warning = '⚠'
+" " ale stuff
+" let g:ale_completion_enabled = 0
+" let g:ale_completion_autoimport = 0
+" " Error and warning signs.
+" let g:ale_sign_error = '✘'
+" let g:ale_sign_warning = '⚠'
+"
+" " use tsserver which then calls tslint for now
+" let g:ale_linters_ignore = {'typescript': ['tslint'], 'typescriptreact': ['tslint'], 'ansible': ['ansible_lint'], 'php': ['phpstan', 'phpmd']}
+" let g:ale_linters = {
+" 			\'go': ['go build', 'golangci-lint'],
+" 			\}
+" let g:ale_go_golangci_lint_options = '--enable-all --disable wsl --disable lll --disable goimports --disable gochecknoinits --disable gochecknoglobals --disable gomnd --disable gofmt --disable unused --disable nlreturn --disable exhaustivestruct --disable gofumpt --disable varnamelen --disable gci'
+" let g:ale_go_golangci_lint_package = 1
+" let g:ale_php_phpmd_ruleset = '~/.phpmd-ruleset.xml'
 
-" use tsserver which then calls tslint for now
-let g:ale_linters_ignore = {'typescript': ['tslint'], 'typescriptreact': ['tslint'], 'ansible': ['ansible_lint'], 'php': ['phpstan', 'phpmd']}
-let g:ale_linters = {
-			\'go': ['go build', 'golangci-lint'],
-			\}
-let g:ale_go_golangci_lint_options = '--enable-all --disable wsl --disable lll --disable goimports --disable gochecknoinits --disable gochecknoglobals --disable gomnd --disable gofmt --disable unused --disable nlreturn --disable exhaustivestruct --disable gofumpt --disable varnamelen --disable gci'
-let g:ale_go_golangci_lint_package = 1
-let g:ale_php_phpmd_ruleset = '~/.phpmd-ruleset.xml'
-
-nmap <silent> <C-k> <Plug>(ale_previous)
-nmap <silent> <C-j> <Plug>(ale_next)
+" används av vim.lsp.buf.signature_help istället
+"nmap <silent> <C-k> <cmd>lua vim.diagnostic.goto_prev()<CR>
+nmap <silent> <C-j> <cmd>lua vim.diagnostic.goto_next()<CR>
 
 "terminal stuff
 nmap <Leader>t :Topen<CR>
@@ -384,4 +385,4 @@ let g:VM_default_mappings = 0
 
 " fix strange error sign with nvim-solarized-lua theme and ALE. This will only
 " show red cross and not red background on it.
-hi Error cterm=bold,reverse ctermfg=23 ctermbg=203 gui=bold,reverse guifg=#002b36 guibg=#dc322f
+" hi Error cterm=bold,reverse ctermfg=23 ctermbg=203 gui=bold,reverse guifg=#002b36 guibg=#dc322f
