@@ -29,7 +29,7 @@ i yarn
 i ansible-lint
 i git-delta
 i alacritty
-i ripgrep
+i ripgrep fd
 i bash-language-server
 
 echo "Git pull"

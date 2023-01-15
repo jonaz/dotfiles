@@ -4,8 +4,7 @@ if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
-set runtimepath+=~/.fzf
-let g:ale_disable_lsp = 1 "must be before plugin are loaded
+" let g:ale_disable_lsp = 1 "must be before plugin are loaded
 
 call plug#begin('~/.vim/bundle')
 
@@ -21,7 +20,7 @@ Plug 'AndrewRadev/splitjoin.vim'
 Plug 'tpope/vim-eunuch'
 Plug 'mhinz/vim-startify'
 Plug 'kassio/neoterm'
-Plug 'junegunn/fzf.vim'
+Plug 'ibhagwan/fzf-lua', {'branch': 'main'}
 
 " snippet stuff
 Plug 'honza/vim-snippets'
@@ -127,34 +126,20 @@ set undofile
 " FZF stuff
 
 " insert word under cursor in ctrlp;
-fu CtrlPUnderCursor()
-	let l:Command = expand('<cword>')
-	call fzf#run({'sink': 'e','options': '-q '.l:Command })
-endfu 
-nmap <leader>lw :call CtrlPUnderCursor()<CR>
+nmap <leader>lw <cmd>lua require('fzf-lua').files({ fzf_opts = { ['--query'] = vim.fn.expand("<cword>") } } )<CR>
 
-let g:fzf_preview_window = ['up:25%', 'ctrl-/']
-let g:fzf_layout = { 'down': '50%' }
 
 " Open files in fzf
-nnoremap <silent> <C-p> :call fzf#run({'sink': 'e', 'options':'--prompt "files> " ','down': '50%' })<CR>
+nnoremap <silent> <C-p> <cmd>lua require('fzf-lua').files()<CR>
 
 " search current buffer in fzf
-nnoremap <silent> <C-l> :BLines<CR>
+nnoremap <silent> <C-l> <cmd>lua require('fzf-lua').blines()<CR>
 
-" Open git status files in fzf
-function! s:gitstatusopen(line)
-	execute 'edit' split(a:line, ' ')[1]
-endfunction
-nnoremap <silent> <C-u> :call fzf#run({
-	\'sink': function('<sid>gitstatusopen'),
-	\'source':'git -c color.status=always status --short',
-	\'options':'--ansi',
-	\ 'down': '50%'}
-	\)<CR>
+" git status modified files
+nnoremap <silent> <C-u> <cmd>lua require('fzf-lua').git_status()<CR>
 
 " Open MRU in fzf
-nnoremap <silent> <C-o> :History<CR>
+nnoremap <silent> <C-o> <cmd>lua require('fzf-lua').oldfiles()<CR>
 
 "copy file path
 nnoremap <silent> <Leader>cp :let @+=expand("%:p")<CR>
@@ -337,15 +322,7 @@ fun! s:change_branch(e)
 	echom 'Changed branch to ' . a:e
 endfun
 
-command! Gbranch call fzf#run(
-	\ {
-	\ 'source': 'git branch -a --format "%(refname:short)" | sed "s#^origin/##" | sort | uniq',
-	\ 'sink': function('<sid>change_branch'),
-	\ 'options': '-m',
-	\ 'down': '20%'
-	\})
-
-map <Leader>gc :Gbranch<CR>
+map <Leader>gc <cmd>lua require('fzf-lua').git_branches()<CR>
 
 " Startify stuff
 let g:startify_files_number = 5
