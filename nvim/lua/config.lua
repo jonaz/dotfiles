@@ -158,69 +158,72 @@ local on_attach = function(client, bufnr)
 end
 
 local lspconfig = require('lspconfig')
-local servers = {
-	'clangd',
-	'rust_analyzer',
-	'pyright',
-	'tsserver',
-	'gopls',
-	'phpactor',
-	'vimls',
-	'jsonnet_ls',
-	'bashls',
-}
--- TODO css/scss html etc: https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#tailwindcss
-
-for _, lsp in ipairs(servers) do
-	lspconfig[lsp].setup {
-		on_attach = on_attach,
-		capabilities = capabilities,
-	}
-end
-
-require('lspconfig').ansiblels.setup {
-	on_attach = on_attach,
-	capabilities = capabilities,
-	settings = {
-		ansible = {
-			python = {
-				interpreterPath = '/usr/bin/python',
-			},
-		},
-	},
-}
-
--- lua LSP
 local runtime_path = vim.split(package.path, ';')
 table.insert(runtime_path, "lua/?.lua")
 table.insert(runtime_path, "lua/?/init.lua")
-require 'lspconfig'.sumneko_lua.setup {
-	on_attach = on_attach,
-	capabilities = capabilities,
-	settings = {
-		Lua = {
-			runtime = {
-				-- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-				version = 'LuaJIT',
-				-- Setup your lua path
-				path = runtime_path,
+local servers = {
+	-- TODO css/scss html etc: https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#tailwindcss
+	clangd = {},
+	rust_analyzer = {},
+	pyright = {},
+	tsserver = {},
+	gopls = {
+		settings = {
+			gopls = {
+				analyses = {
+					unusedparams = true,
+					shadow = true,
+				},
+				staticcheck = true,
 			},
-			diagnostics = {
-				-- Get the language server to recognize the `vim` global
-				globals = { 'vim' },
+		},
+	},
+	phpactor = {},
+	vimls = {},
+	jsonnet_ls = {},
+	bashls = {},
+	ansiblels = {
+		settings = {
+			ansible = {
+				python = {
+					interpreterPath = '/usr/bin/python',
+				},
 			},
-			workspace = {
-				-- Make the server aware of Neovim runtime files
-				library = vim.api.nvim_get_runtime_file("", true),
-				checkThirdParty = false,
-			},
-			-- Do not send telemetry data containing a randomized but unique identifier
-			telemetry = {
-				enable = false,
+		},
+	},
+	sumneko_lua = {
+		settings = {
+			Lua = {
+				runtime = {
+					-- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+					version = 'LuaJIT',
+					-- Setup your lua path
+					path = runtime_path,
+				},
+				diagnostics = {
+					-- Get the language server to recognize the `vim` global
+					globals = { 'vim' },
+				},
+				workspace = {
+					-- Make the server aware of Neovim runtime files
+					library = vim.api.nvim_get_runtime_file("", true),
+					checkThirdParty = false,
+				},
+				-- Do not send telemetry data containing a randomized but unique identifier
+				telemetry = {
+					enable = false,
+				},
 			},
 		},
 	},
 }
+
+
+for server, opts in pairs(servers) do
+	opts.on_attach = on_attach
+	opts.capabilities = capabilities
+	lspconfig[server].setup(opts)
+end
 
 -- treesitter stuff
 require('nvim-treesitter.configs').setup {
