@@ -22,7 +22,7 @@ fi
 
 #functions for aliases
 customgrepinfile() {
-	rg --vimgrep "$1" . | $VIM_COMMAND -c "set noro" -c "noremap <enter> <C-w>F" -c "/$1" -R -
+	rg -i --vimgrep "$1" . | $VIM_COMMAND -c "set noro" -c "noremap <enter> <C-w>F" -c "/$1" -R -
 }
 
 findaskinput(){
@@ -86,6 +86,7 @@ alias vimdiff='nvim -d'
 
 #settings
 export EDITOR="$VIM_COMMAND"
+export BROWSER=google-chrome-stable
 HISTTIMEFORMAT='%F %T - '
 stty ixany
 stty ixoff -ixon

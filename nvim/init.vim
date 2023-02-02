@@ -178,7 +178,8 @@ nnoremap <Leader>re :%s/\<<C-r><C-w>\>//g<Left><Left>
 
 
 let g:vdebug_features = {
-\    'max_data': 100000,
+\    'max_data': 1000000,
+\    'max_children': 256,
 \}
 
 let g:vdebug_options = {
