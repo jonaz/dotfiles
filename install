@@ -19,6 +19,8 @@ i(){
 	sudo pacman -S --needed "$@"
 }
 
+mkdir -p ~/bin
+
 echo "Install arch pacman deps"
 i neovim python-pynvim
 i noto-fonts-cjk noto-fonts-emoji noto-fonts-extra ttf-bitstream-vera ttf-croscore ttf-dejavu ttf-hack ttf-roboto ttf-hack #fonts
