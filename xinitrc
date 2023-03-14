@@ -1,7 +1,8 @@
 #!/bin/sh
+## TODO remove this file? not beeing used anymore?
 #
 # ~/.xinitrc
-#
+# 
 # Executed by startx (run your window manager from here)
 
 if [ -d /etc/X11/xinit/xinitrc.d ]; then

@@ -31,6 +31,8 @@ floating_modifier Mod1
 # start a terminal
 bindsym $mod+Return exec i3-sensible-terminal
 
+# exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+
 #copy password from lastpass
 bindsym $mod+p exec "i3-sensible-terminal -e bash -c \\"bash --rcfile <(echo '. ~/.bashrc; p && sleep 0.5 && exit')\\""
 
@@ -48,11 +50,6 @@ bindsym $mod+d exec --no-startup-id i3-dmenu-desktop --dmenu="rofi -dmenu -i"
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 #
 
-#autostart
-exec --no-startup-id clipit
-exec --no-startup-id xautolock -corners 0-00 -time 3 -locker '~/bin/lockFuzzy' &
-
-
 
 #take screenshot
 #bindsym --release Mod1+Print exec scrot -s -e 'mv $f ~/Screenshots/ && gimp ~/Screenshots/$f'
@@ -62,27 +59,8 @@ bindsym --release Mod1+Sys_Req exec scrot -s -e 'mv $f ~/Screenshots/'
 #move workspaces to monitor left right
 bindsym Control+Mod1+Left move workspace to output left
 bindsym Control+Mod1+Right move workspace to output right
-bindsym Control+Mod1+Up move workspace to output up
-bindsym Control+Mod1+Down move workspace to output down
-
-
-set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
-mode "$mode_system" {
-    bindsym l exec --no-startup-id i3exit lock, mode "default"
-    bindsym e exec --no-startup-id i3exit logout, mode "default"
-    bindsym s exec --no-startup-id i3exit shutdown, mode "default"
-    bindsym h exec --no-startup-id i3exit hibernate, mode "default"
-    bindsym r exec --no-startup-id i3exit reboot, mode "default"
-    bindsym Shift+s exec --no-startup-id i3exit shutdown, mode "default"
-
-    # back to normal: Enter or Escape
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-}
-bindsym $mod+Pause mode "$mode_system"
 
 #lock
-#bindsym Mod1+l exec i3lock -i /home/jonaz/Images/arch-linux-15408.png -t
 bindsym Mod1+l exec ~/bin/lockFuzzy
 
 # change focus
@@ -160,6 +138,10 @@ bindsym $mod+Shift+8 move container to workspace 8
 bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
 
+# workspace default monitors
+# workspace 1 output DP-0
+# workspace 2 output DVI-I-1
+
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
@@ -167,6 +149,18 @@ bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
+set $mode_system System (l) lock, (e) logout, (r) reboot, (s) shutdown
+mode "$mode_system" {
+    bindsym l exec --no-startup-id $HOME/bin/i3exit lock, mode "default"
+    bindsym e exec --no-startup-id $HOME/bin/i3exit logout, mode "default"
+    bindsym r exec --no-startup-id $HOME/bin/i3exit reboot, mode "default"
+    bindsym s exec --no-startup-id $HOME/bin/i3exit shutdown, mode "default"
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+Pause mode "$mode_system"
 # resize window (you can also use the mouse for that)
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
@@ -196,19 +190,20 @@ bindsym $mod+r mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
+		font pango:Hack 11
         status_command i3status
 }
 
 
 #Add start layouts
-#exec --no-startup-id "i3-msg 'workspace 1; append_layout ~/.i3/workspace-1.json'"
-
+# exec --no-startup-id "i3-msg 'workspace 1; append_layout ~/.i3/workspace-1.json'"
+# exec --no-startup-id "i3-msg 'workspace 1; move workspace to output DP-2'"
+# exec --no-startup-id "i3-msg 'workspace 2; move workspace to output DP-0.8'"
 
 #always move gimp to new workspace
-for_window [class="Gimp"] move container to workspace 4, workspace 5, focus
 assign [class="google-chrome"] 1
-assign [class="^URxvt$" instance="^w1$"] 1
-assign [class="^URxvt$" instance="^w2$"] 2
+assign [class="^Alacritty$" instance="^w1$"] 1
+assign [class="^Alacritty$" instance="^w2$"] 2
 
 for_window [class="Pavucontrol"] floating enable, border normal
 
@@ -227,8 +222,10 @@ bindsym $mod+z scratchpad show
 exec --no-startup-id feh --bg-scale /home/jonaz/Images/arch-linux-15408.png
 
 #autostart
-exec i3-sensible-terminal -name w1
-exec i3-sensible-terminal -name w2
+exec --no-startup-id clipit
+exec --no-startup-id xautolock -corners 0-00 -time 3 -locker '~/bin/lockFuzzy' &
+# exec alacritty --class Alacritty,w1
+# exec alacritty --class Alacritty,w2
 exec google-chrome-stable
 
 
