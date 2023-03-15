@@ -20,6 +20,7 @@ i(){
 mkdir -p ~/bin
 
 echo "Install arch pacman deps"
+i i3lock 
 i neovim python-pynvim
 i noto-fonts-cjk noto-fonts-emoji noto-fonts-extra ttf-bitstream-vera ttf-croscore ttf-dejavu ttf-hack ttf-roboto ttf-hack #fonts
 i vint # ale linter for vim config
