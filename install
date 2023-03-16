@@ -31,8 +31,8 @@ i(){
 mkdir -p ~/bin
 
 echo "setting up ssh-agent systemd user service"
-mkdir -p "$HOME/.config/systemd/user/asdf.service"
-content $HOME/.config/systemd/user/asdf.service "$(cat <<-END
+mkdir -p "$HOME/.config/systemd/user"
+content $HOME/.config/systemd/user/ssh-agent.service "$(cat <<-END
 [Unit]
 Description=SSH key agent
 
