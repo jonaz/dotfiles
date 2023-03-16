@@ -25,7 +25,7 @@ i(){
 	  echo "pacman not found. skipping install of " "$@"
 	  return
 	fi
-	sudo pacman -S --needed "$@"
+	sudo pacman --noconfirm -S --needed "$@"
 }
 
 mkdir -p ~/bin
@@ -47,6 +47,7 @@ END
 )"
 
 echo "Install arch pacman deps"
+i go
 i i3lock 
 i neovim python-pynvim
 i noto-fonts-cjk noto-fonts-emoji noto-fonts-extra ttf-bitstream-vera ttf-croscore ttf-dejavu ttf-hack ttf-roboto ttf-hack #fonts
