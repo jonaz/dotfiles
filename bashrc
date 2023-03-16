@@ -2,6 +2,11 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOPATH/bin
+export PATH=$PATH:$HOME/bin
+
+export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/ssh-agent.socket"
 
 # copied from /etc/bash.bashrc and added alacritty*
 case ${TERM} in
@@ -26,7 +31,7 @@ customgrepinfile() {
 }
 
 findaskinput(){
-	read -p "Search for: " $term
+	read -p "Search for: " term
 	$VIM_COMMAND  -c ":Rg $term"
 }
 
@@ -39,7 +44,7 @@ customgrepfilename() {
 
 # open lastpass for search in fzf and copy selected to clipboard
 p(){
-	lpass show -c --password $(lpass ls -l |fzf | grep -Po "\[id: (.+)\] " | awk '{print $2}' |  sed 's/\]//g')
+	lpass show -c --password "$(lpass ls -l |fzf | grep -Po "\[id: (.+)\] " | awk '{print $2}' |  sed 's/\]//g')"
 	echo "Copied password to clipboard"
 }
 

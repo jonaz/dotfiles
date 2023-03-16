@@ -1,12 +1,23 @@
 #!/bin/bash
 set -e
 
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOPATH/bin
+export PATH=$PATH:$HOME/bin
+
 # lnk "file here" "file in home"
 lnk(){
 	FROM=$2
 	TO=$1
 	echo "Linking $HOME/$FROM to $PWD/$TO"
 	ln -snf "$PWD/$TO" "$HOME/$FROM"
+}
+
+content(){
+	FILE=$1
+	CONTENT=$2
+	echo "Ensure content in: $FILE"
+	grep -q "$CONTENT" "$FILE" || ( echo "$CONTENT" >> "$FILE" && echo "content updated in $FILE" )
 }
 
 i(){
@@ -18,6 +29,21 @@ i(){
 }
 
 mkdir -p ~/bin
+
+echo "setting up ssh-agent systemd user service"
+content $HOME/.config/systemd/user/asdf.service "$(cat <<-END
+[Unit]
+Description=SSH key agent
+
+[Service]
+Type=simple
+Environment=SSH_AUTH_SOCK=%t/ssh-agent.socket
+ExecStart=/usr/bin/ssh-agent -D -a $SSH_AUTH_SOCK
+
+[Install]
+WantedBy=default.target
+END
+)"
 
 echo "Install arch pacman deps"
 i i3lock 
@@ -38,7 +64,7 @@ git pull --autostash
 
 echo "Setting up bashrc"
 git config --global credential.helper 'cache --timeout 3600'
-grep -q ". $PWD/bashrc" ~/.bashrc || echo ". $PWD/bashrc" >> ~/.bashrc
+content ~/.bashrc ". $PWD/bashrc"
 
 if [ ! -f ~/bin/kube-ps1.sh ]; then
 	echo "Install kube-ps1"
