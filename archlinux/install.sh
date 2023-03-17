@@ -1,4 +1,6 @@
 #!/bin/bash
+# TODO start script automatically https://gitlab.archlinux.org/archlinux/mkinitcpio/mkinitcpio-archiso/-/blob/master/docs/README.bootparams#L150
+# https://unix.stackexchange.com/a/545633/17246
 set -e
 
 # before chroot
