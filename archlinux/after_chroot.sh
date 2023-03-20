@@ -33,9 +33,9 @@ mkinitcpio -P
 echo "installing i3 and lightdm"
 pacman --noconfirm -S lightdm lightdm-gtk-greeter i3-wm i3status i3lock rofi git
 echo "installing network tools"
-pacman --noconfirm -S iw wpa_supplicant dialog netctl
+pacman --noconfirm -S iw wpa_supplicant dialog netctl dhcpcd
 echo "installing stuff"
-pacman --noconfirm -S alacritty bash-completion man-db man-pages texinfo
+pacman --noconfirm -S alacritty bash-completion man-db man-pages texinfo neovim
 
 systemctl enable lightdm
 systemctl enable fstrim.timer
