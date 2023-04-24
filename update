@@ -10,6 +10,8 @@ git pull
 ./install --all
 cd -
 
+echo "update packages installed with cargo"
+cargo install-update -a
 
 echo "Update kube-ps1"
 curl -s -o ~/bin/kube-ps1.sh https://raw.githubusercontent.com/jonmosco/kube-ps1/master/kube-ps1.sh
@@ -21,7 +23,17 @@ nvim +GoUpdateBinaries +qall
 
 #must be after PlugUpgrade since we want newer golangci-lint than :GoUpdateBinaries provide
 echo "Update golangci-lint"
-curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin
+curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b "$(go env GOPATH)/bin"
 
+echo "install/update phpactor"
+TARGET_DIR="$HOME/git/phpactor"
+git -C "$TARGET_DIR" pull || git clone  git@github.com:phpactor/phpactor" $TARGET_DIR"
+cd "$TARGET_DIR"
+composer install
+cd -
+ln -snf "$TARGET_DIR/bin/phpactor" "$HOME/bin/phpactor"
+
+echo "install/update jsonnet-language-server"
+go install github.com/grafana/jsonnet-language-server@latest
 
 echo "Done"

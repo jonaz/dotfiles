@@ -3,8 +3,7 @@
 [[ $- != *i* ]] && return
 
 export GOPATH=$HOME/go
-export PATH=$PATH:$GOPATH/bin
-export PATH=$PATH:$HOME/bin
+export PATH=$HOME/.cargo/bin:$PATH:$GOPATH/bin:$HOME/bin
 
 export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/ssh-agent.socket"
 

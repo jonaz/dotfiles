@@ -1,0 +1,22 @@
+#!/bin/bash
+
+echo "ubuntu: install nvm"
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
+
+nvm install "lts/*"
+
+echo "ubuntu: installing some LSPs"
+npm i -g typescript typescript-language-server
+npm i -g vim-language-server
+npm i -g bash-language-server
+npm i -g @ansible/ansible-language-server
+
+sudo apt install -y clangd
+sudo apt install shellcheck
+sudo snap install --classic pyright
+
+# mkdir -p "$HOME/.lua-language-server"
+# curl -s -L https://github.com/LuaLS/lua-language-server/releases/download/3.6.18/lua-language-server-3.6.18-linux-x64.tar.gz | tar xvz -C "$HOME/.lua-language-server"
+# TODO
+# #!/bin/bash 
+# exec "<path-to-directory>/bin/lua-language-server" "$@"
