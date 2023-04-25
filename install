@@ -32,7 +32,7 @@ mkdir -p ~/bin
 
 echo "setting up ssh-agent systemd user service"
 mkdir -p "$HOME/.config/systemd/user"
-content $HOME/.config/systemd/user/ssh-agent.service "$(cat <<-END
+content "$HOME/.config/systemd/user/ssh-agent.service" "$(cat <<-END
 [Unit]
 Description=SSH key agent
 
@@ -45,6 +45,24 @@ ExecStart=/usr/bin/ssh-agent -D -a \$SSH_AUTH_SOCK
 WantedBy=default.target
 END
 )"
+
+
+content "$HOME/.config/systemd/user/clipcatd.service" "$(cat <<-END
+[Unit]
+Description=Starts the clipboard daemon
+
+[Service]
+Type=simple
+ExecStart=sh -c "PATH=~/.cargo/bin:\$PATH clipcatd --no-daemon"
+Restart=on-failure
+
+[Install]
+WantedBy=default.target
+END
+)"
+
+systemctl enable --user --now ssh-agent
+systemctl enable --user --now clipcatd
 
 echo "Install arch pacman deps"
 i go
@@ -64,6 +82,7 @@ i lua-language-server
 echo "Install stuff with cargo"
 cargo install cargo-update # update all with cargo install-update -a
 cargo install git-delta
+cargo install --git https://github.com/Icelk/clipcat.git
 
 echo "Git pull"
 git pull --autostash
@@ -91,6 +110,7 @@ lnk "dir_colors" ".dir_colors"
 lnk "nvim" ".config/nvim"
 lnk "alacritty" ".config/alacritty"
 lnk "i3exit" "bin/i3exit"
+lnk "clipcat" ".config/clipcat"
 
 echo "Installing plugins into vim"
 nvim +PlugInstall +qall
@@ -101,10 +121,11 @@ if [ ! -f ~/go/bin/golangci-lint ]; then
 	curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b "$(go env GOPATH)"/bin
 fi
 
-
 DIST=$(awk -F= '/^NAME/{print $2}' /etc/os-release)
 if [[ "$DIST" == *"Ubuntu"* ]]; then
 	./install-ubuntu
 fi
+
+./common
 
 echo "done"

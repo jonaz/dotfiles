@@ -1,0 +1,14 @@
+daemonize = true
+max_history = 5000
+history_file_path = '/home/jonaz/.cache/clipcat/clipcatd/history.cch'
+log_level = 'INFO'
+
+[monitor]
+load_current = true
+enable_clipboard = true
+enable_primary = true
+filter_min_size = 1
+
+[grpc]
+host = '127.0.0.1'
+port = 45045
