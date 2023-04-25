@@ -28,7 +28,15 @@ i(){
 	sudo pacman --noconfirm -S --needed "$@"
 }
 
+echo "Git pull"
+git pull --autostash
+
 mkdir -p ~/bin
+
+echo "Install stuff with cargo"
+cargo install cargo-update # update all with cargo install-update -a
+cargo install git-delta
+cargo install --git https://github.com/Icelk/clipcat.git
 
 echo "setting up ssh-agent systemd user service"
 mkdir -p "$HOME/.config/systemd/user"
@@ -79,13 +87,7 @@ i ripgrep fd
 i bash-language-server
 i lua-language-server
 
-echo "Install stuff with cargo"
-cargo install cargo-update # update all with cargo install-update -a
-cargo install git-delta
-cargo install --git https://github.com/Icelk/clipcat.git
 
-echo "Git pull"
-git pull --autostash
 
 echo "Setting up bashrc"
 git config --global credential.helper 'cache --timeout 3600'
