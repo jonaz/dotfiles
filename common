@@ -8,7 +8,7 @@ go install github.com/grafana/jsonnet-language-server@latest
 
 echo "install/update phpactor"
 TARGET_DIR="$HOME/git/phpactor"
-git -C "$TARGET_DIR" pull || git clone  git@github.com:phpactor/phpactor" $TARGET_DIR"
+git -C "$TARGET_DIR" pull || git -C "$HOME/git" clone git@github.com:phpactor/phpactor.git
 cd "$TARGET_DIR"
 composer install
 cd -

@@ -14,6 +14,7 @@ npm i -g @ansible/ansible-language-server
 sudo apt install -y clangd
 sudo apt install -y shellcheck
 sudo apt install -y ripgrep
+sudo apt install -y libssl-dev
 sudo snap install --classic pyright
 
 # mkdir -p "$HOME/.lua-language-server"
