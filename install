@@ -33,6 +33,28 @@ git pull --autostash
 
 mkdir -p ~/bin
 
+DIST=$(awk -F= '/^NAME/{print $2}' /etc/os-release)
+if [[ "$DIST" == *"Ubuntu"* ]]; then
+	./install-ubuntu
+fi
+
+
+echo "Install arch pacman deps"
+i go
+i i3lock 
+i neovim python-pynvim
+i noto-fonts-cjk noto-fonts-emoji noto-fonts-extra ttf-bitstream-vera ttf-croscore ttf-dejavu ttf-hack ttf-roboto ttf-hack #fonts
+i vint # ale linter for vim config
+i extra/php-intl # deps for phpactor
+i prettier # json js tsx formatter
+i yarn
+i ansible-lint
+i alacritty
+i ripgrep fd
+i bash-language-server
+i lua-language-server
+i rust
+
 echo "Install stuff with cargo"
 cargo install cargo-update # update all with cargo install-update -a
 cargo install git-delta
@@ -72,23 +94,6 @@ END
 systemctl enable --user --now ssh-agent
 systemctl enable --user --now clipcatd
 
-echo "Install arch pacman deps"
-i go
-i i3lock 
-i neovim python-pynvim
-i noto-fonts-cjk noto-fonts-emoji noto-fonts-extra ttf-bitstream-vera ttf-croscore ttf-dejavu ttf-hack ttf-roboto ttf-hack #fonts
-i vint # ale linter for vim config
-i extra/php-intl # deps for phpactor
-i prettier # json js tsx formatter
-i yarn
-i ansible-lint
-i alacritty
-i ripgrep fd
-i bash-language-server
-i lua-language-server
-
-
-
 echo "Setting up bashrc"
 git config --global credential.helper 'cache --timeout 3600'
 content ~/.bashrc ". $PWD/bashrc"
@@ -121,11 +126,6 @@ nvim +PlugInstall +qall
 if [ ! -f ~/go/bin/golangci-lint ]; then
 	echo "Install golangci-lint"
 	curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b "$(go env GOPATH)"/bin
-fi
-
-DIST=$(awk -F= '/^NAME/{print $2}' /etc/os-release)
-if [[ "$DIST" == *"Ubuntu"* ]]; then
-	./install-ubuntu
 fi
 
 ./common
