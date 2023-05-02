@@ -11,10 +11,14 @@ npm i -g vim-language-server
 npm i -g bash-language-server
 npm i -g @ansible/ansible-language-server
 
+sudo apt instlal -y build-essential
+sudo apt install -y curl git
+sudo apt install -y cargo
 sudo apt install -y clangd
 sudo apt install -y shellcheck
 sudo apt install -y ripgrep
 sudo apt install -y libssl-dev
+sudo apt install -y protobuf-compiler
 sudo snap install --classic pyright
 
 # mkdir -p "$HOME/.lua-language-server"
