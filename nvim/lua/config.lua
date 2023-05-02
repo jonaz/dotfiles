@@ -240,7 +240,7 @@ require('nvim-treesitter.configs').setup {
 		'typescript',
 		'tsx',
 		'javascript',
-		'help',
+		'vimdoc',
 		'vim',
 		'php',
 		'comment',
