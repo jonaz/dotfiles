@@ -11,8 +11,19 @@ npm i -g vim-language-server
 npm i -g bash-language-server
 npm i -g @ansible/ansible-language-server
 
+
+#php stuff
+sudo apt install -y php8.2 -y
+sudo apt install -y php8.2-gettext
+sudo apt install -y php8.2-gd
+sudo apt install -y php8.2-pgsql
+sudo apt install -y php8.2-redis
+sudo apt install -y php8.2-xml
+sudo apt install -y php8.2-zip
+sudo apt install -y php8.2-curl
+
 sudo apt instlal -y build-essential
-sudo apt install -y curl git
+sudo apt install -y curl git xclip
 sudo apt install -y cargo
 sudo apt install -y clangd
 sudo apt install -y shellcheck

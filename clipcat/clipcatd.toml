@@ -1,7 +1,7 @@
 daemonize = true
 max_history = 5000
 history_file_path = '/home/jonaz/.cache/clipcat/clipcatd/history.cch'
-log_level = 'INFO'
+log_level = 'warn'
 
 [monitor]
 load_current = true

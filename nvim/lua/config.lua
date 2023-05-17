@@ -183,13 +183,16 @@ local servers = {
 	jsonnet_ls = {},
 	bashls = {},
 	ansiblels = {
-		settings = {
-			ansible = {
-				python = {
-					interpreterPath = '/usr/bin/python',
-				},
-			},
-		},
+		-- settings = {
+		-- 	ansible = {
+		-- 		ansible = {
+		-- 			path = "/home/jonasfalck/.local/bin/ansible"
+		-- 		},
+				-- python = {
+				-- 	interpreterPath = '/usr/bin/python3',
+				-- },
+		-- 	},
+		-- },
 	},
 	lua_ls = {
 		settings = {
