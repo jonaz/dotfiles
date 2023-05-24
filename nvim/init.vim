@@ -55,7 +55,6 @@ Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-cmdline'
-Plug 'kosayoda/nvim-lightbulb'
 
 Plug 'windwp/nvim-autopairs'
 Plug 'kylechui/nvim-surround'

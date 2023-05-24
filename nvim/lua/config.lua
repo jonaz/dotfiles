@@ -54,7 +54,6 @@ require('lualine').setup({
 })
 
 require "fidget".setup {} -- lsp loading info
-require('nvim-lightbulb').setup({ autocmd = { enabled = true } })
 require("nvim-surround").setup({})
 require('leap').add_default_mappings()
 
