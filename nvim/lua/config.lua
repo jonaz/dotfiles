@@ -27,6 +27,9 @@ null_ls.setup({
 		null_ls.builtins.diagnostics.staticcheck,
 		null_ls.builtins.diagnostics.golangci_lint,
 		null_ls.builtins.diagnostics.hadolint,
+		null_ls.builtins.diagnostics.phpmd.with({
+            extra_args = { os.getenv("HOME")..'/.phpmd-ruleset.xml' },
+          }),
 	},
 })
 
