@@ -48,7 +48,7 @@ Plug 'chr4/nginx.vim', { 'for': 'nginx' }
 Plug 'pearofducks/ansible-vim'
 
 " completion
-Plug 'j-hui/fidget.nvim' "lsp loading info
+Plug 'j-hui/fidget.nvim', { 'tag': 'legacy' } "lsp loading info
 Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-nvim-lsp'
