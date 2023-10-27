@@ -11,7 +11,6 @@ call plug#begin('~/.vim/bundle')
 Plug 'ggandor/leap.nvim'
 Plug 'tpope/vim-fugitive'
 Plug 'terrortylor/nvim-comment'
-" Plug 'w0rp/ale'
 Plug 'jose-elias-alvarez/null-ls.nvim'
 Plug 'nvim-lua/plenary.nvim' " dep for null-ls
 Plug 'nvim-lualine/lualine.nvim'
@@ -35,16 +34,12 @@ Plug 'joonty/vdebug', { 'for': 'php' }
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'google/vim-jsonnet', { 'for': 'jsonnet' }
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
-" Plug 'pangloss/vim-javascript'
-" Plug 'othree/yajs.vim'
 Plug 'martinda/Jenkinsfile-vim-syntax'
 Plug 'evidens/vim-twig'
 Plug 'othree/html5.vim'
 Plug 'mustache/vim-mustache-handlebars'
 Plug 'groenewege/vim-less'
 Plug 'chr4/nginx.vim', { 'for': 'nginx' }
-" Plug 'HerringtonDarkholme/yats.vim'
-" Plug 'maxmellon/vim-jsx-pretty'
 Plug 'pearofducks/ansible-vim'
 
 " completion
@@ -58,8 +53,8 @@ Plug 'hrsh7th/cmp-cmdline'
 
 Plug 'windwp/nvim-autopairs'
 Plug 'kylechui/nvim-surround'
-" Plug 'mg979/vim-visual-multi'
-" Plug 'machakann/vim-swap' " use treesitter-textobjects instead
+Plug 'rest-nvim/rest.nvim', { 'for': 'http' }
+" Plug 'machakann/vim-swap' " TODO use treesitter-textobjects instead
 
 call plug#end()
 let mapleader = ','
@@ -140,6 +135,9 @@ nnoremap <silent> <C-u> <cmd>lua require('fzf-lua').git_status()<CR>
 " Open MRU in fzf
 nnoremap <silent> <C-o> <cmd>lua require('fzf-lua').oldfiles()<CR>
 
+" grep all files in project
+nnoremap <silent> <C-f> <cmd>lua require('fzf-lua').live_grep()<CR>
+
 "copy file path
 nnoremap <silent> <Leader>cp :let @+=expand("%:p")<CR>
 
@@ -148,10 +146,6 @@ inoremap <leader>, <C-x><C-n>
 
 " map ctrl+s to save and run sync_server
 noremap <C-S> :call TermCloseIfOK("sync_server")<CR>
-
-"; in command mode  ; at EOL
-" noremap ; :s/\([^;]\)$/\1;/<cr>:set nohlsearch<cr>
-
 
 "session
 map <F2> :mksession! ~/.vim_session <cr> " Quick write session with F2

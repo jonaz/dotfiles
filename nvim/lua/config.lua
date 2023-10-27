@@ -253,6 +253,7 @@ require('nvim-treesitter.configs').setup {
 		'bash',
 		'jsonnet',
 		'json',
+		'http',
 	},
 
 	highlight = {
