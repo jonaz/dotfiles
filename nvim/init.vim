@@ -137,6 +137,7 @@ nnoremap <silent> <C-o> <cmd>lua require('fzf-lua').oldfiles()<CR>
 
 " grep all files in project
 nnoremap <silent> <C-f> <cmd>lua require('fzf-lua').live_grep()<CR>
+nnoremap <silent> <C-g> <cmd>lua require('fzf-lua').grep()<CR>
 
 "copy file path
 nnoremap <silent> <Leader>cp :let @+=expand("%:p")<CR>
@@ -202,11 +203,6 @@ let g:go_auto_sameids = 1
 let g:go_auto_type_info = 1
 let g:go_addtags_transform = 'camelcase'
 let g:go_def_mapping_enabled = 0
-
-" Open :GoDeclsDir with ctrl-g
-nmap <C-g> :GoDeclsDir<cr>
-imap <C-g> <esc>:<C-u>GoDeclsDir<cr>
-
 
 map <Leader>gi :GoInstall<CR>
 map <Leader>gl :GoLint<CR>
