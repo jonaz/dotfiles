@@ -29,13 +29,7 @@ customgrepinfile() {
 	rg -i --vimgrep "$1" . | $VIM_COMMAND -c "set noro" -c "noremap <enter> <C-w>F" -c "/$1" -R -
 }
 
-findaskinput(){
-	read -p "Search for: " term
-	$VIM_COMMAND  -c ":Rg $term"
-}
-
 customgrepfilename() {
-    #find . | grep $1 | vim -c "noremap <enter> <C-w>f<cr>" -c "/$1" -R -
 	local file
 	file=$(fzf --query="$1" --select-1 --exit-0)
 	[ -n "$file" ] && ${EDITOR:-$VIM_COMMAND} "$file"
@@ -288,4 +282,4 @@ bind '"\C-g\C-h": "$(gh)\e\C-e\er"'
 bind '"\C-g\C-r": "$(gr)\e\C-e\er"'
 bind '"\C-g\C-d": "git diff\n"'
 bind '"\C-g\C-s": "git status\n"'
-bind '"\C-f": "findaskinput\n"'
+bind '"\C-v\C-v": "nvim\n"'
