@@ -283,3 +283,8 @@ bind '"\C-g\C-r": "$(gr)\e\C-e\er"'
 bind '"\C-g\C-d": "git diff\n"'
 bind '"\C-g\C-s": "git status\n"'
 bind '"\C-v\C-v": "nvim\n"'
+
+
+#fnm
+eval "$(fnm env --shell bash)"
+

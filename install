@@ -58,6 +58,7 @@ i rust
 echo "Install stuff with cargo"
 cargo install cargo-update # update all with cargo install-update -a
 cargo install git-delta
+cargo install fnm
 cargo install --git https://github.com/Icelk/clipcat.git
 
 echo "setting up ssh-agent systemd user service"
