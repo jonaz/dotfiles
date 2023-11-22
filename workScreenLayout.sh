@@ -7,7 +7,7 @@ SECONDARY=$2
 
 i3-msg "workspace 1; move workspace to output $1"
 i3-msg "workspace 2; move workspace to output eDP"
-for i in {3..10}; do
+for i in {3..9}; do
 	i3-msg "workspace $i; move workspace to output $2"
 done
 
