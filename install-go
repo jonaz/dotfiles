@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# upgade go 
+VERSION=$(curl -s https://go.dev/dl/?mode=json | jq -r '.[0].version')
+CURRENTVERSION=$(go version|cut -d' ' -f 3)
+if [[ $VERSION == "$CURRENTVERSION" ]]; then
+	echo "latest go release already installed: $VERSION"
+else
+	echo "upgrade go version to $VERSION"
+	wget -P /tmp/ "https://storage.googleapis.com/golang/$VERSION.linux-amd64.tar.gz"
+	sudo rm -rf /usr/local/go && sudo tar -C /usr/local -xzf "/tmp/$VERSION.linux-amd64.tar.gz"
+	rm "/tmp/$VERSION.linux-amd64.tar.gz"
+fi

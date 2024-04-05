@@ -53,6 +53,7 @@ Plug 'hrsh7th/cmp-cmdline'
 
 Plug 'windwp/nvim-autopairs'
 Plug 'kylechui/nvim-surround'
+" Plug 'rest-nvim/rest.nvim'
 Plug 'rest-nvim/rest.nvim', { 'for': 'http' }
 " Plug 'machakann/vim-swap' " TODO use treesitter-textobjects instead
 

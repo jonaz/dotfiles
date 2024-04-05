@@ -31,6 +31,7 @@ DIST=$(awk -F= '/^NAME/{print $2}' /etc/os-release)
 if [[ "$DIST" == *"Ubuntu"* ]]; then
 	sudo apt update && sudo apt upgrade
 	sudo snap refresh
+	./install-go
 fi
 
 echo "Done"

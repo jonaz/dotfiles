@@ -316,3 +316,7 @@ require('nvim-treesitter.configs').setup {
 		},
 	},
 }
+
+-- require("rest-nvim").setup({
+-- 	env_file = '.requests.env'
+-- })
