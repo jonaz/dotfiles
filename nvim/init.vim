@@ -55,6 +55,7 @@ Plug 'windwp/nvim-autopairs'
 Plug 'kylechui/nvim-surround'
 " Plug 'rest-nvim/rest.nvim'
 Plug 'rest-nvim/rest.nvim', { 'for': 'http' }
+Plug 'stevearc/oil.nvim'
 " Plug 'machakann/vim-swap' " TODO use treesitter-textobjects instead
 
 call plug#end()
