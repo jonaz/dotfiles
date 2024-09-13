@@ -7,14 +7,17 @@ npm i -g bash-language-server
 npm i -g @ansible/ansible-language-server
 
 
-sudo apt install -y php8.2 \
-php8.2-gettext \
-php8.2-gd \
-php8.2-pgsql \
-php8.2-redis \
-php8.2-xml \
-php8.2-zip \
-php8.2-curl \
+sudo apt install -y php8.3 \
+php8.3-gettext \
+php8.3-gd \
+php8.3-pgsql \
+php8.3-redis \
+php8.3-xml \
+php8.3-zip \
+php8.3-curl \
+php8.3-soap \
+php8.3-yaml \
+php8.3-xdebug \
 build-essential \
 curl git xclip \
 cargo \
