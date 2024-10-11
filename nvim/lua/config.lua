@@ -257,6 +257,7 @@ require('nvim-treesitter.configs').setup {
 		'json',
 		'http',
 		'java',
+		'groovy',
 	},
 
 	highlight = {
