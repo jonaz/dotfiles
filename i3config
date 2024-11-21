@@ -38,7 +38,7 @@ bindsym $mod+p exec "i3-sensible-terminal -e bash -c \\"bash --rcfile <(echo '. 
 
 # kill focused window
 bindsym $mod+Shift+q kill
-bindsym Control+Shift+v exec /home/jonaz/.cargo/bin/clipcat-menu insert-primary
+bindsym Control+Shift+v exec /home/jonaz/.cargo/bin/clipcat-menu --log-level warn insert-primary
 
 # start dmenu (a program launcher)
 #bindsym $mod+d exec dmenu_run
