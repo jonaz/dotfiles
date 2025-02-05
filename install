@@ -59,7 +59,7 @@ echo "Install stuff with cargo"
 cargo install cargo-update # update all with cargo install-update -a
 cargo install git-delta
 cargo install fnm
-cargo install --git https://github.com/Icelk/clipcat.git
+cargo install --git https://github.com/xrelkd/clipcat clipcatd clipcatctl clipcat-menu
 
 echo "setting up ssh-agent systemd user service"
 mkdir -p "$HOME/.config/systemd/user"
@@ -84,7 +84,7 @@ Description=Starts the clipboard daemon
 
 [Service]
 Type=simple
-ExecStart=sh -c "PATH=~/.cargo/bin:\$PATH clipcatd --no-daemon"
+ExecStart=sh -c "PATH=~/.cargo/bin:\$PATH clipcatd --no-daemon --replace"
 Restart=on-failure
 
 [Install]

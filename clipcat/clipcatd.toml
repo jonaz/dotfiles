@@ -1,14 +1,13 @@
 daemonize = true
 max_history = 5000
-history_file_path = '/home/jonaz/.cache/clipcat/clipcatd/history.cch'
-log_level = 'warn'
 
-[monitor]
-load_current = true
+[log]
+emit_stdout = false
+emit_stderr = false
+level = "WARN"
+
+[watcher]
 enable_clipboard = true
 enable_primary = true
-filter_min_size = 1
+enable_secondary = false
 
-[grpc]
-host = '127.0.0.1'
-port = 45045
