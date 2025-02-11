@@ -84,6 +84,7 @@ Description=Starts the clipboard daemon
 
 [Service]
 Type=simple
+ExecStartPre=/bin/rm -f %t/clipcat/grpc.sock
 ExecStart=sh -c "PATH=~/.cargo/bin:\$PATH clipcatd --no-daemon --replace"
 Restart=on-failure
 
