@@ -18,6 +18,17 @@ php8.3-curl \
 php8.3-soap \
 php8.3-yaml \
 php8.3-xdebug \
+php8.4-gettext \
+php8.4-gd \
+php8.4-pgsql \
+php8.4-redis \
+php8.4-xml \
+php8.4-zip \
+php8.4-curl \
+php8.4-soap \
+php8.4-yaml \
+php8.4-xdebug \
+php8.4-mbstring \
 build-essential \
 curl git xclip \
 cargo \
