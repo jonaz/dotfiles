@@ -11,7 +11,7 @@ call plug#begin('~/.vim/bundle')
 Plug 'ggandor/leap.nvim'
 Plug 'tpope/vim-fugitive'
 Plug 'terrortylor/nvim-comment'
-Plug 'jose-elias-alvarez/null-ls.nvim'
+Plug 'nvimtools/none-ls.nvim'
 Plug 'nvim-lua/plenary.nvim' " dep for null-ls
 Plug 'nvim-lualine/lualine.nvim'
 Plug 'ishan9299/nvim-solarized-lua'
@@ -91,7 +91,7 @@ set clipboard+=unnamedplus
 "line numbers
 
 nnoremap <F11> :set relativenumber!<cr>
-set pastetoggle=<F12>
+nnoremap <silent> <F12> :set paste!<cr>
 
 " for C-like programming, have automatic indentation:
 augroup webcode

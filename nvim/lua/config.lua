@@ -24,7 +24,6 @@ require('fzf-lua').setup {
 null_ls.setup({
 	sources = {
 		null_ls.builtins.formatting.nginx_beautifier,
-		null_ls.builtins.formatting.trim_whitespace,
 		null_ls.builtins.formatting.shfmt,
 		null_ls.builtins.diagnostics.staticcheck,
 		null_ls.builtins.diagnostics.golangci_lint,
@@ -133,6 +132,8 @@ cmp.setup.cmdline(':', {
 		{ name = 'cmdline' }
 	})
 })
+
+vim.diagnostic.config({ virtual_text = true })
 
 -- Setup lspconfig.
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
