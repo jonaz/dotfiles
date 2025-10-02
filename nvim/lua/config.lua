@@ -230,7 +230,9 @@ local servers = {
 for server, opts in pairs(servers) do
 	opts.on_attach = on_attach
 	opts.capabilities = capabilities
-	lspconfig[server].setup(opts)
+
+	vim.lsp.config[server] = opts
+	vim.lsp.enable(server)
 end
 
 -- treesitter stuff
