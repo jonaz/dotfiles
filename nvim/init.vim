@@ -164,7 +164,7 @@ map <Leader>gd :Gdiffsplit<CR>
 nnoremap <silent> <C-a> :bd<CR>
 
 "pretty json
-:command JsonPretty :set ft=json | :%!python -m json.tool --tab
+:command JsonPretty :set ft=json | :%!jq --tab -S
 " pretty xml
 command XmlPretty :set ft=xml | :%!xmllint --format -
 

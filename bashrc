@@ -42,7 +42,11 @@ p(){
 }
 
 vimj(){
-	nvim -c 'execute "normal! p"' -c "JsonPretty"
+	nvim -c 'silent execute "normal! p"' -c "silent JsonPretty"
+}
+
+vimx(){
+	nvim -c 'silent execute "normal! p"' -c "silent XmlPretty"
 }
 
 kssh(){
@@ -51,7 +55,7 @@ kssh(){
     else 
 	    node=$(kubectl --context $1 get node --no-headers=true | fzf | awk '{print $1}')
 	fi
-    ssh $node
+    ssh "$node"
 }
 
 mkssh(){
