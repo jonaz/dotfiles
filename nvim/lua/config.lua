@@ -10,6 +10,13 @@ end
 
 require("oil").setup()
 
+local curl = require("curl")
+curl.setup({})
+
+vim.keymap.set("n", "<leader>cc", function()
+    curl.open_curl_tab()
+end, { desc = "Open a curl tab scoped to the current working directory" })
+
 require('fzf-lua').setup {
 	winopts = {
 		fullscreen = true,

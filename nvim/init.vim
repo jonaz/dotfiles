@@ -53,8 +53,7 @@ Plug 'hrsh7th/cmp-cmdline'
 
 Plug 'windwp/nvim-autopairs'
 Plug 'kylechui/nvim-surround'
-" Plug 'rest-nvim/rest.nvim'
-Plug 'rest-nvim/rest.nvim', { 'for': 'http' }
+Plug 'oysandvik94/curl.nvim'
 Plug 'stevearc/oil.nvim'
 " Plug 'machakann/vim-swap' " TODO use treesitter-textobjects instead
 
@@ -171,6 +170,16 @@ command XmlPretty :set ft=xml | :%!xmllint --format -
 command DiffBuffers :windo diffthis
 
 nnoremap <Leader>re :%s/\<<C-r><C-w>\>//g<Left><Left>
+
+
+" json
+" Whole buffer
+nnoremap <silent> <Leader>fj <Cmd>JsonPretty<CR>
+nnoremap <silent> <Leader>fcj <Cmd>%!jq --tab -S --compact-output<CR><Cmd>set ft=json<CR>
+
+" Visual selection
+vnoremap <silent> <Leader>fj :'<,'>!jq --tab -S<CR>
+vnoremap <silent> <Leader>fcj :'<,'>!jq --tab -S --compact-output<CR>
 
 
 let g:vdebug_features = {
