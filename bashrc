@@ -45,6 +45,9 @@ vimj(){
 	nvim -c 'silent execute "normal! p"' -c "silent JsonPretty"
 }
 
+vimc(){
+	nvim -c "silent CurlOpen collection global slask" -c 'silent execute "normal! G2o"' -c 'execute "normal! p"'
+}
 vimx(){
 	nvim -c 'silent execute "normal! p"' -c "silent XmlPretty"
 }
