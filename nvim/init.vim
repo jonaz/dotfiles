@@ -57,6 +57,12 @@ Plug 'oysandvik94/curl.nvim'
 Plug 'stevearc/oil.nvim'
 " Plug 'machakann/vim-swap' " TODO use treesitter-textobjects instead
 
+" sql editor
+" nvim-dbee dependencies
+Plug 'MunifTanjim/nui.nvim'
+" nvim-dbee with post-install hook to build the Go binary
+Plug 'kndndrj/nvim-dbee', { 'do': ':lua require(\"dbee\").install(\"go\")' }
+
 call plug#end()
 let mapleader = ','
 

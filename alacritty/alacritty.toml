@@ -30,19 +30,19 @@ foreground = "#839496"
 size = 11
 
 [font.bold]
-family = "Hack"
+family = "Hack Nerd Font"
 style = "Bold"
 
 [font.bold_italic]
-family = "Hack"
+family = "Hack Nerd Font"
 style = "Bold Italic"
 
 [font.italic]
-family = "Hack"
+family = "Hack Nerd Font"
 style = "Italic"
 
 [font.normal]
-family = "Hack"
+family = "Hack Nerd Font"
 style = "Regular"
 
 [font.offset]

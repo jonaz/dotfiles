@@ -9,6 +9,7 @@ local has_words_before = function()
 end
 
 require("oil").setup()
+require("dbee").setup()
 
 local curl = require("curl")
 curl.setup({})
