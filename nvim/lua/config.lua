@@ -15,10 +15,18 @@ local curl = require("curl")
 curl.setup({})
 
 vim.keymap.set("n", "<leader>cc", function()
-    curl.open_curl_tab()
+	curl.open_curl_tab()
 end, { desc = "Open a curl tab scoped to the current working directory" })
+vim.keymap.set("n", "<leader>fsc", function()
+	curl.pick_scoped_collection()
+end, { desc = "Choose a scoped collection and open it" })
 
-require('fzf-lua').setup {
+vim.keymap.set("n", "<leader>fgc", function()
+	curl.pick_global_collection()
+end, { desc = "Choose a global collection and open it" })
+
+local fzfLua = require('fzf-lua')
+fzfLua.setup({
 	winopts = {
 		fullscreen = true,
 		border = false,
@@ -27,7 +35,32 @@ require('fzf-lua').setup {
 		['--layout'] = false,
 		-- ['--info']      = false,
 	},
-}
+	keymap = {
+		fzf = {
+			["ctrl-q"] = "select-all+accept",
+		},
+	},
+})
+fzfLua.register_ui_select()
+
+-- Open files in fzf
+vim.keymap.set('n', '<C-p>', '<cmd>lua require(\'fzf-lua\').files()<CR>')
+
+-- search current buffer in fzf
+vim.keymap.set('n', '<C-l>', '<cmd>lua require(\'fzf-lua\').blines()<CR>')
+
+-- git status modified files
+vim.keymap.set('n', '<C-u>', '<cmd>lua require(\'fzf-lua\').git_status()<CR>')
+
+-- Open MRU in fzf
+vim.keymap.set('n', '<C-o>', '<cmd>lua require(\'fzf-lua\').git_status()<CR>')
+
+-- grep all files in project
+vim.keymap.set('n', '<C-f>', '<cmd>lua require(\'fzf-lua\').live_grep()<CR>')
+vim.keymap.set('n', '<C-g>', '<cmd>lua require(\'fzf-lua\').grep()<CR>')
+
+vim.keymap.set('n', '<M-j>', '<cmd>cnext<CR>')
+vim.keymap.set('n', '<M-k>', '<cmd>cprev<CR>')
 
 null_ls.setup({
 	sources = {
@@ -201,9 +234,9 @@ local servers = {
 		-- 		ansible = {
 		-- 			path = "/home/jonasfalck/.local/bin/ansible"
 		-- 		},
-				-- python = {
-				-- 	interpreterPath = '/usr/bin/python3',
-				-- },
+		-- python = {
+		-- 	interpreterPath = '/usr/bin/python3',
+		-- },
 		-- 	},
 		-- },
 	},

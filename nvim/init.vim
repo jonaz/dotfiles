@@ -129,23 +129,6 @@ set undofile
 " insert word under cursor in ctrlp;
 nmap <leader>lw <cmd>lua require('fzf-lua').files({ fzf_opts = { ['--query'] = vim.fn.expand("<cword>") } } )<CR>
 
-
-" Open files in fzf
-nnoremap <silent> <C-p> <cmd>lua require('fzf-lua').files()<CR>
-
-" search current buffer in fzf
-nnoremap <silent> <C-l> <cmd>lua require('fzf-lua').blines()<CR>
-
-" git status modified files
-nnoremap <silent> <C-u> <cmd>lua require('fzf-lua').git_status()<CR>
-
-" Open MRU in fzf
-nnoremap <silent> <C-o> <cmd>lua require('fzf-lua').oldfiles()<CR>
-
-" grep all files in project
-nnoremap <silent> <C-f> <cmd>lua require('fzf-lua').live_grep()<CR>
-nnoremap <silent> <C-g> <cmd>lua require('fzf-lua').grep()<CR>
-
 "copy file path
 nnoremap <silent> <Leader>cp :let @+=expand("%:p")<CR>
 
