@@ -25,6 +25,7 @@ if type "nvim" > /dev/null; then
 fi
 
 #functions for aliases
+# TODO move to this? nvim -c "cexpr system('rg -i --vimgrep \"bash\"')" -c copen
 customgrepinfile() {
 	rg -i --vimgrep "$1" . | $VIM_COMMAND -c "set noro" -c "noremap <enter> <C-w>F" -c "/$1" -R -
 }
