@@ -10,6 +10,7 @@ call plug#begin('~/.vim/bundle')
 
 Plug 'ggandor/leap.nvim'
 Plug 'tpope/vim-fugitive'
+Plug 'sindrets/diffview.nvim'
 Plug 'terrortylor/nvim-comment'
 Plug 'nvimtools/none-ls.nvim'
 Plug 'nvim-lua/plenary.nvim' " dep for null-ls
@@ -52,6 +53,7 @@ Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-cmdline'
 
 Plug 'windwp/nvim-autopairs'
+Plug 'windwp/nvim-ts-autotag'
 Plug 'kylechui/nvim-surround'
 Plug 'oysandvik94/curl.nvim'
 Plug 'stevearc/oil.nvim'

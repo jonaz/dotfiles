@@ -7,7 +7,7 @@ if [[ $VERSION == "$CURRENTVERSION" ]]; then
 	echo "latest go release already installed: $VERSION"
 else
 	echo "upgrade go version to $VERSION"
-	wget -P /tmp/ "https://storage.googleapis.com/golang/$VERSION.linux-amd64.tar.gz"
+	wget -P /tmp/ "https://go.dev/dl/$VERSION.linux-amd64.tar.gz"
 	sudo rm -rf /usr/local/go && sudo tar -C /usr/local -xzf "/tmp/$VERSION.linux-amd64.tar.gz"
 	rm "/tmp/$VERSION.linux-amd64.tar.gz"
 fi

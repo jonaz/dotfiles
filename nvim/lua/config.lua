@@ -86,6 +86,7 @@ vim.api.nvim_set_keymap('n', '<leader>c<space>', ':CommentToggle<CR>', { noremap
 vim.api.nvim_set_keymap('v', '<leader>c<space>', ":'<,'>CommentToggle<CR>", { noremap = true, silent = true })
 
 require('nvim-autopairs').setup()
+require('nvim-ts-autotag').setup()
 require('lualine').setup({
 	inactive_sections = {
 		lualine_c = {
@@ -290,6 +291,8 @@ require('nvim-treesitter.configs').setup {
 		'rust',
 		'typescript',
 		'tsx',
+		'sql',
+		'html',
 		'javascript',
 		'vimdoc',
 		'vim',
