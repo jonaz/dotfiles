@@ -101,8 +101,8 @@ require('lualine').setup({
 
 require "fidget".setup {} -- lsp loading info
 require("nvim-surround").setup({})
-vim.keymap.set({'n', 'x', 'o'}, 's', '<Plug>(leap)')
-vim.keymap.set({'n', 'x', 'o'}, 'S', '<Plug>(leap-backward)')
+vim.keymap.set({ 'n', 'x', 'o' }, 's', '<Plug>(leap)')
+vim.keymap.set({ 'n', 'x', 'o' }, 'S', '<Plug>(leap-backward)')
 
 cmp.setup({
 	preselect = cmp.PreselectMode.None,
@@ -340,37 +340,41 @@ end
 -- 	},
 -- }
 
-require'nvim-treesitter'.install{
-		'dockerfile',
-		'c',
-		'cpp',
-		'go',
-		'gomod',
-		'lua',
-		'python',
-		'rust',
-		'typescript',
-		'tsx',
-		'sql',
-		'html',
-		'javascript',
-		'vimdoc',
-		'vim',
-		'php',
-		'comment',
-		'yaml',
-		'bash',
-		'jsonnet',
-		'json',
-		'http',
-		'java',
-		'groovy',
+local languages = {
+	'dockerfile',
+	'c',
+	'cpp',
+	'go',
+	'gomod',
+	'lua',
+	'python',
+	'rust',
+	'typescript',
+	'typescriptreact',
+	'tsx',
+	'sql',
+	'html',
+	'javascript',
+	'vimdoc',
+	'vim',
+	'php',
+	'comment',
+	'yaml',
+	'bash',
+	'jsonnet',
+	'json',
+	'http',
+	'java',
+	'groovy',
 }
+require 'nvim-treesitter'.install(languages)
+
+vim.api.nvim_create_autocmd('FileType', {
+	pattern =  languages,
+	callback = function() vim.treesitter.start() end,
+})
 
 -- require("rest-nvim").setup({
 -- 	env_file = '.requests.env'
 -- })
 --
-
-
-
