@@ -60,6 +60,7 @@ cargo install cargo-update # update all with cargo install-update -a
 cargo install git-delta
 cargo install fnm
 cargo install --git https://github.com/xrelkd/clipcat clipcatd clipcatctl clipcat-menu
+cargo install --locked tree-sitter-cli
 
 echo "setting up ssh-agent systemd user service"
 mkdir -p "$HOME/.config/systemd/user"
