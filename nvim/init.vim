@@ -8,7 +8,7 @@ endif
 
 call plug#begin('~/.vim/bundle')
 
-Plug 'ggandor/leap.nvim'
+Plug 'folke/flash.nvim'
 Plug 'tpope/vim-fugitive'
 Plug 'sindrets/diffview.nvim'
 Plug 'terrortylor/nvim-comment'
@@ -355,4 +355,5 @@ let g:VM_default_mappings = 0
 " fix strange error sign with nvim-solarized-lua theme and ALE. This will only
 " show red cross and not red background on it.
 " hi Error cterm=bold,reverse ctermfg=23 ctermbg=203 gui=bold,reverse guifg=#002b36 guibg=#dc322f
-hi def link LeapLabel IncSearch
+" hi def link LeapLabel IncSearch
+" hi def link FlashLabel WildMenu

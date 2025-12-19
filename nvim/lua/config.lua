@@ -11,6 +11,22 @@ end
 require("oil").setup()
 require("dbee").setup()
 
+require('flash').setup({
+
+})
+vim.keymap.set({ "n", "o", "x" }, "s", function() require("flash").jump() end, { desc = "Flash" })
+vim.keymap.set({ "n", "o", "x" }, "S", function() require("flash").treesitter() end, { desc = "Flash Treesitter" })
+vim.keymap.set({ "o" }, "r", function() require("flash").remote() end, { desc = "Remote Flash" })
+vim.keymap.set({ "o", "x" }, "R", function() require("flash").treesitter_search() end, { desc = "Treesitter Search" })
+
+vim.api.nvim_create_autocmd("ColorScheme", {
+	callback = function()
+		vim.api.nvim_set_hl(0, 'FlashLabel', { bg = '#dc322f', fg = '#fdf6e3', bold = false })
+	end,
+})
+-- vim.keymap.set({ 'n', 'x', 'o' }, 's', '<Plug>(leap)')
+-- vim.keymap.set({ 'n', 'x', 'o' }, 'S', '<Plug>(leap-backward)')
+
 local curl = require("curl")
 curl.setup({})
 
@@ -47,7 +63,7 @@ fzfLua.register_ui_select()
 vim.keymap.set('n', '<C-p>', '<cmd>lua require(\'fzf-lua\').files()<CR>')
 
 -- search current buffer in fzf
-vim.keymap.set('n', '<C-l>', '<cmd>lua require(\'fzf-lua\').blines()<CR>')
+vim.keymap.set('n', '<C-l>', '<cmd>lua require(\'fzf-lua\').treesitter()<CR>')
 
 -- git status modified files
 vim.keymap.set('n', '<C-u>', '<cmd>lua require(\'fzf-lua\').git_status()<CR>')
@@ -101,8 +117,6 @@ require('lualine').setup({
 
 require "fidget".setup {} -- lsp loading info
 require("nvim-surround").setup({})
-vim.keymap.set({ 'n', 'x', 'o' }, 's', '<Plug>(leap)')
-vim.keymap.set({ 'n', 'x', 'o' }, 'S', '<Plug>(leap-backward)')
 
 cmp.setup({
 	preselect = cmp.PreselectMode.None,
@@ -370,9 +384,13 @@ local languages = {
 require 'nvim-treesitter'.install(languages)
 
 vim.api.nvim_create_autocmd('FileType', {
-	pattern =  languages,
-	callback = function() vim.treesitter.start() end,
+	pattern = languages,
+	callback = function()
+		vim.treesitter.start()
+		vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+	end,
 })
+
 
 -- require("rest-nvim").setup({
 -- 	env_file = '.requests.env'
