@@ -1,3 +1,4 @@
+grpc_max_message_size = 16777216  # 16MB
 [log]
 emit_stdout = true
 emit_stderr = true

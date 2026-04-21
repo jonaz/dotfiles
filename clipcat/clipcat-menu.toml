@@ -1,4 +1,5 @@
 finder = "rofi"
+grpc_max_message_size = 16777216
 [log]
 emit_journald = false
 emit_stdout = true

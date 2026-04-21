@@ -118,6 +118,12 @@ require('lualine').setup({
 require "fidget".setup {} -- lsp loading info
 require("nvim-surround").setup({})
 
+require("copilot").setup({
+	suggestion = { enabled = false },
+	panel = { enabled = false },
+})
+require("copilot_cmp").setup()
+
 cmp.setup({
 	preselect = cmp.PreselectMode.None,
 	snippet = {
@@ -155,6 +161,7 @@ cmp.setup({
 		end, { "i", "s" }),
 	}),
 	sources = cmp.config.sources({
+		{ name = "copilot"},
 		{ name = 'nvim_lsp' },
 		{ name = 'snippy' },
 		{ name = 'path' },
@@ -364,7 +371,7 @@ local languages = {
 	'python',
 	'rust',
 	'typescript',
-	'typescriptreact',
+	-- 'typescriptreact',
 	'tsx',
 	'sql',
 	'html',
@@ -383,6 +390,7 @@ local languages = {
 }
 require 'nvim-treesitter'.install(languages)
 
+table.insert(languages, 'typescriptreact')
 vim.api.nvim_create_autocmd('FileType', {
 	pattern = languages,
 	callback = function()
