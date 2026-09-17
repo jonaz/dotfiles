@@ -265,7 +265,7 @@ gt() {
     --preview 'git show --color=always {} | head -'$LINES
 }
 
-gh() {
+_gh() {
   is_in_git_repo || return
   git log --date=short --format="%C(green)%C(bold)%cd %C(auto)%h%d %s (%an)" --graph --color=always |
   fzf-down --ansi --no-sort --reverse --multi --bind 'ctrl-s:toggle-sort' \
@@ -286,7 +286,7 @@ bind '"\er": redraw-current-line'
 bind '"\C-g\C-f": "gf\n"'
 bind '"\C-g\C-b": "$(gb)\e\C-e\er"'
 bind '"\C-g\C-t": "$(gt)\e\C-e\er"'
-bind '"\C-g\C-h": "$(gh)\e\C-e\er"'
+bind '"\C-g\C-h": "$(_gh)\e\C-e\er"'
 bind '"\C-g\C-r": "$(gr)\e\C-e\er"'
 bind '"\C-g\C-d": "git diff\n"'
 bind '"\C-g\C-s": "git status\n"'
